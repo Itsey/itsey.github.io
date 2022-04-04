@@ -1,12 +1,12 @@
-<h1>Command Line Parser.</h1>
+<h1 id="command-line-parser">Command Line Parser.</h1>
 <p>The CommandLine Parser is there to support working with command lines using Plisky.Plumbing to do the argument parsing and manipulating the data into a class that
 you provide. The class uses attributes to map the command line arguments to the class members.</p>
-<h4>Contents</h4>
+<h4 id="contents">Contents</h4>
 <ul>
 <li><a href=".\attributes.html">Attributes Guide</a></li>
 <li><a href=".\generatingHelp.html">Generating Help</a></li>
 </ul>
-<h3>Quick Start.</h3>
+<h3 id="quick-start">Quick Start.</h3>
 <p>To start first define your arguments class:</p>
 <pre><code class="language-csharp">[CommandLineArguments]
 public class SampleCommandLine_C2 {
@@ -36,7 +36,7 @@ clas.ProcessArguments(argsClass, args);
 <p>'Filename:&quot;This is the filename.txt&quot; INTVALUE:1234 L:5678</p>
 <p>There is no specified prefix on the arguments, but a postfix of : is used.    Long strings and special characters (like | and &lt;&gt;) can be provided by putting quotes around
 the argument.</p>
-<h3>Alternative Generic Syntax.</h3>
+<h3 id="alternative-generic-syntax">Alternative Generic Syntax.</h3>
 <p>There is an alternative generic based syntax that will save you a tiny bit of typing at the cost of a tiny bit of runtime overhead.  If you prefer the syntax the
 functionality is identical.  This will only work for argument attributed classes that have a default constructor.</p>
 <pre><code class="language-csharp">var argsClass = ProcessArguments&lt;SampleCommandLine_C2&gt;(args)
@@ -44,6 +44,6 @@ functionality is identical.  This will only work for argument attributed classes
 var argsClass = new SampleCommandLine_C2();
 clas.ProcessArguments(argsClass, args);
 </code></pre>
-<h3>TroubleShooting.</h3>
+<h3 id="troubleshooting">TroubleShooting.</h3>
 <p>To enable trace for ConfigHub turn on the trace switch &quot;Plisky-CLAS&quot;.
 This can be done using the standard configuration for Plisky.Diagnostics (see here)</p>

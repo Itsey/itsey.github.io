@@ -1,5 +1,5 @@
-<h2>Plisky Tool Command Line reference</h2>
-<h3>Command Line Options</h3>
+<h2 id="plisky-tool-command-line-reference">Plisky Tool Command Line reference</h2>
+<h3 id="command-line-options">Command Line Options</h3>
 <p>Command line options are prefixed with -.  They are postfixed with =.<br />
 e.g. -Command=CreateVersion</p>
 <pre><code class="language-plaintext">-Command  (-C)              Specify the Command that is to be run
@@ -22,8 +22,8 @@ Full Example Commandline:
 PliskyTool.exe UpdateFiles -Root=c:\src\ -VS=c:\store\pversioner.vstore -Increment -MM=&quot;**/*.csproj|StdFile,**/*.csproj|StdAssembly,**/*.csproj|StdInformational&quot;
 
 </code></pre>
-<h3>Commands</h3>
-<h4>Create Version</h4>
+<h3 id="commands">Commands</h3>
+<h4 id="create-version">Create Version</h4>
 <p>Creates a new default version number</p>
 <pre><code class="language-plaintext">-Command=CreateVersion
 
@@ -33,7 +33,7 @@ Requires:
 <pre><code class="language-dos">pliskytool.exe -Command=CreateVersion -VersionSource=C:\temp\aversion.vstore
 </code></pre>
 <p>Will create a new version at 1.0.0.0 in the source specified by version source, this will be persisted with the default values of Fixed versioning. Therefore your version number will default to 1.0.0.0.</p>
-<h4>Passive</h4>
+<h4 id="passive">Passive</h4>
 <p>Passively reads the version number for use in scripts.</p>
 <pre><code class="language-plaintext">-Command=Passive
 
@@ -44,7 +44,7 @@ Requires:
 pliskytool.exe -Command=Passive -VersionSource=C:\temp\aversion.vstore -O=File
 </code></pre>
 <p>Will load the version number into the tool then perform no action.  This is only really used in conjuction with the -O output option to ensure that the version number is made available to a calling or alternative process.</p>
-<h5>Output options</h5>
+<h5 id="output-options">Output options</h5>
 <p>Output options are specified to determine where the output should be written.</p>
 <pre><code class="language-plaintext">-O=&lt;outputdestination&gt;
 -O=&lt;outputdestination&gt;:&lt;option&gt;
@@ -68,7 +68,7 @@ Output  &gt; &quot;##vso[task.setvariable variable=version;]1.2.3.4&quot;
 
 
 </code></pre>
-<h4>Override</h4>
+<h4 id="override">Override</h4>
 <p>Overrides the values of version numbers at the point of next increment</p>
 <pre><code class="language-plaintext">-Command=Override
 
@@ -88,7 +88,7 @@ abc  = Any number of letters replaces the digit with this version (for named dig
 1.1.1.1  =&gt;  +.+.+.+ =&gt; 2.2.2.2<br />
 1.1.1.1 =&gt; +.-+.-  =&gt; 2.0.2.0<br />
 1.0.0.0 =&gt; +.0.alpha.0  =&gt; 2.0.alpha.0</p>
-<h4>Update Files</h4>
+<h4 id="update-files">Update Files</h4>
 <p>Overrides the values of version numbers at the point of next increment</p>
 <pre><code class="language-plaintext">-Command=UpdateFiles
 
@@ -128,6 +128,6 @@ Optional:
 <p>This will search the folder c:\src for all .csproj files and attempt to add the .net standard versioninng for the three different file types to any csproj files that are
 found.  Note that for the std file type it will look inside the file and see whether it looks like a net std file or a framework one.  Framework ones
 will not be udpated.</p>
-<h5>Using No Override</h5>
+<h5 id="using-no-override">Using No Override</h5>
 <p>When setting up multiple branches it is sometimes useful to be able to ignore an override when a specific branch is versioned.  To do this specify -NO.<br />
 The most common scenario here is when the Pull Request build is used to reset the version ready for release.  When using the <a href="UsingPullRequestsToVersion.md">Pull Request Versioning Approach</a> then it is possible that a build on the source branch happens after the PR build but before the release branch has run.  This will cause the source branch to incorrectly version.  To avoid this add the -NO to the source branch versioning element.</p>

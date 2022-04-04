@@ -1,7 +1,7 @@
-<h2>Plisky.Code Craft.</h2>
+<h2 id="plisky.code-craft">Plisky.Code Craft.</h2>
 <p>Plisky.Code Craft is a series of libraries, tools and practices all around writing better software.  This module is a versioning tool designed to consistently apply and work with version numbers for Wintel stack code.</p>
-<h2>Versioning Reference.</h2>
-<h3>Versioning Reference Types</h3>
+<h2 id="versioning-reference">Versioning Reference.</h2>
+<h3 id="versioning-reference-types">Versioning Reference Types</h3>
 <p>.Net Framework identifiers</p>
 <ul>
 <li>NetAssembly</li>
@@ -20,23 +20,23 @@
 <li>Wix ( Wix setup XML format)</li>
 <li>Nuspec ( Nuget package format )</li>
 </ul>
-<h3>Behaviours</h3>
+<h3 id="behaviours">Behaviours</h3>
 <p>The versioning increment is based on the behaviour of the digit.</p>
-<h4>Fixed (0)</h4>
+<h4 id="fixed-0">Fixed (0)</h4>
 <p>Fixed values do not change.  They remain constant throughout a version increment.</p>
-<h4>MajorDeterminesVersionNumber (1)</h4>
+<h4 id="majordeterminesversionnumber-1">MajorDeterminesVersionNumber (1)</h4>
 <p>Not Implemented.</p>
-<h4>DaysSinceDate (2)</h4>
+<h4 id="dayssincedate-2">DaysSinceDate (2)</h4>
 <p>DaysSinceDate will reflect the number of days that have elapsed since the BaseDate</p>
-<h4>DailyAutoIncrement (3)</h4>
+<h4 id="dailyautoincrement-3">DailyAutoIncrement (3)</h4>
 <p>DailyAutoIncrement will increment each time that the increment is called for the current build date.  Therefore multiple builds on the same day will have incremental versions but the next day the number resets to zero.</p>
-<h4>AutoIncrementWithReset (4)</h4>
+<h4 id="autoincrementwithreset-4">AutoIncrementWithReset (4)</h4>
 <p>AutoIncrementWithReset will increment continually unless the next digit up has changed.  It therefore behaves exactly like continual increment for the major version part.  For the minor version part it will increment until the major changes then it will reset to zero. For the build the build will increment until the minor version changes. Finally for the revision it will increment until the build version changes.</p>
-<h4>AutoIncrementWithResetAny (5)</h4>
+<h4 id="autoincrementwithresetany-5">AutoIncrementWithResetAny (5)</h4>
 <p>This will increment continually unless any of the higher order digits have changed.  It therefore continually increments until a more significant digit changes then it resets to zero.  Major digits will continually increment.  Minor digits will continue to increment until the major changes.  Build will continue to increment until either Major or Minor changes and finally the revision digit will continue to increment until any of Major / Minor or Build changes.</p>
-<h4>ContinualIncrement (6)</h4>
+<h4 id="continualincrement-6">ContinualIncrement (6)</h4>
 <p>Continual increment will increment non stop until an overflow occurs. When an overflow occurs the digit is reset to 0.</p>
-<h4>WeeksSinceDate (7)</h4>
+<h4 id="weekssincedate-7">WeeksSinceDate (7)</h4>
 <p>This will return the number of whole or partial weeks since the base date.</p>
-<h4>ReleaseName (8)</h4>
+<h4 id="releasename-8">ReleaseName (8)</h4>
 <p>Will set this digit to be the release name as specified in the version.  Release names can change during an increment but are not incremented or decremented as such.  They are set to literal strings.</p>

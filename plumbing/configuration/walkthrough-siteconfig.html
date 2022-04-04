@@ -1,6 +1,6 @@
-<h1>Plisky.Plumbing -  Walkthrough.</h1>
-<h3>Example walkthrough adding configuration to an asp core site.</h3>
-<h4>Adding in the DB connection string.</h4>
+<h1 id="plisky.plumbing-walkthrough">Plisky.Plumbing -  Walkthrough.</h1>
+<h3 id="example-walkthrough-adding-configuration-to-an-asp-core-site">Example walkthrough adding configuration to an asp core site.</h3>
+<h4 id="adding-in-the-db-connection-string">Adding in the DB connection string.</h4>
 <p>Typically you will add a DBContext in the service configuration area of the site - to do this retrieve the connection string from ConfigHub after configuring the Hub to look for settings.</p>
 <pre><code class="language-csharp">
 
@@ -30,7 +30,7 @@ public static void Main(string[] args) {
          options.UseSqlServer(connectionString)
      );
 </code></pre>
-<h4>A note on Entity Framework Configuration</h4>
+<h4 id="a-note-on-entity-framework-configuration">A note on Entity Framework Configuration</h4>
 <p>If you use entity framework directly for altering the DB, sometimes you will find yourself in a sitaution where the configuration needs to be duplicated.  The simplest way to do this is with a compiler directive and an additional registration in the EF code.</p>
 <pre><code class="language-csharp">
 

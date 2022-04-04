@@ -1,7 +1,7 @@
-<h1>Isolating Configuration</h1>
+<h1 id="isolating-configuration">Isolating Configuration</h1>
 <p>Sometimes when working with configuration it must contain sensitive information and this should not be commited to source control.  Using environment variables
 or files that are set to be ignored by your source control tool you can do this as per the following examples.</p>
-<h2>Simple Use Case</h2>
+<h2 id="simple-use-case">Simple Use Case</h2>
 <p>1 - Create The File With the Config In it</p>
 <pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;chub_settings&gt;
@@ -18,7 +18,7 @@ or files that are set to be ignored by your source control tool you can do this 
 <p>4 - Retrieve The Value</p>
 <p>' var s = ConfigHub.Current.GetSetting<string>(&quot;testvalue&quot;);</p>
 <p>With this approach different settings can be applied on different machines outside the deployment path to keep the configuration constant.</p>
-<h3>Using ignored files.</h3>
+<h3 id="using-ignored-files">Using ignored files.</h3>
 <p>Using files with a consistent .donotcommit extension then including them in your SCM ignore file will allow you to have configuration data in the source path
 that contains sensitive info.  This does present a risk of loosing this information but that is better than having secrets compromised.</p>
 <pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;

@@ -1,8 +1,8 @@
-<h2>Using The Versioning In Scripts - e.g. Powershell</h2>
+<h2 id="using-the-versioning-in-scripts-e.g.powershell">Using The Versioning In Scripts - e.g. Powershell</h2>
 <p>Sometimes you will want to use the version number that is generated in a script, rather than replace in a predefined file.  There are several output methods
 that are used to do this.</p>
-<h3>Walkthrough - Using Versioning in a Docker Tag</h3>
-<p>This assumes that you have already created a version store and are using it to version elements such as the code.  For simplicity none of that will be included in this guide and it will also be assumed that the version store will be incremented elsewhere ( for example during the code build process). Therefore this walkthrough shows how to tag a docker image with the same version number that was just applied to the code.</p>
+<h3 id="walk-through-using-versioning-in-a-docker-tag">Walk-through - Using Versioning in a Docker Tag</h3>
+<p>This assumes that you have already created a version store and are using it to version elements such as the code.  For simplicity none of that will be included in this guide and it will also be assumed that the version store will be incremented elsewhere ( for example during the code build process). Therefore this walk-through shows how to tag a docker image with the same version number that was just applied to the code.</p>
 <p>Take this powershell script:</p>
 <pre><code class="language-dockerfile">docker build -t papi-api .
 docker tag papi-api itseyreg.azurecr.io/papi-api:latest

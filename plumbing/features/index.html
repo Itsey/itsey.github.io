@@ -1,8 +1,8 @@
-<h2>Using Plisky Feature Support</h2>
+<h2 id="using-plisky-feature-support">Using Plisky Feature Support</h2>
 <p>Features are switches that are designed to allow you to work with conditional code to enable and disable elements of your code through configuration.</p>
 <p>They are  a key enabler for working with a single code branch but can also be used to dynamically configure elements of your
 code to allow for experimentation, separating features from deployments and time based functionality.</p>
-<h3>Concepts</h3>
+<h3 id="concepts">Concepts</h3>
 <p>Features are created by a feature provider.  Feature providers have the job of retrieving the feature configuration from some
 storage mechanism. There are some feature providers implemented as a part of Plisky.Plumbing but anything that implements IResolveFeatures
 can be used to provide features back to the feature framework.  That way you can use whichever configuration you prefer.</p>
@@ -18,7 +18,7 @@ for(int i=0; i&lt;10; i++) {
 </code></pre>
 <p>This can be overridden by calling IsActive() which will always force a call back to the feature provider to determine whether
 the feature is active or not. This can be useful when doing Red Green testing or any form of feature enabling that requires dynamic configuration.</p>
-<h3>Enabling Features</h3>
+<h3 id="enabling-features">Enabling Features</h3>
 <p>Features are provided through a FeatureProvider which implements IResolveFeatures.  The simplest Feature Provider is a hard coded feature provider where
 all of the features to be resolved are hard coded at app startup.</p>
 <p>There are two aspects to the feature provisioning, the initial setup and configuration of a feature provider and then
@@ -35,7 +35,7 @@ if (Feature.GetFeatureByName(&quot;TEST&quot;).Active) {
    // This feature is active thanks to the hard coded feature resolver
 }
 </code></pre>
-<h3>Simplest UseCase.</h3>
+<h3 id="simplest-usecase">Simplest UseCase.</h3>
 <pre><code class="language-csharp">//  During applicaiton configuration or setup
 var f = new FeatureHardCodedProvider();
 f.AddFeature(new Feature(&quot;WRITELINE&quot;, true));
@@ -44,7 +44,7 @@ if (Feature.GetFeatureByName(&quot;WRITELINE&quot;).Active) {
 Console.WriteLine(&quot;Feature Active&quot;
 }
 </code></pre>
-<h3>Features Configured By Date</h3>
+<h3 id="features-configured-by-date">Features Configured By Date</h3>
 <p>Features can have a start date, an end date or both:</p>
 <pre><code class="language-csharp">var f = new Feature(&quot;CHRISTMAS&quot;,false);
 f.SetDateRange(new DateTime(2020,12,24), new DateTime(2020,12,26));
@@ -55,6 +55,6 @@ often you'll want the feature to reoccur each year - to do this specify the fina
 </code></pre>
 <p>Now this feature will be active for three days each year - displaying a Christmas banner or information related to the Christmas period
 without any further code changes required.</p>
-<h3>Features With Levels</h3>
+<h3 id="features-with-levels">Features With Levels</h3>
 <p>Features can be set to different values, not simply true or false.  Using levels allows you to retrieve the value for a feature but
 also use Active to determine if it has any value.  Active will return true if the feature level is anything other than zero.</p>
