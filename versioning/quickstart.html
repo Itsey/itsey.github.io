@@ -1,0 +1,23 @@
+<h2>Versioning Quick Start</h2>
+<h3>Step 1</h3>
+<p><strong>Create</strong> the storage file which contains the versioning number that you are going to use.  The new file will default to 0.0.0.0 and a fixed behaviour scheme.</p>
+<pre><code class="language-dos">pliskytool.exe -Command=CreateVersion -VersionSource=C:\temp\myappname.vstore
+</code></pre>
+<h3>Step 2</h3>
+<p><strong>Configure</strong> your source repository with a text file describing which files you want to apply versioning to.  This will contain a list of version minmatches.</p>
+<p>Create a file like one below and save it as autoversion.txt in your repository.This is a set of minmatchers and you should match your code (for example the convention below has source code in a /src folder)</p>
+<pre><code class="language-plaintext">**/src/**/CommonAssembly*.cs|NetAssembly
+**/src/**/CommonAssembly*.cs|NetAssembly
+**/src/**/CommonAssembly*.cs|NetAssembly
+**/src/**/CommonAssembly*.cs|NetFile
+**/src/**/CommonAssembly*.cs|NetInformational
+**/src/**/*.csproj|StdAssembly
+**/src/**/*.csproj|StdInformational
+**/src/**/*.txt|TextFile
+</code></pre>
+<h3>Step 3</h3>
+<p><strong>Increment</strong> the version number and apply the changes to your source files.</p>
+<pre><code class="language-dos">PliskyTool.exe UpdateFiles -Root=.\LibSrc\ -VS=\\server\versionFname.vstore -Increment -MM=AutoVersion.txt
+</code></pre>
+<h3>Step 4</h3>
+<p><strong>Investigate</strong> what else you can do - add step 3 to your build pipeline, include it in batch files, read the documentation etc.</p>

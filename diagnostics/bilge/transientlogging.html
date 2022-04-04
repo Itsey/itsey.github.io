@@ -1,0 +1,57 @@
+<h3>Transient Logging</h3>
+<h3>Transient Logging Use Case</h3>
+<p>In a very tight loop when data is changing and you want to see the data change, its often very hard to work this out from a long log file - instead Bilge and FlimFlam provide transient logging for this scenario.</p>
+<p>There are two types of output currently supported by FlimFlam - STATs and GRIDs</p>
+<h3>Stat Logging</h3>
+<p>STAT logging is designed for statistics and numbers that have a single value and change over time.  To write a STAT out to the output stream prefix it with [STAT] and give it a name also surrounded in square brackets.</p>
+<pre><code>b.Direct.Write($&quot;[STAT][TurnTick]&quot;, $&quot;{Turn.ToString()}.{Tick.ToString()}&quot;);
+</code></pre>
+<h3>GRID Logging</h3>
+<p>GRID logging is similar but designed for visual data ( in text ).   In the example in here there is a map being updated in gaming code. This map is a view from a player and changes repeatedly.  Its very hard to visualize this in logging data without custom support.</p>
+<p>To write grid data use the direct logger.  Start the direct log wit [GRID] and provide a name for the grid output [NAME] then write each line of the grid in to the secondary message. Use | character to enter newlines into the grid data.</p>
+<pre><code>b.Direct.Write($&quot;[GRID][NoughtsAndCrosses]&quot;, $&quot;oxo|o x|oxx|&quot;);
+// Output
+oxo
+o x
+oxx
+</code></pre>
+<p>In the example here the grid logging quickly out the first letter of the colour that the engine is using to draw the pictorial representation of the data.  In the output gif below you can see how this renderes in FlimFlam.</p>
+<pre><code> for (int yDelta = result.Height + result.LowestYValue; yDelta &gt; result.LowestYValue; yDelta--) {
+    map.Append(&quot;|&quot;);
+
+    for (int xDelta = 0; xDelta &lt; result.Width; xDelta++) {
+        var srPosX = xDelta + result.LowestYValue;
+        var srPosY = yDelta; 
+
+        var res = result.GetResultAtPosition(new Point(srPosX, srPosY));
+
+        Color c;
+        switch (res) {
+            case ScanTileResult.Unscanned:
+                c = Color.DarkGray;
+                break;
+
+            case ScanTileResult.Unoccupied:
+                c = Color.LightGreen;
+                break;
+
+            case ScanTileResult.SolidWall:
+                c = Color.Black;
+                break;
+
+            case ScanTileResult.You:
+                c = Color.Aqua;
+                break;
+
+        }
+        map.Append(c.Name.ToLower()[0]);
+                        
+        xDraw++;
+    }
+    yDraw++;
+    xDraw = 0;
+}
+b.Direct.Write(&quot;[GRID][MAP]&quot;, map.ToString());
+</code></pre>
+<p>Transient Logging in action</p>
+<p><img src="....\images\transientdata.gif" alt="Transient Logging" /></p>

@@ -1,0 +1,133 @@
+<h2>Plisky Tool Command Line reference</h2>
+<h3>Command Line Options</h3>
+<p>Command line options are prefixed with -.  They are postfixed with =.<br />
+e.g. -Command=CreateVersion</p>
+<pre><code class="language-plaintext">-Command  (-C)              Specify the Command that is to be run
+-VersionSource  (-VS)       Specify an inititialisation string to a supported version source
+-Increment                  Increment the version number during the command operation.
+-Digits                     
+-QuickValue  (-Q)           Provide a value for the versioning command.
+-MinMatch                   Provide a file or list of minimatches to identify files to update.
+-Root                       The root folder to recursivly search for files to update.
+-DryRun                     If specified then no updates are made, but output is written to the logs.
+-Output                     Specifies output options to write the version number somewhere. Supports Env,File,Con,AzDo
+-NO                         Specifies that overrides should be ignored
+
+-Debug                      Enables trace handling for debugging and additional logging.
+-Trace                      Enables level of trace  (set to Info,Verobse,Off)
+
+
+Full Example Commandline:
+
+PliskyTool.exe UpdateFiles -Root=c:\src\ -VS=c:\store\pversioner.vstore -Increment -MM=&quot;**/*.csproj|StdFile,**/*.csproj|StdAssembly,**/*.csproj|StdInformational&quot;
+
+</code></pre>
+<h3>Commands</h3>
+<h4>Create Version</h4>
+<p>Creates a new default version number</p>
+<pre><code class="language-plaintext">-Command=CreateVersion
+
+Requires:
+-VersionSource  (-VS)
+</code></pre>
+<pre><code class="language-dos">pliskytool.exe -Command=CreateVersion -VersionSource=C:\temp\aversion.vstore
+</code></pre>
+<p>Will create a new version at 1.0.0.0 in the source specified by version source, this will be persisted with the default values of Fixed versioning. Therefore your version number will default to 1.0.0.0.</p>
+<h4>Passive</h4>
+<p>Passively reads the version number for use in scripts.</p>
+<pre><code class="language-plaintext">-Command=Passive
+
+Requires:
+-VersionSource  (-VS)  or -QuickValue (-Q)
+</code></pre>
+<pre><code class="language-dos">pliskytool.exe -Command=Passive -VersionSource=C:\temp\aversion.vstore
+pliskytool.exe -Command=Passive -VersionSource=C:\temp\aversion.vstore -O=File
+</code></pre>
+<p>Will load the version number into the tool then perform no action.  This is only really used in conjuction with the -O output option to ensure that the version number is made available to a calling or alternative process.</p>
+<h5>Output options</h5>
+<p>Output options are specified to determine where the output should be written.</p>
+<pre><code class="language-plaintext">-O=&lt;outputdestination&gt;
+-O=&lt;outputdestination&gt;:&lt;option&gt;
+</code></pre>
+<p>Output Desitnations can be one of</p>
+<ul>
+<li>env - Writes to an environment variable</li>
+<li>con - Writes to the console</li>
+<li>file - Writes to a file</li>
+<li>AzDo - Writes an Azure Pipelines formatted string to the console.  Option can specify a variable name.</li>
+</ul>
+<p>When the Azure Pipelines output is selected the string written is in the form</p>
+<pre><code class="language-plaintext">&quot;##vso[task.setvariable variable=&lt;variablename&gt;;]$&lt;versionnumber&gt;&quot;
+</code></pre>
+<p>This will set the variable in variablename to have the value of the version number.  The default variable name is  CodeVersionNumber.  To replace this with your own variable specify the variable name after a colon in the output command.</p>
+<pre><code class="language-dos">Command &gt; pliskytool.exe Passive -VersionSource=C:\temp\aversion.vstore -O=azdo
+Output  &gt; &quot;##vso[task.setvariable variable=CodeVersionNumber;]1.2.3.4&quot;
+
+Command &gt; pliskytool.exe Passive -VersionSource=C:\temp\aversion.vstore -O=azdo:version
+Output  &gt; &quot;##vso[task.setvariable variable=version;]1.2.3.4&quot;
+
+
+</code></pre>
+<h4>Override</h4>
+<p>Overrides the values of version numbers at the point of next increment</p>
+<pre><code class="language-plaintext">-Command=Override
+
+Requires:
+-VersionSource  (-VS)  or -QuickValue (-Q)
+</code></pre>
+<pre><code class="language-dos">pliskytool.exe -Command=Override -VersionSource=C:\temp\aversion.vstore -Q=.+.0.0
+</code></pre>
+<p>Will create a pending version that will be applied on the next increment.  This will override changes that the default increments will perform applying a pattern.  This is normally used for release versions, where versions do not follow the same pattern as build versions.</p>
+<p>To alter the behaviour specify a new pattern separated by . therefore +.+.+.+ increments each of a four digit version number on the next increment.</p>
+<p>+ = Increment this digit.<br />
+- = Decrement this digit.<br />
+nnnn = Any number of digits use this as the version number for this digit<br />
+abc  = Any number of letters replaces the digit with this version (for named digits)</p>
+<p><strong>examples</strong><br />
+1.0.0.0  =&gt;  +...  =&gt; 2.0.0.0<br />
+1.1.1.1  =&gt;  +.+.+.+ =&gt; 2.2.2.2<br />
+1.1.1.1 =&gt; +.-+.-  =&gt; 2.0.2.0<br />
+1.0.0.0 =&gt; +.0.alpha.0  =&gt; 2.0.alpha.0</p>
+<h4>Update Files</h4>
+<p>Overrides the values of version numbers at the point of next increment</p>
+<pre><code class="language-plaintext">-Command=UpdateFiles
+
+Requires:
+-VersionSource  (-VS)  or -QuickValue (-Q)
+-Root
+
+Optional:
+-Increment
+-DryRun
+-MinMatch 
+-NO
+</code></pre>
+<pre><code class="language-dos">pliskytool.exe -Command=Override -VersionSource=C:\temp\aversion.vstore -Root=C:\Build\Code\MyApp
+</code></pre>
+<p>Will optionally increment the version number specified by the source and then run through the directory specified by root and update any files that are matched by the minmatchers for the specified file types.  There are a default set of minmatches in effect but they can be overriden.</p>
+<p>To override a minmatch specify it using the -MM or -MinMatch command.  This is a series of one or more strings separated by ;.  If a single string is passed with no ; and if this refers to a file that exists on disk then this file will be parsed for MinMatches instead.  The file format is as follows.</p>
+<p>It is generally more convenient to specify the file and store it in your source repository than to configure all of the minmatches on the command line using the ; syntax.</p>
+<pre><code class="language-plaintext">&lt;minmatch to the file&gt;|&lt;FileTypeToMatch&gt;
+</code></pre>
+<p>Each line in the file adds a new minmatch.</p>
+<pre><code class="language-plaintext">**/MyApp/commonAssemblyInfo.cs|NetAssembly
+**/MyApp/_Dependencies/CDSupport/readme.txt|TextFile
+**/MyApp/AppDir/App.csproj|NetInformational
+**/MyApp/AppDir/App.csproj|NetFile
+**/MyApp/AppDir/App.csproj|Wix
+**/_Dependencies/versioning.nuspec|Nuspec
+**/MyApp/AppDir/AssemblyInfo.cs|StdAssembly
+**/MyApp/AppDir/AssemblyInfo.cs|StdInformational
+**/MyApp/AppDir/AssemblyInfo.cs|StdFile
+</code></pre>
+<p>The pipe separator separates the minmatch from the type of file that it is updating.  Multiple file types can reside in the same file and therefore use the same minmatch.</p>
+<p>Each file type has a rule to determine how to match versions, see (version matching reference)[vermatchref.html].</p>
+<p>Full Eample Command Line:</p>
+<pre><code class="language-dos">'PliskyTool.exe UpdateFiles -Root=c:\src\ -VS=c:\store\pversioner.vstore -Increment -MM=&quot;**/*.csproj|StdFile,**/*.csproj|StdAssembly,**/*.csproj|StdInformational&quot;
+</code></pre>
+<p>This will search the folder c:\src for all .csproj files and attempt to add the .net standard versioninng for the three different file types to any csproj files that are
+found.  Note that for the std file type it will look inside the file and see whether it looks like a net std file or a framework one.  Framework ones
+will not be udpated.</p>
+<h5>Using No Override</h5>
+<p>When setting up multiple branches it is sometimes useful to be able to ignore an override when a specific branch is versioned.  To do this specify -NO.<br />
+The most common scenario here is when the Pull Request build is used to reset the version ready for release.  When using the <a href="UsingPullRequestsToVersion.md">Pull Request Versioning Approach</a> then it is possible that a build on the source branch happens after the PR build but before the release branch has run.  This will cause the source branch to incorrectly version.  To avoid this add the -NO to the source branch versioning element.</p>

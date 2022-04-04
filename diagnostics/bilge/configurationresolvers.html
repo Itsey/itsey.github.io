@@ -1,0 +1,85 @@
+<h3>Configuration Resolvers</h3>
+<p>The configuration resolver exists to enable trace to be turned on dynamically by your application configuration.   There are many ways of solving this particular problem and if you use Dependency injection then some are more elegant.   This approach is aimed at the core principal of making it simple for the developer.</p>
+<p>Previous versions of Bilge had dependencies on trace sources and switches and so on.  As the logging approach of the framework seems to change rather more often than the Bilge interface this was all removed from Bilge and instead the custom configuration resolver approach was taken.</p>
+<h3>The simplest configuration resolver</h3>
+<p>The simplest resolver simply turns on trace for everything, all the time.</p>
+<pre><code class="language-csharp">Bilge.SetConfigurationResolver((instanceName, lvl) =&gt; {
+    return SourceLevels.Verbose;
+}
+</code></pre>
+<p>No matter what the configuration of the Bilge instances that are created are they will all have their initial trace state set to verbose.  Note that when you use libraries that also use Bilge this will enable their verbose logging too.   It is therefore more common to use a string to identify which trace areas to turn on.</p>
+<pre><code class="language-csharp">Bilge.SetConfigurationResolver((instanceName, lvl) =&gt; {
+    if (instanceName.Containes(&quot;myproduct&quot;)) {
+        return SourceLevels.Verbose;
+    } else { 
+        return lvl;
+    }
+}
+</code></pre>
+<p>This is a simple and common solution - turn on trace only where the instances of bilge are using the name &quot;myproduct&quot;.  This is paired with code in your solution to initialise Bilge with an instance name:</p>
+<pre><code class="language-csharp">Bilge b = new Bilge(&quot;myproduct-repository&quot;);
+</code></pre>
+<h3>Default String Configuration Resolver</h3>
+<p>Using a string to manage a configuration resolver is such a standard task that there is an inbuilt method for supporting this.</p>
+<pre><code class="language-csharp">        // public static Func&lt;string, SourceLevels, SourceLevels&gt; SetConfigurationResolver(string crInitialisationString)
+        
+        Bilge.SetConfigurationResolver(&quot;e-**&quot;);
+</code></pre>
+<p>This uses a string notation to set a configuration resolver to a level.  Each option is ; delimited.
+e- set to error<br />
+v- set to verbose<br />
+w- set to warning<br />
+** match all items<br />
+text* match anything starting with text<br />
+*text match anything ending with text</p>
+<p>Examples:</p>
+<pre><code class="language-text">1  e-*bob;v-mik*    
+2  none
+3  e-**
+4  v-**
+</code></pre>
+<p>1 Anything ending in Bob is set to trace at error ( MyClassBob ) anyhting starting with Mik is set to verbose. ( MikClass ).  MikclassBob is set to error as its in order.<br />
+2 turn all trace off<br />
+3 turn all trace to Error<br />
+4 turn all trace to verbose</p>
+<h3>Complex Configuration Resolvers</h3>
+<p>Configuration resolvers aim to pass the &quot;problem&quot; of whether to enable trace back to the developer.  This is an example of a more complex resolver that uses a fallback system to try and enable based on trace source or trace switch names in application config.</p>
+<pre><code class="language-csharp">Bilge.SetConfigurationResolver((instanceName, lvl) =&gt; {
+    // Logic -&gt; Try Source Switch, Failing that Trace Switch, failing that SourceSwitch + Switch, Failing that TraceSwitch+Switch.
+
+             SourceLevels result = lvl;
+             bool tryTraceSwitches = true;
+
+             try {
+                 SourceSwitch ss = new SourceSwitch(instanceName);
+                 if (ss.Level == SourceLevels.Off) {
+                     ss = new SourceSwitch($&quot;{instanceName}Switch&quot;);
+                     if (ss.Level == SourceLevels.Off) {
+                     } else {
+                         tryTraceSwitches = false;
+                         result = ss.Level;
+                     }
+                 } else {
+                     tryTraceSwitches = false;
+                     result = ss.Level;
+                 }
+             } catch (SystemException) {
+                 // This is the higher level exception of a ConfigurationErrorsException but that one requires a separate reference
+                 // This occurs when a TraceSwitch has the same name as the source switch with a value that is not supported by source switch e.g. Info
+             }
+
+             if (tryTraceSwitches) {
+                 TraceSwitch ts = new TraceSwitch(instanceName, &quot;&quot;);
+                 if (ts.Level == TraceLevel.Off) {
+                     ts = new TraceSwitch($&quot;{instanceName}Switch&quot;, &quot;&quot;);
+                     if (ts.Level != TraceLevel.Off) {
+                         result = Bilge.ConvertTraceLevel(ts.Level);
+                     }
+                 } else {
+                     result = Bilge.ConvertTraceLevel(ts.Level);
+                 }
+             }
+
+             return result;
+         });
+</code></pre>

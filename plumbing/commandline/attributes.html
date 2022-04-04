@@ -1,0 +1,31 @@
+<h1>Command Line Parser - Attributes.</h1>
+<p>All of the argument parsing elements for the command line parser are done via attributes on the class that you want the data to be placed into.  These attributes control how
+the command line is parsed. For all of the examples below it is assumed there is a prefix of - and a postfix of =</p>
+<h3>All Attributes</h3>
+<pre><code class="language-csharp">[CommandLineArg(&quot;first&quot;)]
+pulic string First { get; set; }
+</code></pre>
+<p>Assigns a value that the named argument First recieves on the command line.  e.g.  tool.exe -first=value</p>
+<pre><code class="language-csharp">[CommandLineArg(&quot;first&quot;)]
+[CommandLineArg(&quot;f&quot;)]
+pulic string First { get; set; }
+</code></pre>
+<p>Allows multiple names to match to the same value.  e.g. tool.exe -f=value is the same as tool.exe -first=value</p>
+<pre><code class="language-csharp">[CommandLineArg(&quot;M&quot;,IsRequired =true)]
+public string Mandatory { get; set; }
+</code></pre>
+<p>IsRequired will throw an error if the argument is not present when the parsing is completed.  Used for mandatory arguments.</p>
+<pre><code class="language-csharp">[CommandLineArg(&quot;X1&quot;, Description = &quot;The name of an XSLT file to use in the transform.&quot;)]
+public string TransformFilename1;
+</code></pre>
+<p>Description will set the description of the argument, used for printing help.</p>
+<pre><code class="language-csharp">[CommandLineArgDefault]
+public string[] Remainder { get; set; }
+</code></pre>
+<p>A default is one or more strings that do not have names specified.  Used like this the remaining arguments that were not mapped
+will be placed into this array</p>
+<pre><code class="language-csharp">[CommandLineArg(&quot;StrArray&quot;,ArraySeparatorChar =&quot;;&quot;)]
+public string[] StrArray { get; set; }
+</code></pre>
+<p>Array separator char will be used to turn a list of values into an array - e.g. tool.exe -StrArray=one;two;three;four, will populate the array with
+[ &quot;one&quot;, &quot;two&quot;, &quot;three&quot;, &quot;four&quot; ].</p>
