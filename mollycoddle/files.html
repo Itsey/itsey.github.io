@@ -1,0 +1,36 @@
+<h3 id="mollycoddle-rules-files">Mollycoddle Rules Files</h3>
+<p>There are two types of files</p>
+<ul>
+<li><name>.mollyset - This is a set of rules files, one per line each referencing a .mollyfile</li>
+<li><name>.molly - This is a single or multiple rule implementation file.</li>
+</ul>
+<h4 id="molly-set-files">Molly Set Files</h4>
+<p>Mollysets are simply text files with the name of one rules file on each line:</p>
+<pre><code class="language-text">alledconfig.molly
+allgitignore.molly
+allnugetconfig.molly
+</code></pre>
+<p>A molly set file will look for each of the named rules files in the same directory and load it into mollycoddle.  This is a fine grained way of grouping up individual molly rules into collections.</p>
+<h3 id="molly-rules-files">Molly Rules Files</h3>
+<p>Molly rules files are collections of rules implementations themselves.  A molly file can contain one or more rules, and each rule follows the same format:</p>
+<pre><code class="language-json">{
+    &quot;Rules&quot;: [
+        {
+            &quot;Link&quot;: &quot;&lt;A Hyper Link To Rules Help&gt;&quot;,
+            &quot;Name&quot;: &quot;&lt;The descriptive name of your rule&gt;&quot;,
+            &quot;RuleReference&quot;: &quot;&lt;A Unique Reference&gt;&quot;,
+            &quot;Validators&quot;: [
+                {
+                    &quot;AdditionalData&quot;: [
+                        &quot;&lt;An Array of one or more strings of supporting info&gt;&quot;
+                    ],
+                    &quot;Control&quot;: &quot;&lt;A keyword indicating the type of rule&gt;&quot;,
+                    &quot;PatternMatch&quot;: &quot;&lt;A minmatch Pattern to match on&gt;&quot;,
+                    &quot;ValidatorName&quot;: &quot;&lt;The type of validator used&gt;&quot;
+                }
+            ]
+        }
+    ],
+    &quot;RulesetName&quot;: &quot;A Name to group all the rules together&quot;
+</code></pre>
+<p>There is more detail on how to create these files here <a href="createRules.html">Creating Molly Rules</a></p>
