@@ -3,10 +3,10 @@
 <p>Tracing program flow with Bilge has multiple different facets and these can get quite complex.</p>
 <h3 id="the-basics-using-flow">The basics - using flow.</h3>
 <p>Very often you wil simply want to know where you are in the code - this is achieved with the flow method</p>
-<pre><code>b.Info.Flow();
+<pre><code class="language-csharp">b.Info.Flow();
 </code></pre>
 <p>As this is used so commonly you may also want to specify the parameters to the method:</p>
-<pre><code>public void foo(string bar) {
+<pre><code class="language-csharp">public void foo(string bar) {
     b.Info.Flow($&quot;{bar}&quot;);
 }
 

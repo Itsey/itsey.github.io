@@ -8,17 +8,17 @@
 <p>Now you have Plisky.Diagnostics installed Bilge will be available for use in your code.</p>
 <p>At your Application Startup location enter the following code:</p>
 <hr />
-<pre><code>Bilge b = new Bilge();
+<pre><code class="language-csharp">Bilge b = new Bilge(tl: System.Diagnostics.SourceLevels.Verbose);
 b.AddHandler(new SimpleTraceFileHandler());
 b.Info.Log(&quot;Hello Cruel World&quot;);
 </code></pre>
 <p>When the application is run and exits a file called bilgedefault.log will be created in your %TEMP% folder.  This handler is designed to get you up and running very quickly but its not very usefull.  You will more usually be using other handlers that do different things.  For details see the <a href="https://github.com/Itsey/Plisky.Diagnostics/wiki/Diagnostic-Handlers">handlers pages</a>.</p>
 <p>The main value from Blige occurs when combined with FlimFlam - the viewer. Legacy FlimFlam is available as a release 1.0 and offers the view of the trace output issued by Bilge.  Get the binary here: <a href="https://github.com/Itsey/Plisky.FlimFlam/releases/tag/LegacyFF10">https://github.com/Itsey/Plisky.FlimFlam/releases/tag/LegacyFF10</a></p>
 <p>The most common usage on Development Machines is using the TCPHandler to write locally to the machine running FlimFlam (or across the network if that's appropriate for your environment).  The default port for FlimFlam to listen on is 9060.</p>
-<pre><code>Bilge b = new Bilge();
+<pre><code class="language-csharp">Bilge b = new Bilge();
 
 // You must enable tracing
-b.SetTraceLevel = SourceLevel.Verbose;
+b.ActiveTraceLevel = SourceLevel.Verbose;
 
 // To get any output you must use a handler - this is one talking to FlimFlam
 b.AddHandler(new TCPHandler(&quot;127.0.0.1&quot;,9060));
