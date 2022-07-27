@@ -21,4 +21,25 @@
 }
 </code></pre>
 <p>Will not generate any trace output, as the default trace level for Bilge is TraceLevel.Off.  To correct this either pass the trace level on the constructor
-or set the trace level in the code.</p>
+or set the trace level in the code</p>
+<h3 id="using-diagnosticstatus">Using DiagnosticStatus.</h3>
+<p>Its possible to query bilge for status to see if that can give you a clue as to what is wrong.</p>
+<pre><code class="language-csharp">Console.WriteLine(b.GetDiagnosticStatus());
+</code></pre>
+<p>This will output something like the following:</p>
+<pre><code class="language-text">__ Logging __
+Trace Level Verbose
+ Info Writing: True
+ Verbose Writing: True
+ Warning Writing: True
+ Error Writing: True
+__ Router __
+ Router Total Handler Errors: 0
+ Router Suppress Errors: False
+__ Handlers __
+QueueDepth: 0 Max: -1
+___________________________
+Handler RollingFileSystemHandler
+Last Exception: Could not find a part of the path 'C:\Temp\_Deleteme\Lg\log_2772022.log'. total exceptions 1
+</code></pre>
+<p>This gives you a status on the loggin state of Bilge, along with some information on routing and finally a view on each of the handlers that has been loaded.  In this instance one of the handlers failed with the error message there.</p>
