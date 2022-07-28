@@ -9,9 +9,9 @@ Bilge uses methods to write trace information and handlers to disperse this info
 
 * [Quick Start](diags-guide-quickstart.md)
 * [Release Notes](diags-releases.md)
-* [Flim Flam](.\flimflam\index.md)
+* [Flim Flam](diags-flim-index.md)
 * [Bilge Reference](diags-bilge-index.md)
-* [Listeners](diags-handlers-\index.md)
+* [Listeners](diags-handlers-index.md)
 * [Troubleshooting](diags-guide-troubleshooting.md)
 * [Performance Analysis](diags-guide-performance.md)
 

@@ -4,8 +4,8 @@ Plisky.Code Craft is a series of libraries, tools and practices all around writi
 
 ## Versioning.
 
-[Quick Start](quickstart.md)
+[Quick Start](version-quickstart.md)
 
-[Versioning Overview](overview.md)
+[Versioning Overview](version-overview.md)
 
-[Verisoning Reference](reference.md)
+[Verisoning Reference](version-reference.md)

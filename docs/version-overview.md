@@ -10,11 +10,11 @@ The command line tool is pliskytool.exe and is used for most operations.  See th
 
 ## Versioning.
 
-[Quick Start](quickstart.md)
+[Quick Start](version-quickstart.md)
 
-[Versioning Overview](Overview.md)
+[Versioning Overview](version-Overview.md)
 
-[Versioning Reference](Reference.md)
+[Versioning Reference](version-Reference.md)
 
 
 
