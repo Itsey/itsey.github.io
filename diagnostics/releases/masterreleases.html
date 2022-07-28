@@ -1,0 +1,44 @@
+<h1 id="plisky.diagnostics-releases">Plisky.Diagnostics Releases.</h1>
+<h4 id="section">3.1.0</h4>
+<ul>
+<li>🆕 Bilge.Default added to allow for quick tracing in things like properties where creating an instance feels wrong.</li>
+<li>🐛 Flush did not always flush, especially if the listeners were really slow.  Flush should now be more reliable.</li>
+<li>🐛 Double new lines were being written out by some listeners.  Formatter now has the responsibility of newlines alone.</li>
+<li>🆕 (Listeners) RollingFileSystemHandler added to support continual logging</li>
+</ul>
+<h4 id="section-1">3.0.0</h4>
+<ul>
+<li>🆕 Major Version Uplift -  Actions Added.</li>
+<li>🆕 Actions - Allow hooks on activities performed in code to support unit testing</li>
+<li>🆕 Allow use of Formatters on all default handlers.  New FlimFlam2 Formatter added.</li>
+<li>🆕 Alert now returns a string with a summary title that can be used in other logging.</li>
+<li>🆕 Support for 462, 472, 48 Framework Versions Added.</li>
+<li>🐛 Bug - Correct information on trace level written to listeners for Error, Log, Verbose.</li>
+</ul>
+<h4 id="section-2">2.8.6</h4>
+<ul>
+<li>🆕 Added Alerting level,</li>
+<li>🆕 AppOnline</li>
+<li>🆕 Added Init From File and environment variable.</li>
+<li>🆕 Statics for configuring and adding handlers (reduce duplicates etc)</li>
+</ul>
+<h4 id="section-3">2.8.2</h4>
+<ul>
+<li>🐛 X Flush Fix, flush only worked under load.</li>
+</ul>
+<h4 id="section-4">2.8.1</h4>
+<ul>
+<li>🆕 Listeners Fix, SimpleFileListener Fix 2.8.0 Superceeded.</li>
+</ul>
+<h4 id="section-5">2.8.0</h4>
+<ul>
+<li>🆕 ⚠INTERFACE BREAK ⚠TraceLevel is now SourceLevels, new Feature Bilge.SetConfigurationResolver allows SourceSwitches and TraceSwitches.</li>
+</ul>
+<h4 id="section-6">2.7.2</h4>
+<ul>
+<li>🐛 Missing method exception issues resolved  (Critical fix for 2.7.X and 2.6.X)</li>
+</ul>
+<h4 id="section-7">2.7.0</h4>
+<ul>
+<li>🐛 2.7.0 - Utter Mare on constructors, changing interface.</li>
+</ul>
