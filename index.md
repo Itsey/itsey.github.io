@@ -9,11 +9,11 @@ Links to the subject areas
 [Plisky.Plumbing](.\plumbing\index.md)    
 [Plisky.Versioning](.\versioning\index.md)    
 [Plisky.Testing](.\testing\index.md)    
-[MollyCoddle Documentation](.\mollycoddle\index.md)    
+[MollyCoddle Documentation](./mollycoddle/index.md)    
 
 ### MollyCoddle Code Structure Linting Tool
 
-Mollycoddle is a tool for linting the structure of repositories ( not the code itself ) [see more](.\mollycoddle\index.md).
+Mollycoddle is a tool for linting the structure of repositories ( not the code itself ) [see more](mollycoddle/index.md).
 
 
 ### Plisky Diagnostics Nuget Package
@@ -34,4 +34,4 @@ Sem Ver compatible automated versioning for your builds using a command line exe
 
 
 ##### Help Info
-v0.0.0.2 27/07/2022
+v0.0.0.2 27/07/2022  [Test](index.md)
