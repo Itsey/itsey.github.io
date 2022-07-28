@@ -5,4 +5,4 @@ Flim Flam is a supporting GUI app for log file analysis. You can simply log data
 
 #### Contents 
 
-* [Analysing Timings](.\TraceTimings.md)
+* [Analysing Timings](diags-flim-tracetimings.md)
