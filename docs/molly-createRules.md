@@ -10,7 +10,7 @@ MollyCoddle rules are a json format which describes a set of parameters to one o
 
 #### Rules file structure
 
-Within the rules file structure the Validators object contains the implementaiton of the rules details.  The control value is specified from the commands list above and below.  The other parameters depend on the control.
+Within the rules file structure the Validators object contains the implementation of the rules details.  The control value is specified from the commands list above and below.  The other parameters depend on the control.
 
 Where pattern matches are made the variable %ROOT% can be used to indicate the repository root.
 

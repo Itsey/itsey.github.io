@@ -7,8 +7,8 @@ to support the application configuration needs.
 ConfigHub also has a built in DateTime function to get the current date, allowing for mocking and abstraction of the system DateTime.
 
 #### Contents
-* [Walk-through Website Configuration](.\walkthrough-siteconfig.md)
-* [Example Configurations](.\examples.md)
+* [Walk-through Website Configuration](plumb-config-walkthrough-siteconfig.md)
+* [Example Configurations](plumb-config-examples.md)
 
 
 ## Quick Start.

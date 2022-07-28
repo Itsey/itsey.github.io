@@ -5,8 +5,8 @@ The CommandLine Parser is there to support working with command lines using Plis
 you provide. The class uses attributes to map the command line arguments to the class members.
 
 #### Contents
-* [Attributes Guide](.\attributes.md)
-* [Generating Help](.\generatingHelp.md)
+* [Attributes Guide](plumb-cmd-attributes.md)
+* [Generating Help](plumb-cmd-generatingHelp.md)
 
 
 ### Quick Start.

@@ -32,9 +32,9 @@ Total Violations 1
 
 ### MollyCoddle Rules
 
-You can create your own rules but the default set are referenced here [MollyCoddle Rules](rules.md)
+You can create your own rules but the default set are referenced here [MollyCoddle Rules](molly-rules.md)
 
 
 ### Creating Your Own Rules
 
-Mollycoddle reads rules from different file types - to find out about sets and molly rules the documentation is here [MollyCoddle Rules Files](files.md)
+Mollycoddle reads rules from different file types - to find out about sets and molly rules the documentation is here [MollyCoddle Rules Files](molly-files.md)

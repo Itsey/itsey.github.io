@@ -7,13 +7,13 @@ Bilge uses methods to write trace information and handlers to disperse this info
 
 #### Guidance Documents
 
-* [Quick Start](.\guidance\QuickStart.md)
-* [Release Notes](.\releases\masterreleases.md)
+* [Quick Start](diags-guide-quickstart.md)
+* [Release Notes](diags-releases.md)
 * [Flim Flam](.\flimflam\index.md)
-* [Bilge Reference](.\bilge\index.md)
-* [Listeners](.\listeners\index.md)
-* [Troubleshooting](.\guidance\troubleshooting.md)
-* [Performance Analysis](.\guidance\performance.md)
+* [Bilge Reference](diags-bilge-index.md)
+* [Listeners](diags-handlers-\index.md)
+* [Troubleshooting](diags-guide-troubleshooting.md)
+* [Performance Analysis](diags-guide-performance.md)
 
 
 #### Developer Focused Trace
