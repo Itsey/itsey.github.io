@@ -77,7 +77,7 @@ Output Desitnations can be one of
 * env - Writes to an environment variable 
 * con - Writes to the console
 * file - Writes to a file
-* AzDo - Writes an Azure Pipelines formatted string to the console.  Option can specify a variable name.
+* azdo - Writes an Azure Pipelines formatted string to the console.  Option can specify a variable name.
 
 When the Azure Pipelines output is selected the string written is in the form
 
@@ -185,7 +185,7 @@ will not be udpated.
 
 ##### Using No Override
 When setting up multiple branches it is sometimes useful to be able to ignore an override when a specific branch is versioned.  To do this specify -NO.      
-The most common scenario here is when the Pull Request build is used to reset the version ready for release.  When using the [Pull Request Versioning Approach](UsingPullRequestsToVersion.md) then it is possible that a build on the source branch happens after the PR build but before the release branch has run.  This will cause the source branch to incorrectly version.  To avoid this add the -NO to the source branch versioning element.
+The most common scenario here is when the Pull Request build is used to reset the version ready for release.  When using the pull request builds to version then it is possible that a build on the source branch happens after the PR build but before the release branch has run.  This will cause the source branch to incorrectly version.  To avoid this add the -NO to the source branch versioning element.
 
 
 

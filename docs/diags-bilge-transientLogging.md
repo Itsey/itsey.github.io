@@ -73,4 +73,3 @@ b.Direct.Write("[GRID][MAP]", map.ToString());
 Transient Logging in action
 
 ![Transient Logging](/assets/images/transientdata.gif)
-![Transient Logging](/docs/assets/images/transientdata.gif)
