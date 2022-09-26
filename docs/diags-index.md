@@ -12,6 +12,7 @@ Bilge uses methods to write trace information and handlers to disperse this info
 * [Flim Flam](diags-flim-index.md)
 * [Bilge Reference](diags-bilge-index.md)
 * [Listeners](diags-handlers-index.md)
+* [Dynamic Configuration](diags-dynamic-index.md)
 * [Troubleshooting](diags-guide-troubleshooting.md)
 * [Performance Analysis](diags-guide-performance.md)
 
