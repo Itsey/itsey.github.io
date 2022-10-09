@@ -26,7 +26,7 @@ Bilge.SetConfigurationResolver((instanceName, lvl) => {
     }
 }
 ```
-This is a simple and common solution - turn on trace only where the instances of bilge are using the name "myproduct".  This is paired with code in your solution to initialise Bilge with an instance name:
+This is a simple and common solution - turn on trace only where the instances of bilge are using the name "myproduct".  This is paired with code in your solution to initialize Bilge with an instance name:
 
 ``` csharp
 Bilge b = new Bilge("myproduct-repository");

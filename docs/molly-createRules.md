@@ -87,9 +87,10 @@ Example: Everyone has to use the same editorconfig file
 ##### IfExistMustBeHere
 
 
-Control: "IfExistMustBeHere"
-PatternMatch:  A minmatch pattern which matches a specific file type.  Each time that minmatch is matched then the file matching is compared against those in the additional data options.  Additional data supplies a series of other minimatches, one of which must match or it is a violation.    
-ValidatorName: FileValidationChecks
+*Control*: "IfExistMustBeHere"    
+*PatternMatch*:  A minmatch pattern which matches a specific file type.  Each time that minmatch is matched then the file matching is compared against those in the additional data options.  Additional data supplies a series of other minimatches, one of which must match or it is a violation.    
+*AdditionalData*: The list of paths where it is acceptable for the files to be
+*ValidatorName*: FileValidationChecks
 
 Example: csproj files must either be in one folder below src or in a specific folder called frameworkversions.
 ```json
