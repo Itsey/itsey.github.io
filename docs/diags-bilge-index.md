@@ -2,6 +2,10 @@
 
 Bilge itself is the main trace library.  The documentation here covers using the various features and functions of bilge.
 
+| Bilge Reference | Quick Links    |
+|-----------------|----------------|
+| [Basic Logging](diags-bilge-basiclogging.md)  | [Tips: AutoTracing Unit Tests](diags-bilge-tip-autoxunit.md) |
+
 
 #### Basic Logging
 

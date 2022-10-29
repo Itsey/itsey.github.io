@@ -78,7 +78,7 @@ Master files ensure that the files in the repos are kept up to date with the mos
 * The folder root\src must have a file called .editorconfig present.    
 * That file must be identical to the file stored %masterroot%\master.editorconfig    
 
-####  <a name="MC0101"></a> MC0101 - All your git ignore are belong to us.
+####  <a name="MC0101"></a> MC0101 - All your gitignore are belong to us.
 
 Master files ensure that the files in the repos are kept up to date with the most recent changes in style and settings.
 
@@ -100,7 +100,13 @@ We use preferred packages for consistency and to reduce retraining between solut
 
 Only preferred packages may be used.    
 Alternatives are added to the band list.    
-Packages which fail security scannign are added to the band list.    
+Packages which fail security scannign are added to the band list.  
+
+
+#### <a name="MC0400"></a> MC0400 - Git the heck outa here.
+
+There are some files that should not be checked into git, the presence of any of these files immediately after a clean pull from the repository indicates that something is wrong with source control management.
+
 
 
 ####  <a name="MC0500"></a> MC0500 - Archive Is As Archive Does.

@@ -16,7 +16,7 @@ The timing approach relies on matching start and stop entries - where this does 
 Different areas of the application can use the same name, so that subsystem response can be monitored.
 
 Therefore for this code:
-```
+```csharp
  internal static void Run2(Bilge b) {
             string timerName = "sampleRun";
             string sinkName1 = "WebService";

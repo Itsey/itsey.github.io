@@ -19,7 +19,7 @@ b.AddHandler(new SimpleTraceFileHandler());
 b.Info.Log("Hello Cruel World");
 ```
 
-When the application is run and exits a file called bilgedefault.log will be created in your %TEMP% folder.  This handler is designed to get you up and running very quickly but its not very usefull.  You will more usually be using other handlers that do different things.  For details see the [handlers pages](https://github.com/Itsey/Plisky.Diagnostics/wiki/Diagnostic-Handlers).
+When the application is run and exits a file called bilgedefault.log will be created in your %TEMP% folder.  This handler is designed to get you up and running very quickly but its not very useful.  You will more usually be using other handlers that do different things.  For details see the [handlers pages](diags-handlers-index.md).
 
 
 *** 
@@ -43,6 +43,10 @@ b.Info.Log("Hello Cruel World");
 // Not normally required but for small test apps that close quickly it can help
 b.FLush();
 ```
+
+You would not normally require to call Flush at the end but the small sample console applications here sometimes end before the trace can be written so for this sample application its included.  Production applications tend to run long enough not to require the flush.
+
+
 
 #### A Note On Security
 
