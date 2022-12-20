@@ -52,13 +52,55 @@ SimpleTraceFileHandler is the only handler that is shipped inside the Plisky.Dia
 
 ### Formatters
 
-All of the handlers use a formatter to convert the message type into the output string, each one has a default but you can change this with SetFormatter.
+All of the handlers use a formatter to convert the message type into the output string, each one has a default but you can change this with SetFormatter.  The formatter determines the exact format that the content is written out in, there are several default formatters available.
 
+To set a formatter use SetFormatter prior to adding the handler into Bilge.
 
+```csharp
+ var mr = new MyRoller(new RollingFSHandlerOptions() {
+     Directory = @"C:\Temp\_Deleteme\Lg\",
+     FileName = "Log_%dd%mm%yy.log",
+     MaxRollingFileSize = "2mb",
+     FilenameIsMask = true
+ });
+ mr.SetFormatter(new FlimFlamV2Formatter());
+ b.AddHandler(mr);
+
+```
+#### FlimFlamV2Formatter
+
+The most comprehensive formatter using a custom format designed to work with FlimFlam.  This is still a work in progress.
+
+This formatter creates output like this
+
+```text
+{ "v":"2","uq":"--uqr--","dt":"07:12:40 17-11-2022","c":"","l":"39","mn":"Main","md":"C:\\PATH\\DevConsoleTest\\Program.cs","al":"::Main","nt":"1","p":"4908","t":"1","man":"CALYPSO","m":"Hello World 0","s":"","mt":"#LOG#" }
+{ "v":"2","uq":"--uqr--","dt":"07:12:40 17-11-2022","c":"","l":"39","mn":"Main","md":"C:\\PATH\\DevConsoleTest\\Program.cs","al":"::Main","nt":"1","p":"4908","t":"1","man":"CALYPSO","m":"Hello World 1","s":"","mt":"#LOG#" }
+
+```
+#### LegacyFlimFlamFormatter
+
+The default formatter to work with FlimFlam, this supports the string format required to stream content directly to Flim Flam.
+
+This formatter creates output like this
+```text
+{[CALYPSO][8656][1][1][C:\PATH\DevConsoleTest\Program.cs][39][::Main]}#LOG#Hello World 0
+{[CALYPSO][8656][1][1][C:\PATH\DevConsoleTest\Program.cs][39][::Main]}#LOG#Hello World 1
+```
+
+#### PrettyReadableFormatter
+
+A very basic formatter designed to write to files for readability by a person not by a system.  
+
+This formatter creates output like this
+```text
+17/11/2022 19:21:34 >> Hello World 0 <<|>> @39 in 20160@CALYPSO Thread[1,1] () [LogMessage]
+17/11/2022 19:21:34 >> Hello World 1 <<|>> @39 in 20160@CALYPSO Thread[1,1] () [LogMessage]
+```
 
 #### CustomOutputFormatter
 
-```
+```csharp
 // Default Format String
  public string FormatString { get; set; } = "{9} {0} >> {1} || {2}@{3} in {4}@{5} >> T[{6}-{7}] || {8} || {10}";
 ```
@@ -76,4 +118,24 @@ Index Values
 * 9 -  Message Type
 * 10 - New Line
 
-New lines will be appended based on the options in MessagEFormatterOptions.  The Message Type will use the default conversion of a message type to string within Bilge but this can be overridden by setting the function MessageTypeConvert which takes in the enum of message types and returns a string.
+New lines will be appended based on the options in MessageFormatterOptions.  The Message Type will use the default conversion of a message type to string within Bilge but this can be overridden by setting the function MessageTypeConvert which takes in the enum of message types and returns a string.
+
+This default string would create a format like this.
+```text
+#LOG# 17/11/2022 19:23:43 >> Hello World 0 || @39 in 5984@CALYPSO >> T[1-1] ||  || 
+#LOG# 17/11/2022 19:23:43 >> Hello World 1 || @39 in 5984@CALYPSO >> T[1-1] ||  || 
+```
+
+However changing the format string you can alter the output, so setting the format string like this:
+```csharp
+var cf = new CustomOutputFormatter();
+cf.FormatString = "{0} - {1}";
+mr.SetFormatter(cf);
+```
+
+Would result in log entries that look like this:
+
+```text
+17/11/2022 19:26:00 - Hello World 0
+17/11/2022 19:26:00 - Hello World 1
+```

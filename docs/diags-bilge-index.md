@@ -4,7 +4,7 @@ Bilge itself is the main trace library.  The documentation here covers using the
 
 | Bilge Reference | Quick Links    |
 |-----------------|----------------|
-| [Basic Logging](diags-bilge-basiclogging.md)  | [Tips: AutoTracing Unit Tests](diags-bilge-tip-autoxunit.md) |
+| [Basic Logging](diags-bilge-basiclogging.md)  | [Tips: AutoTracing Unit Tests](diags-bilge-tips-autoxunit.md) |
 | [Additional Options](diags-bilge-options.md)  | |
 | [Configuration Resolvers](diags-bilge-configurationResolvers.md) | |
 
