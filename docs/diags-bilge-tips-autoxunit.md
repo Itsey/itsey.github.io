@@ -3,7 +3,7 @@
 
 When writing unit tests its often useful to be able to turn on tracing so that you can guage the level of trace that you are putting out in the code as it is being built. To turn the trace on, however, you need to add it to the constructor of the method you are testing so that when you run individual tests the trace comes through.  This can lead to lots of duplicate code.
 
-In XUnit you can add an assembly fixture to help resolve this issue - add the following code to your solution:
+In XUnit you can add an assembly fixture to help resolve this issue - add the following code to your solution, updating the attribute to have the correct namespace in the first parameter and assembly name in the second parameter:
 
 
 ```csharp
@@ -12,7 +12,7 @@ using Plisky.Diagnostics.Listeners;
 using Xunit.Abstractions;
 using Xunit.Sdk;
 
-[assembly: Xunit.TestFramework("Plisky.Diagnostics.Test.XunitAutoTraceFixture", "mollycoddle.test")]
+[assembly: Xunit.TestFramework("Plisky.Diagnostics.Test.XunitAutoTraceFixture", "assemblyname.test")]
 
 namespace Plisky.Diagnostics.Test {
     public class XunitAutoTraceFixture : XunitTestFramework {
