@@ -7,12 +7,17 @@ Bilge itself is the main trace library.  The documentation here covers using the
 | [Basic Logging](diags-bilge-basiclogging.md)  | [Tips: AutoTracing Unit Tests](diags-bilge-tips-autoxunit.md) |
 | [Additional Options](diags-bilge-options.md)  | |
 | [Configuration Resolvers](diags-bilge-configurationResolvers.md) | |
+| [Handlers](bilge-handlers-index.md)| |
 
 #### Basic Logging
 
 Basic logging is what you will use most of the time.  You can write out trace statements, timings and program flow using a variety of logging commands at different trace levels.  See the following documentation:
 [Basic Logging](diags-bilge-basiclogging.md)
 
+#### Performance Considerations.
+
+Tracing can take quite a bit of overhead and Bilge, by default, adds a lot of verbosity to the trace output, knowing how to configure Bilge and your trace statements efficiently can make a lot of difference to the performance of your trace code.
+[Performant Logging](diags-bilge-performance.md)
 
 ### Transient Data
 

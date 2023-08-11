@@ -6,6 +6,8 @@ Each listener uses a Formatter to determine the format of the output, the most c
 * PrettyFormatter - Used when the content will be read by people
 * CustomOutputFormatter - Used with your own format string
 
+In addition for anything more complex you can use a custom handler: [see this link](diags-handlers-custom.md)
+
 ## TCPHandler
 Default Formatter: LegacyFlimFlamFormatter
 
@@ -67,17 +69,19 @@ To set a formatter use SetFormatter prior to adding the handler into Bilge.
  b.AddHandler(mr);
 
 ```
-#### FlimFlamV2Formatter
 
-The most comprehensive formatter using a custom format designed to work with FlimFlam.  This is still a work in progress.
 
-This formatter creates output like this
+
+
+#### JsonFormatter
+
+The JSON formatter is the most useful for interacting with other systems, it is only supported on .net CORE calling platforms.    This formatter creates JSON output like this:
 
 ```text
-{ "v":"2","uq":"--uqr--","dt":"07:12:40 17-11-2022","c":"","l":"39","mn":"Main","md":"C:\\PATH\\DevConsoleTest\\Program.cs","al":"::Main","nt":"1","p":"4908","t":"1","man":"CALYPSO","m":"Hello World 0","s":"","mt":"#LOG#" }
-{ "v":"2","uq":"--uqr--","dt":"07:12:40 17-11-2022","c":"","l":"39","mn":"Main","md":"C:\\PATH\\DevConsoleTest\\Program.cs","al":"::Main","nt":"1","p":"4908","t":"1","man":"CALYPSO","m":"Hello World 1","s":"","mt":"#LOG#" }
-
+{"Body":"context","ClassName":"","CommandType":1,"Context":"default","FileName":"","FurtherDetails":"","Index":29,"LineNumber":"0","MachineName":"CALYPSO","MessageTags":{},"MethodName":"","NetThreadId":"1","OsThreadId":"1","ProcessId":"19512","StructuredData":{"Fred":"Fred","Bob":5,"Structure":"none"},"TimeStamp":null}
+{"Body":"context","ClassName":"","CommandType":1,"Context":"default","FileName":"C:\\Files\\Code\\git\\PliskyDiagnostics\\src\\DevConsoleTest\\Program.cs","FurtherDetails":"","Index":30,"LineNumber":"61","MachineName":"CALYPSO","MessageTags":{"plisky.moreinfo":"This is more info","appversion":"1.0.0.0"},"MethodName":"Main","NetThreadId":"1","OsThreadId":"1","ProcessId":"19512","StructuredData":null,"TimeStamp":null}
 ```
+
 #### LegacyFlimFlamFormatter
 
 The default formatter to work with FlimFlam, this supports the string format required to stream content directly to Flim Flam.
@@ -138,4 +142,17 @@ Would result in log entries that look like this:
 ```text
 17/11/2022 19:26:00 - Hello World 0
 17/11/2022 19:26:00 - Hello World 1
+```
+
+
+#### FlimFlamV2Formatter
+
+This is an internal formatter designed to work with FlimFlam, you can use it for other purposes but its internal message format is not designed to be readily used and may change at any point.  Its a semi JSON format which uses short names to reduce transport sizes.
+
+This formatter creates output like this:
+
+```text
+{ "v":"2","uq":"--uqr--","dt":"07:12:40 17-11-2022","c":"","l":"39","mn":"Main","md":"C:\\PATH\\DevConsoleTest\\Program.cs","al":"::Main","nt":"1","p":"4908","t":"1","man":"CALYPSO","m":"Hello World 0","s":"","mt":"#LOG#" }
+{ "v":"2","uq":"--uqr--","dt":"07:12:40 17-11-2022","c":"","l":"39","mn":"Main","md":"C:\\PATH\\DevConsoleTest\\Program.cs","al":"::Main","nt":"1","p":"4908","t":"1","man":"CALYPSO","m":"Hello World 1","s":"","mt":"#LOG#" }
+
 ```
