@@ -1,4 +1,23 @@
 # Plisky.Diagnostics Releases.
+
+#### 3.1.13
+
+Non code related change, moved to GitHub for issues.
+
+* 🆕 Alert now includes a Guid to ensure clear only happens once in flimflam.
+* 🆕 Writer.More methods added, to add supplementary logging information to an existing log message.
+* 🆕 Much more context is now passed to the listeners, including all of the associate tags
+* 🐛 <a href="https://github.com/Itsey/plisky-diagnostics/issues/2" target="_blank">Issue #2.</a> ⚠INTERFACE BREAK - Dynamic removed from log statements.  Caller attributes were not longer working with dynamic 
+
+#### 3.1.12
+* 🆕 Added error capturing for error numbers.  
+
+#### 3.1.11
+* 🆕 Added structured error logging to capture specific properties.
+
+#### 3.1.10
+Non code related change, moving code to GitHub.
+
 #### 3.1.0
 * 🆕 Bilge.Default added to allow for quick tracing in things like properties where creating an instance feels wrong.
 * 🐛 Flush did not always flush, especially if the listeners were really slow.  Flush should now be more reliable.

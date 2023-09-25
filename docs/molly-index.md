@@ -18,6 +18,8 @@ RulesFile - This is the set of rules that you want Mollycoddle to execute
 Disabled - If this is specified MollyCoddle does nothing and returns success
 Output - Specify output type - Default writes to std out, AZDO  writes pipeline formatted strings to std out
 
+For the full command line options see this link - [MollyCoddle Command Line](molly-commandline.md)
+
 ```text
 ❯ .\mollycoddle.exe C:\Files\Code\git\mollycoddle -masterRoot=C:\Files\Code\git\mollycoddle\src\_Dependencies\TestMasterPath\
 ```

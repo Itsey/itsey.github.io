@@ -100,7 +100,13 @@ We use preferred packages for consistency and to reduce retraining between solut
 
 Only preferred packages may be used.    
 Alternatives are added to the band list.    
-Packages which fail security scannign are added to the band list.  
+Packages which fail security scanning are added to the band list.  
+
+#### <a name="MC0201"></a> MC0201 - Making A Moquery Out Of OSS.
+
+We have very specific rules around packages that talk outside of the development environment which requires an entirely different governance process.   Until this compliance process has been completed for the sponsorlink addition to moq we are unable to use it.
+
+Moq versions that had sponsorlink included are prohibited.
 
 
 #### <a name="MC0400"></a> MC0400 - Git the heck outa here.

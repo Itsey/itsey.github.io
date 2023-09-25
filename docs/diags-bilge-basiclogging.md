@@ -92,6 +92,24 @@ b.Info.Log("First Message", "Supporting Information");
 One or two strings can be provided, typically the second string holds considerably more information or details related to the first logging string.  For file system based listeners this rarely makes any difference but when loaded into FlimFlam the secondary informaiton is displayed as secondary information to the main trace entries.
 
 
+### Basic Logging - Using More.
+
+More is a way of sending additional information to the log stream.  Depending on how the handler deals with the difference it may choose to combine the logs.  More does not send location information therefore can be slightly quicker and can also be used to send structured data. The structured data can add some overhead to the logging so ensure that its not used in tight loops or performance sensitive areas.
+
+```csharp
+Bilge b = new Bilge();
+b.Info.Log("Simple Statement");
+b.Info.More("Some content");
+
+dynamic d = new EpandoObject();
+d.PositonX = 32;
+d.PositionY = 45;
+d.Text = "Location data";
+
+b.Info.More("position data",d);
+
+```
+
 ### Dump Logging - Using Dump.
 
 Dump will attempt to dump the contents to the trace stream.  If an exception is passed then it will be dumped as an detailed exception looking for inner exceptions and building up the exception tree.   If an array or list is passed Dump will attempt to iterate through the different items writing each one to the trace stream.
