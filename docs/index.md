@@ -34,6 +34,6 @@ Sem Ver compatible automated versioning for your builds using a command line exe
 
 
 ##### Help Info
-v0.0.1.2 25/09/2023 - Plisky.Diagnostics updates
+v0.0.1.2 25/09/2023 - Plisky.Diagnostics updates.   
 v0.0.1.1 26/10/2022 - Molly Updates Release    
 v0.0.1.0 28/07/2022 - I Hate Jekyll Release.

@@ -8,9 +8,22 @@ StdAssembly, StdInformational, StdFile
 
 Net standard (csproj file) looking for properties in a property group to apply the version.
 
-TextFile
 
-Any file, looking for XXX-VERSION-XXX to replace with the version number.
+#### TextFile
+
+Any file where literal replacement takes place within the file, using well known tokens:
+
+| Token               | Versioning Style       | Example |
+|---------------------|------------------------|---------|
+| XXX-RELEASENAME-XXX | The release name  | Unicorn |
+| XXX-VERSION-XXX     | The Short Version | 1.2     |
+| XXX-VERSION3-XXX    | The 3 digit version | 1.2.3 |
+| XXX-VERSION4-XXX    | The 4 digit version number | 1.2.3.4 |
+
+
+
+
+
 
 Wix 
 

@@ -36,12 +36,22 @@ Performs the full mollycoddle checks but returns zero upon completion.
 
 ### -addrulehelp
 
-Includs additional help links in the output to support simpler diagnostics
+Includs additional help links in the output to support simpler resolution of issues found in the structure.
 
 ### -disabled
 
-Disables all checks and returns zero
+Disables all checks and returns zero to the calling process, most often used to temporarily disable mollycoddle in build pipelines.
 
-### -debug
+### -debug=\<debug control string>
 
 Allows the specification of a debug string to write additional in depth debugging information.  Use v-** for verbose.
+
+### -version=\<version>
+
+Allows you to specify a value that will be used to replace the XXVERSIONNAMEXX string in the rules file location.  This allows you to load different versions of rulesets using the command line to target the correct ruleset.  This is designed for use cases where standards change and therefore you can fix a set of standards at a specific point.  The text passed in is just a text identifier so can be anything that works in a path name.
+
+```batch
+// This will look for the rules in c:\files\default\defaultrules.mollyset
+mollycoddle dir -rulesfile="C:\Files\XXVERNAMEXX\defaultrules.mollyset" -primaryRoot="C:\Files\PrimaryFiles" -formatter="plain" -version=default
+```
+

@@ -46,11 +46,34 @@ Default Formatter: PrettyFormatter
 The InMmemoryHandler stores all of the trace information in memory in a data structure.  You can configure the size of the data that it stores in number of trace rows, and you can retrieve this from the handler as long as you maintain a reference to the handler.  This is designed for use in scenarios where you want to optionally enable debugging and then display the trace details within the applications (e.g. for use in Mobile apps).
 
 
-## SimpleTraceFileHandler
+## Default Single File Handler (SimpleTraceFileHandler)
 Default Formatter: PrettyFormatter
 
 SimpleTraceFileHandler is a very lightweight handler that writes to a well known file name in your temporary directory.  You can configure whether the file is overwritten each time using a parameter to the constructor. It is not designed as a production handler.
 SimpleTraceFileHandler is the only handler that is shipped inside the Plisky.Diagnostics assembly, all other handlers are shipped in Plisky.Diagnostics.Listeners.
+
+
+### GCP Google Logging Handler.  (GoogleLoggingHandler)
+Default Formatter: JSON Formatter.
+
+The GCP Google Logging handler writes logs to a google logging account using a project id and an application id.  This will use the google logging API to write the events and therefore you must check that you have the correct permissions.  If an error is thrown while writing to the google logging environment then it will usually result in a loss of the message and all further messages for 30seconds.
+
+When creating the handler it requires a ProjectID and a LogId to be passed in to match the corresponding settings in the GCP Cloud Console. 
+
+```csharp
+Bilge.AddHandler(new GoogleLoggingHandler(new GoogleLoggingHandlerOptions() {
+    ProjectId = "<projectnamegoeshere>",
+    LogId = "test-app"
+}));
+```
+
+Note, in order to write to the logging environment you will need permissions setup.  This will either be from the service account that your application runs as or by manually granting the permissions like this:
+
+```text
+gcloud auth application-default set-quota-project <projectnamegoeshere>
+```
+
+
 
 ### Formatters
 

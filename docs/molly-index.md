@@ -4,6 +4,11 @@
 
 MollyCoddle is a directory and file linting solution for source control projects designed to check the structure of the source repository rather than the code itself.  It is NOT a code linting solution there are plenty of those out there already.
 
+
+#### Mollycoddle Quick Start Guide.
+
+
+
 #### Using Mollycoddle
 
 Execute MollyCoddle from the command line, passing a parameter of the path to scan and a -masterRoot parameter for using master files.
