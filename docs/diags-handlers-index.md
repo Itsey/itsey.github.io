@@ -168,6 +168,26 @@ Would result in log entries that look like this:
 ```
 
 
+#### Your Own Formatter
+
+For anything more complex you can build your own formatter.   To do this inherit from BaseMessageFormatter and then you can write any code that you like to generate the output logs.  This is a very limited example but you can add any code you like to create the output string.
+
+```csharp
+internal class CustomFormatter : BaseMessageFormatter {
+
+    protected override string ActualConvert(MessageMetadata msg) {
+        if (msg.StructuredData != null) {
+            result = $"A Log:  {msg.Body} {JsonSerializer.Serialize(msg.StructuredData)}}";
+        } else {
+            result = $"A Log: {msg.Body}";
+        }
+            
+        return result;
+    }
+
+}
+```
+
 #### FlimFlamV2Formatter
 
 This is an internal formatter designed to work with FlimFlam, you can use it for other purposes but its internal message format is not designed to be readily used and may change at any point.  Its a semi JSON format which uses short names to reduce transport sizes.
