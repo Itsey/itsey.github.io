@@ -17,6 +17,13 @@ Only csharp related files are permitted in the project structure.
 * *.vb/vbproj/java/py are banned at any point in the structure.
 
 
+#### < name="MC0002"></a> MC0002 - Lazy File Denylist.
+
+Identifies a common set of lazy mistakes with files.
+
+* File can not be called class1.cs
+* File can not end in - Copy
+* File can not end in (1) or (2)
 
 ### MC005X - Getting Started Quickly
 

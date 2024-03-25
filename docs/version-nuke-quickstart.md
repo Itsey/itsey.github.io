@@ -1,11 +1,7 @@
-## Versioning Pages.
-
-[Home](version-index.md) | [Quick Start](version-quickstart.md) | [Overview](version-overview.md) | [Reference](version-reference.md) |  [Nuke](version-nuke-quickstart.md)
-
-## Versioning Quick Start
+## Versioning Quick Start for Nuke
 
 ### Step 1 
-**Create** the storage file which contains the versioning number that you are going to use.  The new file will default to 0.0.0.0 and a fixed behaviour scheme.
+**Create** the storage file which contains the versioning number that you are going to use.  The new file will default to 0.0.0.0 and a fixed behaviour scheme.  This is best done using the command line and placed on a file share.
 
 ```dos
 pliskytool.exe -Command=CreateVersion -VersionSource=C:\temp\myappname.vstore
@@ -31,7 +27,7 @@ Create a file like one below and save it as autoversion.txt in your repository.T
 **Increment** the version number and apply the changes to your source files.  
 
 ```dos
-versonify.exe UpdateFiles -Root=.\LibSrc\ -VS=\\server\versionFname.vstore -Increment -MM=AutoVersion.txt
+PliskyTool.exe UpdateFiles -Root=.\LibSrc\ -VS=\\server\versionFname.vstore -Increment -MM=AutoVersion.txt
 ```
 
 ### Step 4

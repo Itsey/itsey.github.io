@@ -4,10 +4,13 @@
 The command line options for Molly are as follows:
 
 ```text
-❯ .\mollycoddle.exe <PATH> -masterRoot=<PATH> -formatter=<plain|azdo> -warnonly -addrulehelp  -disabled -debug=<DEBUG> 
+❯ .\mollycoddle.exe <PATH> -rulesfile=<PATH> -masterRoot=<PATH> -formatter=<plain|azdo> -warnonly -addrulehelp  -disabled -debug=<DEBUG> 
 ```
+### -rulesfile (required)
 
-### -dir  (or default single parameter)
+The location of a rules file - either a mollyset collection of rules to execute or a single .molly rule to execute.  Typcially rules are grouped into single mollyset rules files.   Where XXVERNAMEXX is placed in the path of this location then the -version parameter must also be used.  The -version parameter will replace XXVERNAMEXX with the value supplied.  This enables you to use different versions of rules ( e.g. -version=latest).  
+
+### -dir  (or default single parameter) (required)
 
 The directory to scan, mollycoddle should be run from the parent directory e.g. mollycoddle .\codetoscan  that will give the most reliable results.
 
@@ -44,7 +47,7 @@ Disables all checks and returns zero to the calling process, most often used to 
 
 ### -debug=\<debug control string>
 
-Allows the specification of a debug string to write additional in depth debugging information.  Use v-** for verbose.
+Allows the specification of a debug string to write additional in depth debugging information.  Use v-** for verbose. Other values should only really be required when contacting support.
 
 ### -version=\<version>
 
@@ -52,6 +55,6 @@ Allows you to specify a value that will be used to replace the XXVERSIONNAMEXX s
 
 ```batch
 // This will look for the rules in c:\files\default\defaultrules.mollyset
-mollycoddle dir -rulesfile="C:\Files\XXVERNAMEXX\defaultrules.mollyset" -primaryRoot="C:\Files\PrimaryFiles" -formatter="plain" -version=default
+mollycoddle dir -rulesfile="C:\Files\XXVERSIONNAMEXX\defaultrules.mollyset" -primaryRoot="C:\Files\PrimaryFiles" -formatter="plain" -version=default
 ```
 

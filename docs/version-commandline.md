@@ -1,4 +1,4 @@
-## Plisky Tool Command Line reference
+## Versonify `Command Line reference
 
 ### Command Line Options
 
@@ -41,7 +41,7 @@ Requires:
 ```
 
 ```dos
-pliskytool.exe -Command=CreateVersion -VersionSource=C:\temp\aversion.vstore
+versonify.exe -Command=CreateVersion -VersionSource=C:\temp\aversion.vstore
 ```
 
 Will create a new version at 1.0.0.0 in the source specified by version source, this will be persisted with the default values of Fixed versioning. Therefore your version number will default to 1.0.0.0.
@@ -58,8 +58,8 @@ Requires:
 ```
 
 ```dos
-pliskytool.exe -Command=Passive -VersionSource=C:\temp\aversion.vstore
-pliskytool.exe -Command=Passive -VersionSource=C:\temp\aversion.vstore -O=File
+versonify.exe -Command=Passive -VersionSource=C:\temp\aversion.vstore
+versonify.exe -Command=Passive -VersionSource=C:\temp\aversion.vstore -O=File
 ```
 
 Will load the version number into the tool then perform no action.  This is only really used in conjuction with the -O output option to ensure that the version number is made available to a calling or alternative process.

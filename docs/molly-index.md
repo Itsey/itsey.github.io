@@ -7,9 +7,16 @@ MollyCoddle is a directory and file linting solution for source control projects
 
 #### Mollycoddle Quick Start Guide.
 
+#### Getting started with Mollycoddle
+
+Mollycoddle needs three things to run:
+* The mollycoddle executable.
+* A source code structure to execute against.
+* A set of rules to execute.
 
 
-#### Using Mollycoddle
+
+#### Using Mollycoddle from the command line.
 
 Execute MollyCoddle from the command line, passing a parameter of the path to scan and a -masterRoot parameter for using master files.
 

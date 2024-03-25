@@ -1,3 +1,8 @@
+## Versioning Pages.
+
+[Home](version-index.md) | [Quick Start](version-quickstart.md) | [Overview](version-overview.md) | [Reference](version-reference.md) |  [Nuke](version-nuke-quickstart.md)
+
+
 ## Using The Versioning In Scripts - e.g. Powershell
 
 Sometimes you will want to use the version number that is generated in a script, rather than replace in a predefined file.  There are several output methods

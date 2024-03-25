@@ -1,15 +1,8 @@
 ### Versioning Format Identifiers
 
-NetAssembly, NetFile, NetInfomrational
-
-Net framework based cs files looking for the corresponding attribute in the file to apply the version.
-
-StdAssembly, StdInformational, StdFile
-
-Net standard (csproj file) looking for properties in a property group to apply the version.
 
 
-#### TextFile
+#### TextFile Version Behaviour
 
 Any file where literal replacement takes place within the file, using well known tokens:
 
@@ -23,6 +16,20 @@ Any file where literal replacement takes place within the file, using well known
 
 
 
+##### Display Type Short
+Two digit display.  E.g. 0.0 - The following file types default to this display method:
+
+NetAssembly, TextFile, StdAssembly
+
+##### DisplayType Full
+Four digit display E.g. 0.0.0.0 - The following file types default to this display method:  
+
+NetFile, NetInformational, Wix, StdFile, StdInformational
+
+##### DisplayType Three Digit
+Three didgit display - E.g.  0.0.0 - The following file types default to this display method:
+
+Nuspec
 
 
 Wix 
@@ -32,3 +39,11 @@ Wix Setup file, looking for the version attribute.  To update the version in the
 Nuspec
 
 Nuget Package File format.
+
+>Tip: You can specify more than one version type for the same file, therefore you can update a textual element of a Wix file and the version element by using a TextFile format and a Wix format.
+```
+e.g. in autoversion.txt 
+
+**/product.wxs|Wix
+**/product.wxs|TextFile
+```
