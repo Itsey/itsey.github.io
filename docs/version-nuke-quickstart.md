@@ -24,12 +24,44 @@ Create a file like one below and save it as autoversion.txt in your repository.T
 ```
 
 ### Step 3 
-**Increment** the version number and apply the changes to your source files.  
+**Increment** the version number and apply the changes to your source files.  Using Nuke this typically involves a target or adding stages to an existing target.   Typically passive is used to retrieve a version number and the PerformFileUpdate is used to set the version number.
 
-```dos
-PliskyTool.exe UpdateFiles -Root=.\LibSrc\ -VS=\\server\versionFname.vstore -Increment -MM=AutoVersion.txt
+This code depends on a Solution property that is attributed as a solution for Nuke.
+
+```csharp
+
+    [Solution]
+    readonly Solution Solution;
+
+Target VersionSource => _ => _
+    .Before(Compile)
+    .Executes(() => {
+
+        const string versionStorePath = @"D:\Scratch\_build\vstore\versonify-version.vstore";
+
+        VersonifyTasks.PassiveExecute(s => s
+          .SetRoot(Solution.Directory)
+          .SetVersionPersistanceValue(versionStorePath)
+          .SetDebug(true));
+
+        if (IsLocalBuild) {
+            Logger.Info("Local build, skipping versioning");
+            return;
+        }
+
+        VersonifyTasks.IncrementAndUpdateFiles(s => s
+         .SetRoot(Solution.Directory)
+         .AddMultimatchFile($"{Solution.Directory}\\_Dependencies\\Automation\\AutoVersion.txt")
+         .PerformIncrement(true)
+         .SetVersionPersistanceValue(VersionPersistancePath));
+
+    });
+    
+
 ```
 
-### Step 4
+### Thats it
 
-**Investigate** what else you can do - add step 3 to your build pipeline, include it in batch files, read the documentation etc.
+With Nuke you can now run the build locally which will allow you to test the configuration.  Obviously doing this for testing you should remove the IsLocalBuild check and potentially add the DryRun check.  DryRun allows you to see what would happen without actually making the changes.
+
+[See more info about using Nuke and Versonify.](version-usingnuke.md)

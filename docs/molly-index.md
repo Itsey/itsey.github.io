@@ -44,6 +44,10 @@ Violation M-0004 (c:\files\code\git\mollycoddle\.gitignore does not match master
 Total Violations 1
 ```
 
+### Using Mollycoddle in Nuke.
+
+Nuke is a build tool for .net - to use Mollycoddle in nuke see [this guide.](molly-nuke.md)
+
 ### MollyCoddle Rules
 
 You can create your own rules but the default set are referenced here [MollyCoddle Rules](molly-rules.md)

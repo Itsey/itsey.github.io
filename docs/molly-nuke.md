@@ -5,6 +5,13 @@
 
 To use Mollycoddle in a nuke build include the Plisky.Nuke.Fusion package, this will provde access to the tasks below for Mollycoddle.
 
+
+>You should also add a package reference to Mollycoddle itself, this will ensure that the tool is available to the build engine.  If you do not do this Nuke will throw an exception indicating that the package can not be found.
+
+
+![Molly References](assets/images/nuke-molly-references.png)
+
+
 A typical molly scan task looks like this
 
 ``` csharp

@@ -4,7 +4,7 @@ Nuke is a build system, if you are using nuke this page should help you integrat
 
 #### Plisky.Nuke.Fusion
 
-The support for plisky tools in Nuke is through the Plisky.Nuke.Fusion package as well as the individual packages that are required foreach tool.  First install the fusuion package.
+The support for plisky tools in Nuke is through the Plisky.Nuke.Fusion package as well as the individual packages that are required for each tool.  First install the fusion package.
 
 
 ### Specifying a separate version target.
@@ -14,28 +14,30 @@ You can place the versioning in its own target or inline with something like the
 Depending on your version store you will need to specify an initialization string, for the default this is a disk path or SMB share.
 
 ```csharp
- Target VersionSource => _ => _
-    .Before(Compile)
-    .Executes(() => {
+ 
+    Target VersionSource => _ => _
+        .Executes(() => {
 
-        const string versionStorePath = @"D:\Scratch\_build\vstore\versonify-version.vstore";
+            if (IsLocalBuild) {
+                Logger.Info("Local build, skipping versioning");
+                return;
+            }
+            const string versionStorePath = @"<PATH>\versonify-version.vstore";
 
-        VersonifyTasks.PassiveExecute(s => s
-          .SetRoot(Solution.Directory)
-          .SetVersionPersistanceValue(versionStorePath)
-          .SetDebug(true));
+            VersonifyTasks.PassiveExecute(s => s
+              .SetRoot(Solution.Directory)
+              .SetVersionPersistanceValue(versionStorePath)
+              .SetDebug(true));
 
-        if (IsLocalBuild) {
-            Logger.Info("Local build, skipping versioning");
-            return;
-        }
-
-        VersonifyTasks.IncrementAndUpdateFiles(s => s
-         .SetRoot(Solution.Directory)
-         .AddMultimatchFile($"{Solution.Directory}\\_Dependencies\\Automation\\AutoVersion.txt")
-         .PerformIncrement(true)
-         .SetVersionPersistanceValue(VersionPersistancePath));
-
-    });
+            VersonifyTasks.PerformFileUpdate(s => s
+             .SetRoot(Solution.Directory)
+             .AddMultimatchFile($"{Solution.Directory}\\_Dependencies\\Automation\\AutoVersion.txt")
+             .PerformIncrement(true)
+             .SetVersionPersistanceValue(VersionPersistancePath)
+             //.SetDebug(true)     Want more debugging info?
+             //.AsDryRun(true)     Want to see what would happen without doing it?
+             //.SetRelease("")     Using release names?         
+             );
+        });
 ```
 

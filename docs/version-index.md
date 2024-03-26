@@ -12,9 +12,9 @@ Plisky.Code Craft is a series of libraries, tools and practices all around writi
 Versonify is a command line tool to enable versioning of your code using behaviours that you determine.  Its designed to be run as part of a pipeline or local developer setup to version different elements of code.
 
 [Quick Start - Command Line](version-quickstart.md)    
-[Quick Start - Nuke](verison-nuke-quickstart.md)    
+[Quick Start - Nuke (Dotnet build tool)](version-nuke-quickstart.md)    
 [Versioning Overview](version-overview.md)    
-[Verisoning Reference](version-reference.md)    
+[Versioning Reference](version-reference.md)    
 [Versioning Examples](version-examples_script.md)    
 [Versioning Formatting](version-vermatchref.md)    
 [Using Nuke Build](version-usingnuke.md)    
