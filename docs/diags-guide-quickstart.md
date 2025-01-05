@@ -24,7 +24,7 @@ When the application is run and exits a file called bilgedefault.log will be cre
 
 *** 
 ## Using Bilge And FlimFlam
-The main value from Blige occurs when combined with FlimFlam - the viewer. Legacy FlimFlam is available as a release 1.0 and offers the view of the trace output issued by Bilge.  Get the binary here: https://github.com/Itsey/Plisky.FlimFlam/releases/tag/LegacyFF10
+The main value from Blige occurs when combined with FlimFlam - the viewer. Legacy FlimFlam is available as a release 1.0 and offers the view of the trace output issued by Bilge.  Get the binary here: ([https://github.com/Itsey/Plisky.FlimFlam/releases/tag/LegacyFF10](https://github.com/Itsey/plisky.flim-flam/releases/tag/LegacyFF10))
 
 The most common usage on Development Machines is using the TCPHandler to write locally to the machine running FlimFlam (or across the network if that's appropriate for your environment).  The default port for FlimFlam to listen on is 9060.
 
