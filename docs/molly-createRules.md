@@ -2,11 +2,11 @@
 
 MollyCoddle rules are a json format which describes a set of parameters to one of the installed checkers in mollycoddle.  Mollycoddle has three active checkers at the moment.
 
-| Checker               |Role| Commands          |
-|-----------------------|-----|-------------------|
-| FileValidationChecker |Checks for files, locations and contents| MustExist,<br>MustNotExist,<br>MatchWithMaster,<br>IfExistMustBeHere |
-|DirectoryValidationChecker|Checks for directories and their locations| MustNotExist,<br/>MustExist,<br/>ProhibitedExcept|
-|NugetPackageChecker| Checks for referenced Nuget Packages| ProhibitedPackagesList|
+| Checker                    | Role                                       | Commands                                                             |
+| -------------------------- | ------------------------------------------ | -------------------------------------------------------------------- |
+| FileValidationChecker      | Checks for files, locations and contents   | MustExist,<br>MustNotExist,<br>MatchWithMaster,<br>IfExistMustBeHere |
+| DirectoryValidationChecker | Checks for directories and their locations | MustNotExist,<br/>MustExist,<br/>ProhibitedExcept                    |
+| NugetPackageChecker        | Checks for referenced Nuget Packages       | ProhibitedPackagesList                                               |
 
 #### Rules file structure
 
@@ -36,9 +36,6 @@ Where pattern matches are made the variable %ROOT% can be used to indicate the r
     "RulesetName": "A Name to group all the rules together"
 ```
 
-
-
-
 #### The File Validation Checker
 
 The file validation checker looks for specific filename matches and can then perform a variety of options.  This can include checking for a banned location, ensuring a file must exist at a location or comparing the contents with another file.
@@ -50,6 +47,7 @@ PatternMatch:  A minmatch pattern which either must be matched at least once ( f
 ValidatorName: FileValidationChecks    
 
 Example: Force a readme.md to be found in the root of the repository
+
 ```json
  "Validators": [
                 {
@@ -61,15 +59,14 @@ Example: Force a readme.md to be found in the root of the repository
             ]
 ```
 
-
 ##### MatchWithMaster
-
 
 Control: "MatchWithMaster"    
 PatternMatch:  A minmatch pattern which identifies one or more files.  Once the files are found they are compared with the master file.  This master file and the found file must match exactly.  %MASTERROOT% can be used to take a master root path passed into the tool.    
 ValidatorName: FileValidationChecks
 
 Example: Everyone has to use the same editorconfig file
+
 ```json
  "Validators": [
                 {
@@ -83,9 +80,7 @@ Example: Everyone has to use the same editorconfig file
             ]
 ```
 
-
 ##### IfExistMustBeHere
-
 
 *Control*: "IfExistMustBeHere"    
 *PatternMatch*:  A minmatch pattern which matches a specific file type.  Each time that minmatch is matched then the file matching is compared against those in the additional data options.  Additional data supplies a series of other minimatches, one of which must match or it is a violation.    
@@ -93,6 +88,7 @@ Example: Everyone has to use the same editorconfig file
 *ValidatorName*: FileValidationChecks
 
 Example: csproj files must either be in one folder below src or in a specific folder called frameworkversions.
+
 ```json
  "Validators": [
                 { 
@@ -107,20 +103,18 @@ Example: csproj files must either be in one folder below src or in a specific fo
             ]
 ```
 
-
-
-
 #### The Directory Validation Checker
 
 The directory validation checker looks for specific directory paths and structures.  
 
-
 ##### ProhibitedExcept
+
 Control:ProhibitedExcept    
 PatternMatch:  The pattern that is prohibited, if this is matched then this folder will be a violation unless it matches one of the minmatches passed as additional data.   
 ValidatorName:DirectoryValidationChecks
 
 Example:  All folders under root are prohibited, except src.
+
 ```json
 "Validators": [
                 {
@@ -135,11 +129,13 @@ Example:  All folders under root are prohibited, except src.
 ```
 
 ##### MustExist & MustNotExist
+
 Control:MustExist or  MustNotExist
 PatternMatch:  The pattern that either must be matched at least once for the solution in the case of must exist or can never be matched in the case of must not exist.
 ValidatorName:DirectoryValidationChecks
 
 Example:  Src folder must exist in root, but cant be duplicated.
+
 ```json
  "Validators": [
                 {
@@ -155,23 +151,21 @@ Example:  Src folder must exist in root, but cant be duplicated.
                     "ValidatorName": "DirectoryValidationChecks"
                 }
             ]
-
 ```
-
-
-
 
 #### The Nuget Validation Checker
 
 The nuget validation checker operates on nuget package references.
 
 ##### ProhibitedPackagesList
+
 Control:ProhibitedPackagesList    
 PatternMatch:  The pattern to match to identify the nuget file, normally this is a csproj file where the packages are referenced.    
 AdditionalData: A list of packages that if found will indicate a violation.    
 ValidatorName:NugetValidationChecks    
 
 Example:  Banned.package1 and Banned.Package2 can not be used
+
 ```json
  "Validators": [
                 {
@@ -183,6 +177,4 @@ Example:  Banned.package1 and Banned.Package2 can not be used
                     "PatternMatch": "**\\*.csproj",
                     "ValidatorName": "NugetValidationChecks"
                 }
-
 ```
-
