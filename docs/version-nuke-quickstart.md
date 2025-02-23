@@ -1,5 +1,10 @@
 ## Versioning Quick Start for Nuke
 
+## Versioning Pages Navigation.
+
+[Home](version-index.md) |[Command Line]version-commandline.md | [Quick Start](version-quickstart.md) | [Overview](version-overview.md) | [Reference](version-reference.md) |  [Nuke](version-nuke-quickstart.md)
+
+
 ### Step 1 
 **Create** the storage file which contains the versioning number that you are going to use.  The new file will default to 0.0.0.0 and a fixed behaviour scheme.  This is best done using the command line and placed on a file share.
 

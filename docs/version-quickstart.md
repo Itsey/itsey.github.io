@@ -1,17 +1,19 @@
-## Versioning Pages.
+## Versioning Pages Navigation.
 
-[Home](version-index.md) | [Quick Start](version-quickstart.md) | [Overview](version-overview.md) | [Reference](version-reference.md) |  [Nuke](version-nuke-quickstart.md)
+[Home](version-index.md) |[Command Line]version-commandline.md | [Quick Start](version-quickstart.md) | [Overview](version-overview.md) | [Reference](version-reference.md) |  [Nuke](version-nuke-quickstart.md)
 
 ## Versioning Quick Start
 
-### Step 1 
+### Step 1
+
 **Create** the storage file which contains the versioning number that you are going to use.  The new file will default to 0.0.0.0 and a fixed behaviour scheme.
 
 ```dos
 pliskytool.exe -Command=CreateVersion -VersionSource=C:\temp\myappname.vstore
 ```
 
-### Step 2 
+### Step 2
+
 **Configure** your source repository with a text file describing which files you want to apply versioning to.  This will contain a list of version minmatches.  
 
 Create a file like one below and save it as autoversion.txt in your repository.This is a set of minmatchers and you should match your code (for example the convention below has source code in a /src folder)
@@ -27,7 +29,8 @@ Create a file like one below and save it as autoversion.txt in your repository.T
 **/src/**/*.txt|TextFile
 ```
 
-### Step 3 
+### Step 3
+
 **Increment** the version number and apply the changes to your source files.  
 
 ```dos

@@ -1,10 +1,8 @@
-## Versioning Pages.
+## Versioning Pages Navigation.
 
-[Home](version-index.md) | [Quick Start](version-quickstart.md) | [Overview](version-overview.md) | [Reference](version-reference.md) |  [Nuke](version-nuke-quickstart.md)
-
+[Home](version-index.md) |[Command Line]version-commandline.md | [Quick Start](version-quickstart.md) | [Overview](version-overview.md) | [Reference](version-reference.md) |  [Nuke](version-nuke-quickstart.md)
 
 ## Versioning Storage Plugin Implementation
-
 
 Version storage provides the persistence for versioning and can be used to use your own source of persistence if the default ones are not sufficient or if you wish 
 to use your own internal storage.
@@ -16,7 +14,7 @@ public abstract class VersionStorage {
      protected string InitValue = null;
      protected abstract void ActualPersist(CompleteVersion cv);
      protected abstract CompleteVersion ActualLoad();
-      
+
      /// <summary>
      /// Manages the storage of version numbers, allowing them to be saved and loaded.
      /// </summary>
@@ -32,7 +30,7 @@ public abstract class VersionStorage {
      public void Persist(CompleteVersion cv) {
          ActualPersist(cv);
      }
-     
+
      /// <summary>
      /// Gets the version from storage, if the storage is not initialised then will return a default version.  If the underlying storage throws
      /// an error then this will be passed up to the caller.
@@ -46,9 +44,6 @@ public abstract class VersionStorage {
          return loaded;
      }
 }
-
 ```
 
-
 You should override ActualPersist and ActualLoad to implement your versioning storage.
-

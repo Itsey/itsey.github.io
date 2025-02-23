@@ -1,10 +1,11 @@
+Quick Links>>  [Home](index.md) >> [MollyCoddle](molly-index.md)   [Molly-Nuke](molly-nuke) [Molly-QuickStart](molly-quickstart)
+
 ### Mollycoddle Rules Files
 
 There are two types of files
 
 * <name>.mollyset - This is a set of rules files, one per line each referencing a .mollyfile
 * <name>.molly - This is a single or multiple rule implementation file.
-
 
 #### Molly Set Files
 
@@ -18,7 +19,6 @@ allnugetconfig.molly
 ```
 
 A molly set file will look for each of the named rules files in the same directory and load it into mollycoddle.  This is a fine grained way of grouping up individual molly rules into collections.  Lines that start with a # character are ignored and serve as comments.
-
 
 ### Molly Rules Files
 

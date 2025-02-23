@@ -5,13 +5,14 @@
 Go to the Git Hub Releases Page:  https://github.com/Itsey/mollycoddle/releases
 Download the latest release.
 
+Mollycoddle requires .net verison 8.
+
 There will be three zip files, the mollycoddle binary compiled for Windows x86 and the two rules files zip files.  To start wtih use the default rules.
 
 Extract MollyCoddle_V*.zip to a folder of your choice.    
 Extract QuickStartMollyRules.zip to a folder of your choice.    
-    
-In the examples below c:\molly will be used with the rules being in c:\molly\quickstartrules\.
 
+In the examples below c:\molly will be used with the rules being in c:\molly\quickstartrules\.
 
 #### Using Mollycoddle
 
@@ -32,7 +33,6 @@ This should put out an error suggesting you are unable to run mollycoddle withou
 ##vso[task.logissue type=error] ⚠ Error: InvalidCommand - Directory Was Not Correct (Does this directory exist? [])
 ```
 
-
 Execute MollyCoddle from the command line, passing a parameter of the path to scan and a rules file. For this example we will use the default rules file and assume that the source code is in a folder called sourcecode beneath the current directory:
 
 ```text
@@ -43,7 +43,6 @@ c:\molly\mollycoddle.exe "sourcecode" -rulesfile=c:\molly\quickstartrules\quicks
 For this to work you need to have your source code in a location below where you are executing the command from, in a folder called source code.  The mollycoddle binaries need to be placed in C:\molly\ and the rules files extracted to c:\molly in folders.
 
 When you execute the command you should see this
-
 
 ```text
 Info: MollyCoddle Online
@@ -59,4 +58,3 @@ Info: MollyCoddle Online
 💩 Violation: Use src for your source code. ((c:\molly\sourcecode\src) must exist and it does not.)
 😢 Completed.Total Violations 1.  ( Took 120ms.)
 ```
-

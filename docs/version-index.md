@@ -1,11 +1,10 @@
-## Plisky.Code Craft.   
+## Plisky.Code Craft.
 
 Plisky.Code Craft is a series of libraries, tools and practices all around writing better software.  This module is a versioning tool designed to consistently apply and work with version numbers for Wintel stack code.
 
-## Versioning Pages.
+## Versioning Pages Navigation.
 
-[Home](version-index.md) | [Quick Start](version-quickstart.md) | [Overview](version-overview.md) | [Reference](version-reference.md) |  [Nuke](version-nuke-quickstart.md)
-
+[Home](version-index.md) |[Command Line]version-commandline.md | [Quick Start](version-quickstart.md) | [Overview](version-overview.md) | [Reference](version-reference.md) |  [Nuke](version-nuke-quickstart.md)
 
 ## Versioning By Versonify.
 

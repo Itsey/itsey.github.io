@@ -4,6 +4,7 @@ Get the Kuztomize filefrom xaspiratea
 
 abcdefgh
 1234567890
+
 ```
 2345678
 kubectl apply -k .
@@ -20,8 +21,6 @@ kubectl create secret docker-registry <SECRET_NAME>
   --docker-password <YOUR_PASSWORD>
 ```
 
-
-
 ## Minikube
 
 Install minikube on the server
@@ -33,4 +32,3 @@ take these locally and edit the config file in .\kube merge the two files toghet
 put the crt and key file on your machine
 
 kubectl config use-context minikube should let u use the new context
-

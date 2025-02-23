@@ -1,4 +1,8 @@
-## Versonify `Command Line reference
+## Versonify Command Line reference
+
+## Versioning Pages Navigation.
+
+[Home](version-index.md) |[Command Line]version-commandline.md | [Quick Start](version-quickstart.md) | [Overview](version-overview.md) | [Reference](version-reference.md) |  [Nuke](version-nuke-quickstart.md)
 
 ### Command Line Options
 
@@ -24,7 +28,6 @@ e.g. -Command=CreateVersion
 Full Example Commandline:
 
 PliskyTool.exe UpdateFiles -Root=c:\src\ -VS=c:\store\pversioner.vstore -Increment -MM="**/*.csproj|StdFile,**/*.csproj|StdAssembly,**/*.csproj|StdInformational"
-
 ```
 
 ### Commands
@@ -74,6 +77,7 @@ Output options are specified to determine where the output should be written.
 ```
 
 Output Desitnations can be one of 
+
 * env - Writes to an environment variable 
 * con - Writes to the console
 * file - Writes to a file
@@ -93,11 +97,10 @@ Output  > "##vso[task.setvariable variable=CodeVersionNumber;]1.2.3.4"
 
 Command > pliskytool.exe Passive -VersionSource=C:\temp\aversion.vstore -O=azdo:version
 Output  > "##vso[task.setvariable variable=version;]1.2.3.4"
-
-
 ```
 
 #### Override
+
 Overrides the values of version numbers at the point of next increment
 
 ```plaintext
@@ -127,6 +130,7 @@ abc  = Any number of letters replaces the digit with this version (for named dig
 1.0.0.0 => +.0.alpha.0  => 2.0.alpha.0  
 
 #### Update Files
+
 Overrides the values of version numbers at the point of next increment
 
 ```plaintext
@@ -146,6 +150,7 @@ Optional:
 ```dos
 pliskytool.exe -Command=Override -VersionSource=C:\temp\aversion.vstore -Root=C:\Build\Code\MyApp
 ```
+
 Will optionally increment the version number specified by the source and then run through the directory specified by root and update any files that are matched by the minmatchers for the specified file types.  There are a default set of minmatches in effect but they can be overriden.
 
 To override a minmatch specify it using the -MM or -MinMatch command.  This is a series of one or more strings separated by ;.  If a single string is passed with no ; and if this refers to a file that exists on disk then this file will be parsed for MinMatches instead.  The file format is as follows.
@@ -155,6 +160,7 @@ It is generally more convenient to specify the file and store it in your source 
 ```plaintext
 <minmatch to the file>|<FileTypeToMatch>
 ```
+
 Each line in the file adds a new minmatch. 
 
 ```plaintext
@@ -173,19 +179,22 @@ The pipe separator separates the minmatch from the type of file that it is updat
 
 Each file type has a rule to determine how to match versions, see (version matching reference)[vermatchref.md].
 
-
-
 Full Eample Command Line:
+
 ```dos
 'PliskyTool.exe UpdateFiles -Root=c:\src\ -VS=c:\store\pversioner.vstore -Increment -MM="**/*.csproj|StdFile,**/*.csproj|StdAssembly,**/*.csproj|StdInformational"
 ```
+
 This will search the folder c:\src for all .csproj files and attempt to add the .net standard versioninng for the three different file types to any csproj files that are
 found.  Note that for the std file type it will look inside the file and see whether it looks like a net std file or a framework one.  Framework ones
 will not be udpated. 
 
 ##### Using No Override
+
 When setting up multiple branches it is sometimes useful to be able to ignore an override when a specific branch is versioned.  To do this specify -NO.      
 The most common scenario here is when the Pull Request build is used to reset the version ready for release.  When using the pull request builds to version then it is possible that a build on the source branch happens after the PR build but before the release branch has run.  This will cause the source branch to incorrectly version.  To avoid this add the -NO to the source branch versioning element.
 
 
+#### Using -Debug
 
+The -debug enables tracing for detailed error investigation.  See (Setting Configuration Resolvers)[diags-bilge-configurationResolvers.md] for full details. Typically this is set to v-** for verbose when trying to resolve issues.

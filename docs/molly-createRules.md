@@ -1,3 +1,5 @@
+Quick Links>>  [Home](index.md) >> [MollyCoddle](molly-index.md)   [Molly-Nuke](molly-nuke) [Molly-QuickStart](molly-quickstart)
+
 ### Creating MollyCoddle Rules
 
 MollyCoddle rules are a json format which describes a set of parameters to one of the installed checkers in mollycoddle.  Mollycoddle has three active checkers at the moment.
@@ -172,6 +174,31 @@ Example:  Banned.package1 and Banned.Package2 can not be used
                     "AdditionalData": [
                         "banned.package1",
                         "banned.package2"
+                    ],
+                    "Control": "ProhibitedPackagesList",
+                    "PatternMatch": "**\\*.csproj",
+                    "ValidatorName": "NugetValidationChecks"
+                }
+```
+
+##### Prohibited Package Versions
+
+Control:ProhibitedPackageList    
+PatternMatch:  The pattern to match to identify the nuget file, normally this is a csproj file where the packages are referenced.    
+AdditionalData: A list of packages that if found will indicate a violation.    
+ValidatorName:NugetValidationChecks    
+
+As an extension to the package names above you can also include versions to prohibit specific version patterns.  In the example below banned 
+package 1 may not be greater than version 8.0.0, while banned package 2 can not be between 1.0.0 and 2.0.0  and finally banned package 3 
+may not be less than 2.0.0
+
+```json
+ "Validators": [
+                {
+                    "AdditionalData": [
+                        "banned.package1[>8.0.0]",
+                        "banned.package2[1.0.0-2.0.0]"
+                        "banned.package3[<2.0.0]"
                     ],
                     "Control": "ProhibitedPackagesList",
                     "PatternMatch": "**\\*.csproj",

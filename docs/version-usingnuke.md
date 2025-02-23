@@ -1,3 +1,7 @@
+## Versioning Pages Navigation.
+
+[Home](version-index.md) |[Command Line]version-commandline.md | [Quick Start](version-quickstart.md) | [Overview](version-overview.md) | [Reference](version-reference.md) |  [Nuke](version-nuke-quickstart.md)
+
 ## Versonify Nuke Reference
 
 Nuke is a build system, if you are using nuke this page should help you integrate.  If you are not then this will not be of any relevance to you.
@@ -6,7 +10,6 @@ Nuke is a build system, if you are using nuke this page should help you integrat
 
 The support for plisky tools in Nuke is through the Plisky.Nuke.Fusion package as well as the individual packages that are required for each tool.  First install the fusion package.
 
-
 ### Specifying a separate version target.
 
 You can place the versioning in its own target or inline with something like the compile target.  Typically you will not want to use versioning during local builds.  Your versioning will need to run before your compile target to ensure that version number increments are included in the compiled code.
@@ -14,7 +17,6 @@ You can place the versioning in its own target or inline with something like the
 Depending on your version store you will need to specify an initialization string, for the default this is a disk path or SMB share.
 
 ```csharp
- 
     Target VersionSource => _ => _
         .Executes(() => {
 
@@ -40,4 +42,3 @@ Depending on your version store you will need to specify an initialization strin
              );
         });
 ```
-

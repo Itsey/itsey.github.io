@@ -1,14 +1,14 @@
 ### Mollycoddle Command Line Options
 
-
 The command line options for Molly are as follows:
 
 ```text
 ❯ .\mollycoddle.exe <PATH> -rulesfile=<PATH> -masterRoot=<PATH> -formatter=<plain|azdo> -warnonly -addrulehelp  -disabled -debug=<DEBUG> 
 ```
+
 ### -rulesfile (required)
 
-The location of a rules file - either a mollyset collection of rules to execute or a single .molly rule to execute.  Typcially rules are grouped into single mollyset rules files.   Where XXVERNAMEXX is placed in the path of this location then the -version parameter must also be used.  The -version parameter will replace XXVERNAMEXX with the value supplied.  This enables you to use different versions of rules ( e.g. -version=latest).  
+The location of a rules file - either a mollyset collection of rules to execute or a single .molly rule to execute.  Typcially rules are grouped into single mollyset rules files.   Where XXVERSIONNAMEXX is placed in the path of this location then the -version parameter must also be used.  The -version parameter will replace XXVERSIONNAMEXX with the value supplied.  This enables you to use different versions of rules ( e.g. -version=latest).  
 
 ### -dir  (or default single parameter) (required)
 
@@ -16,7 +16,7 @@ The directory to scan, mollycoddle should be run from the parent directory e.g. 
 
 ### -primaryRoot
 
-This holds the primary root path for all of the files to be compared against their primary files.  Pass a full path to the root where the primary files live.  Therefore if you have a master.editorconfig 
+The root of the location for the primary copies of files. When using single primary copy files such as nuget.config or .editorconfig this location specifies where the primary copies are sourced from. Can be a directory path, a UNC path or a Nexus repository path. See path formatting below.
 
 ### -formatter
 
@@ -31,7 +31,7 @@ Azdo Output:
 
 Plain Output:
 Error: Error - Unable To Read RulesFiles
-````
+```
 
 ### -warnonly
 
@@ -58,3 +58,8 @@ Allows you to specify a value that will be used to replace the XXVERSIONNAMEXX s
 mollycoddle dir -rulesfile="C:\Files\XXVERSIONNAMEXX\defaultrules.mollyset" -primaryRoot="C:\Files\PrimaryFiles" -formatter="plain" -version=default
 ```
 
+### -temppath
+
+Specifies the working directory for cached files to be placed.  Defaults to system temporary path.
+
+### 

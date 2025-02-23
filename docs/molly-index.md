@@ -4,17 +4,21 @@
 
 MollyCoddle is a directory and file linting solution for source control projects designed to check the structure of the source repository rather than the code itself.  It is NOT a code linting solution there are plenty of those out there already.
 
+Quick Links>>  [Home](index.md) >> [MollyCoddle](molly-index.md)   [Molly-Nuke](molly-nuke) [Molly-QuickStart](molly-quickstart)
 
 #### Mollycoddle Quick Start Guide.
 
 #### Getting started with Mollycoddle
 
 Mollycoddle needs three things to run:
+
 * The mollycoddle executable.
 * A source code structure to execute against.
 * A set of rules to execute.
 
 
+
+You should first take a look at the rules [MollyCoddle Rules](molly-rules) to see what sorts of things Molly can do.  Once you have seen the rules you'll need to determine where you will store your rulesfiles.  This can be on a local path for local use, or on a network share for a local team or a nexus repository for centralisation.   When Molly loads it will attempt to retrieve the rules files and any other data from the location you specify.
 
 #### Using Mollycoddle from the command line.
 
@@ -51,7 +55,6 @@ Nuke is a build tool for .net - to use Mollycoddle in nuke see [this guide.](mol
 ### MollyCoddle Rules
 
 You can create your own rules but the default set are referenced here [MollyCoddle Rules](molly-rules.md)
-
 
 ### Creating Your Own Rules
 

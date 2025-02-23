@@ -4,7 +4,7 @@ Mollycoddle rules are highly configurable but there are a default set that ship.
 
 Note that there are gaps between the numbers to allow for other to be specified, for example if your chosen programming lanugage is py and not c# then creating an alternative ruleset to forbid other filetypes should be simple and can fit in the same rule gap if you wish.
 
-### Simplify Code Structure
+### MC000X - Simplify Code Structure
 
 The following rules help simplify code structure, minimizing mixing up different things in the same location.
 
@@ -30,7 +30,7 @@ A Readme File mus be present in the root of the repo structure.
 
 * /readme.md must exist.
 
-### MC006X - Expected Directories
+### MC006X - Consistant Repository Format
 
 The following rules help a consistent directory structure at the top level so that it is easy to navigate around a freshly cloned repository and much simpler to get up and running with a new code base.
 
@@ -91,21 +91,29 @@ Using things like common editorconfig files, gitignore files and so on allows fo
 Master files ensure that the files in the repos are kept up to date with the most recent changes in style and settings.  Editor config ensures that coding style is enforced by the IDE.
 
 * The folder root\src must have a file called .editorconfig present.    
-* That file must be identical to the file stored %masterroot%\master.editorconfig    
+* That file must be identical to the file stored %primaryroot%\master.editorconfig    
 
 #### <a name="MC0101"></a> MC0101 - Git Ignore Must Match Master
 
 Master files ensure that the files in the repos are kept up to date with the most recent changes in style and settings.  Gitignore ensures that sensitive files and files that should not be source managed are skipped.
 
 * The root folder must have a file called .gitignore present.    
-* That file must be identical to the file stored %masterroot%\master.gitignore    
+* That file must be identical to the file stored %primaryroot%\master.gitignore    
 
 #### <a name="MC0102"></a> MC0102 - Nuget.config must match master.
 
 Master files ensure that the files in the repos are kept up to date with the most recent changes in style and settings.  Nuget config controls the way that packages are downloaded and should be consistant for an organisation.
 
-* The root folder must have a file called .gitignore present.    
-* That file must be identical to the file stored %masterroot%\master.gitignore    
+* The root folder must have a file called nuget.config present.    
+* That file must be identical to the file stored %masterroot%\master.nuget.config    
+
+#### <a name="MC0103"></a> MC0103 - Directory.Props must match master.
+
+Master files ensure that the files in the repos are kept up to date with the most recent changes in style and settings.  To define specific MSBuild properties that must
+be included in a solution ensure that the directory.props file exists and is the same as the master copy.
+
+* The root folder must have a file called directory.Props present.    
+* That file must be identical to the file stored %primaryroot%\master.directory.props 
 
 ### MC02XX - Supply Chain Woes
 
@@ -124,6 +132,11 @@ Packages which fail security scanning are added to the band list.
 Different companies have different rules around how software is permitted for use, in some instances sponsorlink approaches broke those rules and therefore specific packages are excluded. 
 
 Moq versions that had sponsorlink included are prohibited.
+
+#### <a name="MC0202"></a> MC0202 -Unapproved Licenses Are Banned
+
+When a license changes to one that is not approved then they are added to the band list, typically this affect versions of libraries.
+Fluent.Assertions v8 and above may not be used.
 
 ### MC04XXX - Source Repository AntiPatterns
 
