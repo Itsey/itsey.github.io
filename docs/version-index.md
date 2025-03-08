@@ -1,10 +1,10 @@
 ## Plisky.Code Craft.
 
-Plisky.Code Craft is a series of libraries, tools and practices all around writing better software.  This module is a versioning tool designed to consistently apply and work with version numbers for Wintel stack code.
+Plisky.Code Craft is a series of libraries, tools and practices all around writing better software.  This module is a versioning tool designed to consistently apply and work with version numbers. It was built for Wintel  stack code  but should work in any versioning scenario..
 
 ## Versioning Pages Navigation.
 
-[Home](version-index.md) |[Command Line]version-commandline.md | [Quick Start](version-quickstart.md) | [Overview](version-overview.md) | [Reference](version-reference.md) |  [Nuke](version-nuke-quickstart.md)
+[Home](version-index.md) | [Command Line](version-commandline.md) | [Overview](version-overview.md) | [Reference](version-reference.md) |  [Nuke](version-nuke-quickstart.md)
 
 ## Versioning By Versonify.
 
@@ -17,3 +17,13 @@ Versonify is a command line tool to enable versioning of your code using behavio
 [Versioning Examples](version-examples_script.md)    
 [Versioning Formatting](version-vermatchref.md)    
 [Using Nuke Build](version-usingnuke.md)    
+
+
+## Quick Reference
+
+Quick Examples to demonstrate typical scenarios. This section is just a reminder for details check other links.
+
+```dos
+versonify.exe -Command=CreateVersion -VersionSource=C:\temp\aversion.vstore
+versonify.exe -Command=Passive -VersionSource=C:\temp\aversion.vstore -O=File
+```

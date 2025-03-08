@@ -2,7 +2,7 @@
 
 ## Versioning Pages Navigation.
 
-[Home](version-index.md) |[Command Line]version-commandline.md | [Quick Start](version-quickstart.md) | [Overview](version-overview.md) | [Reference](version-reference.md) |  [Nuke](version-nuke-quickstart.md)
+[Home](version-index.md) |[Command Line](version-commandline.md) | [Overview](version-overview.md) | [Reference](version-reference.md) |  [Nuke](version-nuke-quickstart.md)
 
 ### Command Line Options
 
@@ -27,7 +27,7 @@ e.g. -Command=CreateVersion
 
 Full Example Commandline:
 
-PliskyTool.exe UpdateFiles -Root=c:\src\ -VS=c:\store\pversioner.vstore -Increment -MM="**/*.csproj|StdFile,**/*.csproj|StdAssembly,**/*.csproj|StdInformational"
+versionify.exe UpdateFiles -Root=c:\src\ -VS=c:\store\pversioner.vstore -Increment -MM="**/*.csproj|StdFile,**/*.csproj|StdAssembly,**/*.csproj|StdInformational"
 ```
 
 ### Commands
@@ -111,7 +111,7 @@ Requires:
 ```
 
 ```dos
-pliskytool.exe -Command=Override -VersionSource=C:\temp\aversion.vstore -Q=.+.0.0
+versonify.exe -Command=Override -VersionSource=C:\temp\aversion.vstore -Q=.+.0.0
 ```
 
 Will create a pending version that will be applied on the next increment.  This will override changes that the default increments will perform applying a pattern.  This is normally used for release versions, where versions do not follow the same pattern as build versions.  
@@ -148,7 +148,7 @@ Optional:
 ```
 
 ```dos
-pliskytool.exe -Command=Override -VersionSource=C:\temp\aversion.vstore -Root=C:\Build\Code\MyApp
+versonify.exe -Command=Override -VersionSource=C:\temp\aversion.vstore -Root=C:\Build\Code\MyApp
 ```
 
 Will optionally increment the version number specified by the source and then run through the directory specified by root and update any files that are matched by the minmatchers for the specified file types.  There are a default set of minmatches in effect but they can be overriden.
@@ -193,7 +193,6 @@ will not be udpated.
 
 When setting up multiple branches it is sometimes useful to be able to ignore an override when a specific branch is versioned.  To do this specify -NO.      
 The most common scenario here is when the Pull Request build is used to reset the version ready for release.  When using the pull request builds to version then it is possible that a build on the source branch happens after the PR build but before the release branch has run.  This will cause the source branch to incorrectly version.  To avoid this add the -NO to the source branch versioning element.
-
 
 #### Using -Debug
 

@@ -1,7 +1,8 @@
 ## Versioning Pages.
 
-[Home](version-index.md) | [Quick Start](version-quickstart.md) | [Overview](version-overview.md) | [Reference](version-reference.md) |  [Nuke](version-nuke-quickstart.md)
+## Versioning Pages Navigation.
 
+[Home](version-index.md) |[Command Line](version-commandline.md) | [Overview](version-overview.md) | [Reference](version-reference.md) |  [Nuke](version-nuke-quickstart.md)
 
 ## Using The Versioning In Scripts - e.g. Powershell
 
@@ -19,12 +20,12 @@ docker build -t papi-api .
 docker tag papi-api itseyreg.azurecr.io/papi-api:latest
 ```
 
-
 One way to tag the version is by doing a replacement on the file and treating it as a text file like this:
 
 ```dockerfile
 docker tag papi-api itseyreg.azurecr.io/papi-api:XXX-VERSION-XXX
 ```
+
 This works but requires that you update your script file each time, and that is not the most convenient if running by hand, therefore we will look at an alternative approach that can be run inline to the file to take the correct version.
 
 ```dos

@@ -2,17 +2,18 @@
 
 ## Versioning Pages Navigation.
 
-[Home](version-index.md) |[Command Line]version-commandline.md | [Quick Start](version-quickstart.md) | [Overview](version-overview.md) | [Reference](version-reference.md) |  [Nuke](version-nuke-quickstart.md)
+[Home](version-index.md) |[Command Line](version-commandline.md) | [Overview](version-overview.md) | [Reference](version-reference.md) |  [Nuke](version-nuke-quickstart.md)
 
+### Step 1
 
-### Step 1 
 **Create** the storage file which contains the versioning number that you are going to use.  The new file will default to 0.0.0.0 and a fixed behaviour scheme.  This is best done using the command line and placed on a file share.
 
 ```dos
 pliskytool.exe -Command=CreateVersion -VersionSource=C:\temp\myappname.vstore
 ```
 
-### Step 2 
+### Step 2
+
 **Configure** your source repository with a text file describing which files you want to apply versioning to.  This will contain a list of version minmatches.  
 
 Create a file like one below and save it as autoversion.txt in your repository.This is a set of minmatchers and you should match your code (for example the convention below has source code in a /src folder)
@@ -28,13 +29,13 @@ Create a file like one below and save it as autoversion.txt in your repository.T
 **/src/**/*.txt|TextFile
 ```
 
-### Step 3 
+### Step 3
+
 **Increment** the version number and apply the changes to your source files.  Using Nuke this typically involves a target or adding stages to an existing target.   Typically passive is used to retrieve a version number and the PerformFileUpdate is used to set the version number.
 
 This code depends on a Solution property that is attributed as a solution for Nuke.
 
 ```csharp
-
     [Solution]
     readonly Solution Solution;
 
@@ -44,25 +45,24 @@ Target VersionSource => _ => _
 
         const string versionStorePath = @"D:\Scratch\_build\vstore\versonify-version.vstore";
 
-        VersonifyTasks.PassiveExecute(s => s
+        var vc = new VersonifyTasks();
+        vc.PassiveExecute(s => s
           .SetRoot(Solution.Directory)
           .SetVersionPersistanceValue(versionStorePath)
           .SetDebug(true));
 
         if (IsLocalBuild) {
-            Logger.Info("Local build, skipping versioning");
+            Log.Information("Local build, skipping versioning");
             return;
         }
 
-        VersonifyTasks.IncrementAndUpdateFiles(s => s
+        vc.IncrementAndUpdateFiles(s => s
          .SetRoot(Solution.Directory)
          .AddMultimatchFile($"{Solution.Directory}\\_Dependencies\\Automation\\AutoVersion.txt")
          .PerformIncrement(true)
          .SetVersionPersistanceValue(VersionPersistancePath));
 
     });
-    
-
 ```
 
 ### Thats it

@@ -6,7 +6,7 @@ you provide. The class uses attributes to map the command line arguments to the 
 
 #### Contents
 * [Attributes Guide](plumb-cmd-attributes.md)
-* [Generating Help](plumb-cmd-generatingHelp.md)
+* [Generating Help](plum-cmd-generatingHelp.md)
 
 
 ### Quick Start.
