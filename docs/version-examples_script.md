@@ -2,7 +2,7 @@
 
 ## Versioning Pages Navigation.
 
-[Home](version-index.md) |[Command Line](version-commandline.md) | [Overview](version-overview.md) | [Reference](version-reference.md) |  [Nuke](version-nuke-quickstart.md)
+[Home](version-index.md) | [Command Line](version-commandline.md) | [Overview](version-overview.md) | [Reference](version-reference.md) |  [Nuke](version-nuke-quickstart.md)
 
 ## Using The Versioning In Scripts - e.g. Powershell
 

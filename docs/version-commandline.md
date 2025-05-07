@@ -76,12 +76,14 @@ Output options are specified to determine where the output should be written.
 -O=<outputdestination>:<option>
 ```
 
-Output Desitnations can be one of 
+Output Desitnations can be one of the following.
 
 * env - Writes to an environment variable 
 * con - Writes to the console
 * file - Writes to a file
 * azdo - Writes an Azure Pipelines formatted string to the console.  Option can specify a variable name.
+* np - Writes to a named pipe called "plisky-versonify".  Designed to be used with MessagePipe nuget package.  Subscribe to a <string,string> with the key "version" to get version number.  np also writes to the console.
+* npo - as above but with no console output.
 
 When the Azure Pipelines output is selected the string written is in the form
 
@@ -98,6 +100,8 @@ Output  > "##vso[task.setvariable variable=CodeVersionNumber;]1.2.3.4"
 Command > pliskytool.exe Passive -VersionSource=C:\temp\aversion.vstore -O=azdo:version
 Output  > "##vso[task.setvariable variable=version;]1.2.3.4"
 ```
+
+Note that the named pipe outputs are designed for interacting with Plisky.Nuke.Fusion when using the Nuke build engine but can be used for other use cases too.
 
 #### Override
 

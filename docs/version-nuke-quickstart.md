@@ -9,8 +9,9 @@
 **Create** the storage file which contains the versioning number that you are going to use.  The new file will default to 0.0.0.0 and a fixed behaviour scheme.  This is best done using the command line and placed on a file share.
 
 ```dos
-pliskytool.exe -Command=CreateVersion -VersionSource=C:\temp\myappname.vstore
+pliskytool.exe -Command=CreateVersion -VersionSource=C:\temp\myappname.vstore -output=con-nf
 ```
+
 
 ### Step 2
 
