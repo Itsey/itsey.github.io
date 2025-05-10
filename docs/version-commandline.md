@@ -11,23 +11,23 @@ e.g. -Command=CreateVersion
 
 ```plaintext
 -Command  (-C)              Specify the Command that is to be run
--VersionSource  (-VS)       Specify an inititialisation string to a supported version source
+-VersionSource  (-VS)       Specify an initialisation string to a supported version source
 -Increment                  Increment the version number during the command operation.
 -Digits                     
 -QuickValue  (-Q)           Provide a value for the versioning command.
--MinMatch                   Provide a file or list of minimatches to identify files to update.
+-MinMatch                   Provide a file or list of minmatches to identify files to update.
 -Root                       The root folder to recursivly search for files to update.
 -DryRun                     If specified then no updates are made, but output is written to the logs.
 -Output                     Specifies output options to write the version number somewhere. Supports Env,File,Con,AzDo
 -NO                         Specifies that overrides should be ignored
 
 -Debug                      Enables trace handling for debugging and additional logging.
--Trace                      Enables level of trace  (set to Info,Verobse,Off)
+-Trace                      Enables level of trace  (set to Info,Verbose,Off)
 
 
 Full Example Commandline:
 
-versionify.exe UpdateFiles -Root=c:\src\ -VS=c:\store\pversioner.vstore -Increment -MM="**/*.csproj|StdFile,**/*.csproj|StdAssembly,**/*.csproj|StdInformational"
+versonify.exe UpdateFiles -Root=c:\src\ -VS=c:\store\pversioner.vstore -Increment -MM="**/*.csproj|StdFile,**/*.csproj|StdAssembly,**/*.csproj|StdInformational"
 ```
 
 ### Commands
@@ -47,7 +47,7 @@ Requires:
 versonify.exe -Command=CreateVersion -VersionSource=C:\temp\aversion.vstore
 ```
 
-Will create a new version at 1.0.0.0 in the source specified by version source, this will be persisted with the default values of Fixed versioning. Therefore your version number will default to 1.0.0.0.
+Will create a new version at 0.0.0.0 in the source specified by version source, this will be persisted with the default values of Fixed versioning. Therefore your version number will default to 0.0.0.0.
 
 #### Passive
 
@@ -115,7 +115,7 @@ Requires:
 ```
 
 ```dos
-versonify.exe -Command=Override -VersionSource=C:\temp\aversion.vstore -Q=.+.0.0
+versonify.exe -Command=Override -VersionSource=C:\temp\aversion.vstore -Q=+.+.0.0
 ```
 
 Will create a pending version that will be applied on the next increment.  This will override changes that the default increments will perform applying a pattern.  This is normally used for release versions, where versions do not follow the same pattern as build versions.  
@@ -130,7 +130,7 @@ abc  = Any number of letters replaces the digit with this version (for named dig
 **examples**  
 1.0.0.0  =>  +...  => 2.0.0.0  
 1.1.1.1  =>  +.+.+.+ => 2.2.2.2  
-1.1.1.1 => +.-+.-  => 2.0.2.0  
+1.1.1.1 => +.-.+.-  => 2.0.2.0  
 1.0.0.0 => +.0.alpha.0  => 2.0.alpha.0  
 
 #### Update Files
@@ -183,10 +183,10 @@ The pipe separator separates the minmatch from the type of file that it is updat
 
 Each file type has a rule to determine how to match versions, see (version matching reference)[vermatchref.md].
 
-Full Eample Command Line:
+Full Example Command Line:
 
 ```dos
-'PliskyTool.exe UpdateFiles -Root=c:\src\ -VS=c:\store\pversioner.vstore -Increment -MM="**/*.csproj|StdFile,**/*.csproj|StdAssembly,**/*.csproj|StdInformational"
+versonify.exe UpdateFiles -Root=c:\src\ -VS=c:\store\pversioner.vstore -Increment -MM="**/*.csproj|StdFile,**/*.csproj|StdAssembly,**/*.csproj|StdInformational"
 ```
 
 This will search the folder c:\src for all .csproj files and attempt to add the .net standard versioninng for the three different file types to any csproj files that are
@@ -200,4 +200,4 @@ The most common scenario here is when the Pull Request build is used to reset th
 
 #### Using -Debug
 
-The -debug enables tracing for detailed error investigation.  See (Setting Configuration Resolvers)[diags-bilge-configurationResolvers.md] for full details. Typically this is set to v-** for verbose when trying to resolve issues.
+The -debug enables tracing for detailed error investigation.  See [Setting Configuration Resolvers](diags-bilge-configurationResolvers.md) for full details. Typically this is set to v-** for verbose when trying to resolve issues.
