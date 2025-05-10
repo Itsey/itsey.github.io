@@ -1,6 +1,6 @@
 ## Versioning Pages Navigation.
 
-[Home](version-index.md) |[Command Line]version-commandline.md | [Quick Start](version-quickstart.md) | [Overview](version-overview.md) | [Reference](version-reference.md) |  [Nuke](version-nuke-quickstart.md)
+[Home](version-index.md) |[Command Line](version-commandline.md) | [Quick Start](version-quickstart.md) | [Overview](version-overview.md) | [Reference](version-reference.md) |  [Nuke](version-nuke-quickstart.md)
 
 ### Versioning Format Identifiers
 
@@ -29,7 +29,7 @@ NetFile, NetInformational, Wix, StdFile, StdInformational
 
 ##### DisplayType Three Digit
 
-Three didgit display - E.g.  0.0.0 - The following file types default to this display method:
+Three digit display - E.g.  0.0.0 - The following file types default to this display method:
 
 Nuspec
 

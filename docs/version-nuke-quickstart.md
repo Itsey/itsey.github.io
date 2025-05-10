@@ -9,9 +9,11 @@
 **Create** the storage file which contains the versioning number that you are going to use.  The new file will default to 0.0.0.0 and a fixed behaviour scheme.  This is best done using the command line and placed on a file share.
 
 ```dos
-pliskytool.exe -Command=CreateVersion -VersionSource=C:\temp\myappname.vstore -output=con-nf
+versonify.exe -Command=CreateVersion -VersionSource=C:\temp\myappname.vstore -output=con-nf
 ```
 
+
+Set the [behaviour](version-reference.md#behaviours) digit in the version store to define the incremental pattern you want.
 
 ### Step 2
 
@@ -32,7 +34,10 @@ Create a file like one below and save it as autoversion.txt in your repository.T
 
 ### Step 3
 
-**Increment** the version number and apply the changes to your source files.  Using Nuke this typically involves a target or adding stages to an existing target.   Typically passive is used to retrieve a version number and the PerformFileUpdate is used to set the version number.
+**Increment** the version number and apply the changes to your source files.  
+
+In Nuke, this process typically involves defining a target or adding stages to an existing one.   The PassiveCommand retrieves the version number and the FileUpdateCommand sets the version number in the source files.
+The SetVersionPersistanceValue takes in the path to the version store file (corresponds with -vs in the Versonify tool).
 
 This code depends on a Solution property that is attributed as a solution for Nuke.
 
@@ -47,7 +52,7 @@ Target VersionSource => _ => _
         const string versionStorePath = @"D:\Scratch\_build\vstore\versonify-version.vstore";
 
         var vc = new VersonifyTasks();
-        vc.PassiveExecute(s => s
+        vc.PassiveCommand(s => s
           .SetRoot(Solution.Directory)
           .SetVersionPersistanceValue(versionStorePath)
           .SetDebug(true));
@@ -57,11 +62,11 @@ Target VersionSource => _ => _
             return;
         }
 
-        vc.IncrementAndUpdateFiles(s => s
+        vc.FileUpdateCommand(s => s
          .SetRoot(Solution.Directory)
          .AddMultimatchFile($"{Solution.Directory}\\_Dependencies\\Automation\\AutoVersion.txt")
          .PerformIncrement(true)
-         .SetVersionPersistanceValue(VersionPersistancePath));
+         .SetVersionPersistanceValue(versionStorePath));
 
     });
 ```

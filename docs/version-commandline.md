@@ -16,7 +16,7 @@ e.g. -Command=CreateVersion
 -Digits                     
 -QuickValue  (-Q)           Provide a value for the versioning command.
 -MinMatch                   Provide a file or list of minmatches to identify files to update.
--Root                       The root folder to recursivly search for files to update.
+-Root                       The root folder to recursively search for files to update.
 -DryRun                     If specified then no updates are made, but output is written to the logs.
 -Output                     Specifies output options to write the version number somewhere. Supports Env,File,Con,AzDo
 -NO                         Specifies that overrides should be ignored
@@ -76,11 +76,11 @@ Output options are specified to determine where the output should be written.
 -O=<outputdestination>:<option>
 ```
 
-Output Desitnations can be one of the following.
+Output Destinations can be one of the following.
 
 * env - Writes to an environment variable 
 * con - Writes to the console
-* file - Writes to a file
+* file - Writes to a file. This defaults to pver-latest.txt in the current directory.
 * azdo - Writes an Azure Pipelines formatted string to the console.  Option can specify a variable name.
 * np - Writes to a named pipe called "plisky-versonify".  Designed to be used with MessagePipe nuget package.  Subscribe to a <string,string> with the key "version" to get version number.  np also writes to the console.
 * npo - as above but with no console output.
@@ -94,10 +94,10 @@ When the Azure Pipelines output is selected the string written is in the form
 This will set the variable in variablename to have the value of the version number.  The default variable name is  CodeVersionNumber.  To replace this with your own variable specify the variable name after a colon in the output command.
 
 ```dos
-Command > pliskytool.exe Passive -VersionSource=C:\temp\aversion.vstore -O=azdo
+Command > versonify.exe Passive -VersionSource=C:\temp\aversion.vstore -O=azdo
 Output  > "##vso[task.setvariable variable=CodeVersionNumber;]1.2.3.4"
 
-Command > pliskytool.exe Passive -VersionSource=C:\temp\aversion.vstore -O=azdo:version
+Command > versonify.exe Passive -VersionSource=C:\temp\aversion.vstore -O=azdo:version
 Output  > "##vso[task.setvariable variable=version;]1.2.3.4"
 ```
 
@@ -181,7 +181,7 @@ Each line in the file adds a new minmatch.
 
 The pipe separator separates the minmatch from the type of file that it is updating.  Multiple file types can reside in the same file and therefore use the same minmatch.
 
-Each file type has a rule to determine how to match versions, see (version matching reference)[vermatchref.md].
+Each file type has a rule to determine how to match versions, see [version matching reference](vermatchref.md).
 
 Full Example Command Line:
 

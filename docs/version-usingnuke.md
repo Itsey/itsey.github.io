@@ -29,16 +29,16 @@ Depending on your version store you will need to specify an initialization strin
             const string versionStorePath = @"<PATH>\versonify-version.vstore";
 
             var vc = new VersonifyTasks();
-            vc.PassiveExecute(s => s
+            vc.PassiveCommand(s => s
               .SetRoot(Solution.Directory)
               .SetVersionPersistanceValue(versionStorePath)
               .SetDebug(true));
 
-            vc.PerformFileUpdate(s => s
+            vc.FileUpdateCommand(s => s
              .SetRoot(Solution.Directory)
              .AddMultimatchFile($"{Solution.Directory}\\_Dependencies\\Automation\\AutoVersion.txt")
              .PerformIncrement(true)
-             .SetVersionPersistanceValue(VersionPersistancePath)
+             .SetVersionPersistanceValue(versionStorePath)
              //.SetDebug(true)     Want more debugging info?
              //.AsDryRun(true)     Want to see what would happen without doing it?
              //.SetRelease("")     Using release names?         
@@ -53,8 +53,8 @@ By creating a target that is not part of the pipeline but can be called manually
 ```csharp
 // Add Parameter to Nuke
 [Parameter("Specifies a quick version command for the versioning quick step")]
-readonly string QuickVersion = "";
 
+readonly string QuickVersion = "";
 
 // Target Unused in pipeline
 public Target VersionQuickStep => _ => _
@@ -73,7 +73,6 @@ public Target VersionQuickStep => _ => _
               .SetQuickValue(QuickVersion)
             );
         }
-
     });
 
     // Now run command
