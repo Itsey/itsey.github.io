@@ -1,8 +1,8 @@
-## Versonify Command Line reference
-
 ## Versioning Pages Navigation.
 
 [Home](version-index.md) |[Command Line](version-commandline.md) | [Overview](version-overview.md) | [Reference](version-reference.md) |  [Nuke](version-nuke-quickstart.md)
+
+## Versonify Command Line reference
 
 ### Command Line Options
 
@@ -20,6 +20,7 @@ e.g. -Command=CreateVersion
 -DryRun                     If specified then no updates are made, but output is written to the logs.
 -Output                     Specifies output options to write the version number somewhere. Supports Env,File,Con,AzDo
 -NO                         Specifies that overrides should be ignored
+-Release					Specifies a release name to be used in the version number.  This is primarily used for release versions and is not normally used for build versions.
 
 -Debug                      Enables trace handling for debugging and additional logging.
 -Trace                      Enables level of trace  (set to Info,Verbose,Off)
@@ -48,6 +49,11 @@ versonify.exe -Command=CreateVersion -VersionSource=C:\temp\aversion.vstore
 ```
 
 Will create a new version at 0.0.0.0 in the source specified by version source, this will be persisted with the default values of Fixed versioning. Therefore your version number will default to 0.0.0.0.
+To create a version number with a specific value use the -QuickValue option.
+
+```dos
+versonify.exe -Command=CreateVersion -VersionSource=C:\temp\aversion.vstore  -Q="1.0.0.0" -Release=exampleRelease
+```
 
 #### Passive
 
@@ -80,7 +86,7 @@ Output Destinations can be one of the following.
 
 * env - Writes to an environment variable 
 * con - Writes to the console
-* file - Writes to a file. This defaults to pver-latest.txt in the current directory.
+* file - Writes to a file. This defaults to pver-latest.txt in the current directory. Option can specify an alternative file name.
 * azdo - Writes an Azure Pipelines formatted string to the console.  Option can specify a variable name.
 * np - Writes to a named pipe called "plisky-versonify".  Designed to be used with MessagePipe nuget package.  Subscribe to a <string,string> with the key "version" to get version number.  np also writes to the console.
 * npo - as above but with no console output.
@@ -181,7 +187,7 @@ Each line in the file adds a new minmatch.
 
 The pipe separator separates the minmatch from the type of file that it is updating.  Multiple file types can reside in the same file and therefore use the same minmatch.
 
-Each file type has a rule to determine how to match versions, see [version matching reference](vermatchref.md).
+Each file type has a rule to determine how to match versions, see [version matching reference](version-vermatchref.md).
 
 Full Example Command Line:
 
@@ -193,7 +199,7 @@ This will search the folder c:\src for all .csproj files and attempt to add the 
 found.  Note that for the std file type it will look inside the file and see whether it looks like a net std file or a framework one.  Framework ones
 will not be udpated. 
 
-##### Using No Override
+#### Using No Override
 
 When setting up multiple branches it is sometimes useful to be able to ignore an override when a specific branch is versioned.  To do this specify -NO.      
 The most common scenario here is when the Pull Request build is used to reset the version ready for release.  When using the pull request builds to version then it is possible that a build on the source branch happens after the PR build but before the release branch has run.  This will cause the source branch to incorrectly version.  To avoid this add the -NO to the source branch versioning element.

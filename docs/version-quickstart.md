@@ -9,7 +9,7 @@
 **Create** the storage file which contains the versioning number that you are going to use.  The new file will default to 0.0.0.0 and a fixed behaviour scheme.
 
 ```dos
-pliskytool.exe -Command=CreateVersion -VersionSource=C:\temp\myappname.vstore
+versonify.exe -Command=CreateVersion -VersionSource=C:\temp\myappname.vstore
 ```
 
 ### Step 2
