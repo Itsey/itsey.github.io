@@ -13,14 +13,14 @@ e.g. -Command=CreateVersion
 -Command  (-C)              Specify the Command that is to be run
 -VersionSource  (-VS)       Specify an initialisation string to a supported version source
 -Increment                  Increment the version number during the command operation.
--Digits                     
+-Digits  (-DG)              Provide a value for the behaviour command.
 -QuickValue  (-Q)           Provide a value for the versioning command.
 -MinMatch                   Provide a file or list of minmatches to identify files to update.
 -Root                       The root folder to recursively search for files to update.
 -DryRun                     If specified then no updates are made, but output is written to the logs.
 -Output                     Specifies output options to write the version number somewhere. Supports Env,File,Con,AzDo
 -NO                         Specifies that overrides should be ignored
--Release					Specifies a release name to be used in the version number.  This is primarily used for release versions and is not normally used for build versions.
+-Release                    Specifies a release name to be used in the version number.  This is primarily used for release versions and is not normally used for build versions.
 
 -Debug                      Enables trace handling for debugging and additional logging.
 -Trace                      Enables level of trace  (set to Info,Verbose,Off)
@@ -63,7 +63,7 @@ Passively reads the version number for use in scripts.
 -Command=Passive
 
 Requires:
--VersionSource  (-VS)  or -QuickValue (-Q)
+-VersionSource  (-VS)  or -Output (-O)
 ```
 
 ```dos
@@ -84,7 +84,7 @@ Output options are specified to determine where the output should be written.
 
 Output Destinations can be one of the following.
 
-* env - Writes to an environment variable 
+* env - Writes to an environment variable PVER-LATEST
 * con - Writes to the console
 * file - Writes to a file. This defaults to pver-latest.txt in the current directory. Option can specify an alternative file name.
 * azdo - Writes an Azure Pipelines formatted string to the console.  Option can specify a variable name.
@@ -195,14 +195,47 @@ Full Example Command Line:
 versonify.exe UpdateFiles -Root=c:\src\ -VS=c:\store\pversioner.vstore -Increment -MM="**/*.csproj|StdFile,**/*.csproj|StdAssembly,**/*.csproj|StdInformational"
 ```
 
-This will search the folder c:\src for all .csproj files and attempt to add the .net standard versioninng for the three different file types to any csproj files that are
+This will search the folder c:\src for all .csproj files and attempt to add the .net standard versioning for the three different file types to any csproj files that are
 found.  Note that for the std file type it will look inside the file and see whether it looks like a net std file or a framework one.  Framework ones
-will not be udpated. 
+will not be updated. 
 
 #### Using No Override
 
 When setting up multiple branches it is sometimes useful to be able to ignore an override when a specific branch is versioned.  To do this specify -NO.      
 The most common scenario here is when the Pull Request build is used to reset the version ready for release.  When using the pull request builds to version then it is possible that a build on the source branch happens after the PR build but before the release branch has run.  This will cause the source branch to incorrectly version.  To avoid this add the -NO to the source branch versioning element.
+
+#### Using Behaviour
+
+Passively displays the [behaviour](version-reference.md#behaviours) of a versioning digit(s). 
+-QuickValue can be optionally passed to set the behaviour of the digit.
+
+```plaintext
+-Command=Behaviour 
+
+Requires:
+-VersionSource  (-VS) and -Digits (-DG)
+
+Optional:
+-Output  (-O)
+-QuickValue  (-Q)
+-DryRun
+
+```
+
+```dos
+versonify.exe -Command=Behaviour -VersionSource=C:\temp\aversion.vstore -Digit=*
+versonify.exe -Command=Behaviour -VersionSource=C:\temp\aversion.vstore -Digit=1 -O=file
+```
+
+This will display the behaviour of the versioning digits in the version source.  The -Digits option specifies which digits to display.  This can be a single digit or multiple of digits e.g. -DG=0,1,2 will display the behaviours of digits 0, 1, and 2.  The * will display the behaviour of all digits.
+
+If the -QuickValue option is specified then the behaviour of the digit will be set to the value specified.  This can be either the behaviour number or the string that represents the behaviour. The * will set the behaviour of all digits.
+The following example will set the behaviour of digit in position 1 to Fixed (0).
+
+```dos
+versonify.exe -Command=Behaviour -VersionSource=C:\temp\aversion.vstore -Digit=1 -Q=Fixed
+versonify.exe -Command=Behaviour -VersionSource=C:\temp\aversion.vstore -Digit=1 -Q=0
+```
 
 #### Using -Debug
 
