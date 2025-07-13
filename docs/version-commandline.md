@@ -88,8 +88,7 @@ Output Destinations can be one of the following.
 * con - Writes to the console
 * file - Writes to a file. This defaults to pver-latest.txt in the current directory. Option can specify an alternative file name.
 * azdo - Writes an Azure Pipelines formatted string to the console.  Option can specify a variable name.
-* np - Writes to a named pipe called "plisky-versonify".  Designed to be used with MessagePipe nuget package.  Subscribe to a <string,string> with the key "version" to get version number.  np also writes to the console.
-* npo - as above but with no console output.
+
 
 When the Azure Pipelines output is selected the string written is in the form
 
