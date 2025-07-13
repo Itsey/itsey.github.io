@@ -230,11 +230,11 @@ versonify.exe -Command=Behaviour -VersionSource=C:\temp\aversion.vstore -Digit=1
 This will display the behaviour of the versioning digits in the version source.  The -Digits option specifies which digits to display.  This can be a single digit or multiple of digits e.g. -DG=0,1,2 will display the behaviours of digits 0, 1, and 2.  The * will display the behaviour of all digits.
 
 If the -QuickValue option is specified then the behaviour of the digit will be set to the value specified.  This can be either the behaviour number or the string that represents the behaviour. The * will set the behaviour of all digits.
-The following example will set the behaviour of digit in position 1 to Fixed (0).
+The following example will set the behaviour of the first digit (position 0) to Fixed (0).  Note all of the digit offsets are zero based so the first digit is -Digit=0.  
 
 ```dos
-versonify.exe -Command=Behaviour -VersionSource=C:\temp\aversion.vstore -Digit=1 -Q=Fixed
-versonify.exe -Command=Behaviour -VersionSource=C:\temp\aversion.vstore -Digit=1 -Q=0
+versonify.exe -Command=Behaviour -VersionSource=C:\temp\aversion.vstore -Digit=0 -Q=Fixed
+versonify.exe -Command=Behaviour -VersionSource=C:\temp\aversion.vstore -Digit=0 -Q=0
 ```
 
 #### Using -Debug

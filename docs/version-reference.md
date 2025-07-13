@@ -4,7 +4,7 @@
 
 ## Plisky.Code Craft.
 
-Plisky.Code Craft is a series of libraries, tools and practices all around writing better software.  This module is a versioning tool designed to consistently apply and work with version numbers for Wintel stack code.
+Plisky.Code Craft is a series of libraries, tools and practices all around writing better software.  This module is a versioning tool designed to consistently apply and work with version numbers for Wintel stack code.   This module is embedded within the Versonify tool.
 
 ## Versioning Reference.
 
@@ -41,7 +41,15 @@ The versioning increment is based on the behaviour of the digit.  These behaviou
 The versioning store will determine how this is saved but for the file system store its a simple file where you can edit the behaviour digit using the identifiers below.
 
 ```
-{"Digits":[{"Behaviour":0,"IncrementOverride":null,"Value":"0","PreFix":""},{"Behaviour":0,"IncrementOverride":null,"Value":"0","PreFix":"."},{"Behaviour":0,"IncrementOverride":null,"Value":"0","PreFix":"."},{"Behaviour":0,"IncrementOverride":null,"Value":"0","PreFix":"."}],"DisplayTypes":{"NetAssembly":1,"NetFile":2,"NetInformational":2,"Wix":2,"Nuspec":4,"StdAssembly":1,"StdFile":2,"StdInformational":2,"TextFile":1},"IsDefault":false,"ReleaseName":null}
+{"Digits":[
+{"Behaviour":0,"IncrementOverride":null,"Value":"0","PreFix":""},
+{"Behaviour":0,"IncrementOverride":null,"Value":"0","PreFix":"."},
+{"Behaviour":0,"IncrementOverride":null,"Value":"0","PreFix":"."},
+{"Behaviour":0,"IncrementOverride":null,"Value":"0","PreFix":"."}
+],
+"DisplayTypes":{"NetAssembly":1,"NetFile":2,"NetInformational":2,"Wix":2,"Nuspec":4,"StdAssembly":1,"StdFile":2,"StdInformational":2,"TextFile":1},
+"IsDefault":false,
+"ReleaseName":null}
 ```
 
 #### Fixed (0)
@@ -78,4 +86,4 @@ This will return the number of whole or partial weeks since the base date.
 
 #### ReleaseName (8)
 
-Will set this digit to be the release name as specified in the version.  Release names can change during an increment but are not incremented or decremented as such.  They are set to literal strings.
+Will set this digit to be the release name as specified in the version store.  All digits that have the behaviour of release name are set to the value of the current release name from the version store.  Currently this must be set by editing the store directly.
