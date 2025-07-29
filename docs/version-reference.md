@@ -86,4 +86,4 @@ This will return the number of whole or partial weeks since the base date.
 
 #### ReleaseName (8)
 
-Will set this digit to be the release name as specified in the version store.  All digits that have the behaviour of release name are set to the value of the current release name from the version store.  Currently this must be set by editing the store directly.
+Will set this digit to be the release name as specified in the version store.  All digits that have the behaviour of release name are set to the value of the current release name from the version store.

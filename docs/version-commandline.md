@@ -13,7 +13,7 @@ e.g. -Command=CreateVersion
 -Command  (-C)              Specify the Command that is to be run
 -VersionSource  (-VS)       Specify an initialisation string to a supported version source
 -Increment                  Increment the version number during the command operation.
--Digits  (-DG)              Provide a value for the behaviour command.
+-Digits  (-DG)              Provide a value for the index of the digits to be displayed or ammended
 -QuickValue  (-Q)           Provide a value for the versioning command.
 -MinMatch                   Provide a file or list of minmatches to identify files to update.
 -Root                       The root folder to recursively search for files to update.
@@ -198,12 +198,43 @@ This will search the folder c:\src for all .csproj files and attempt to add the 
 found.  Note that for the std file type it will look inside the file and see whether it looks like a net std file or a framework one.  Framework ones
 will not be updated. 
 
-#### Using No Override
+#### Set
 
-When setting up multiple branches it is sometimes useful to be able to ignore an override when a specific branch is versioned.  To do this specify -NO.      
-The most common scenario here is when the Pull Request build is used to reset the version ready for release.  When using the pull request builds to version then it is possible that a build on the source branch happens after the PR build but before the release branch has run.  This will cause the source branch to incorrectly version.  To avoid this add the -NO to the source branch versioning element.
+Sets the value of a version digit.  This will update the version number in the source specified by the -VersionSource option.
 
-#### Using Behaviour
+The -Digits option specifies which digit values to set.  This can be a single digit or multiple of digits e.g. -DG="0;2;3" will set the value of digits 0, 2, and 3.  The * will set the value of all digits. The new digit value is specified using the -QuickValue option. This can only be a single digit.
+
+```plaintext
+-Command=Set
+
+Requires:
+-VersionSource (-VS)
+-Digits (-DG) and -QuickValue (-Q)    or    -Release
+
+Optional:
+-DryRun
+```
+
+If the [behaviour](version-reference.md#behaviours) of the digit is Fixed, then the value of the digit can be set to a string. For all other behaviours, the digit value must be set to an integer.
+Note: when a digit's behaviour is set to ReleaseName[8], the value of the digit is set to the release name specified in the version source.  It is not possible to set the value of a digit with this behaviour using the -QuickValue option.
+
+This example will set the value of the digit in position [0] to 2.
+```dos
+versonify.exe -Command=Set -VersionSource=C:\temp\aversion.vstore -Digits=0 -Q=2
+```
+
+The complete version number can be set by passing in the version number as the -QuickValue option using the dot '.' as a separator.  This will set all of the digits to the values specified in the version number.
+```dos
+versonify.exe -Command=Set -VersionSource=C:\temp\aversion.vstore -Q="1.2.3.4"
+```	
+
+Use the -Release option to set the release name in the version source. 
+```dos
+versonify.exe -Command=Set -VersionSource=C:\temp\aversion.vstore -Release=MyNewReleaseName
+```
+
+
+#### Behaviour
 
 Passively displays the [behaviour](version-reference.md#behaviours) of a versioning digit(s). 
 -QuickValue can be optionally passed to set the behaviour of the digit.
@@ -222,19 +253,46 @@ Optional:
 ```
 
 ```dos
-versonify.exe -Command=Behaviour -VersionSource=C:\temp\aversion.vstore -Digit=*
-versonify.exe -Command=Behaviour -VersionSource=C:\temp\aversion.vstore -Digit=1 -O=file
+versonify.exe -Command=Behaviour -VersionSource=C:\temp\aversion.vstore -Digits=*
+versonify.exe -Command=Behaviour -VersionSource=C:\temp\aversion.vstore -Digits=1 -O=file
 ```
 
-This will display the behaviour of the versioning digits in the version source.  The -Digits option specifies which digits to display.  This can be a single digit or multiple of digits e.g. -DG=0,1,2 will display the behaviours of digits 0, 1, and 2.  The * will display the behaviour of all digits.
+This will display the behaviour of the versioning digits in the version source.  The -Digits option specifies which digits to display.  This can be a single digit or multiple of digits e.g. -DG="0;1;2" will display the behaviours of digits 0, 1, and 2.  The * will display the behaviour of all digits.
 
 If the -QuickValue option is specified then the behaviour of the digit will be set to the value specified.  This can be either the behaviour number or the string that represents the behaviour. The * will set the behaviour of all digits.
-The following example will set the behaviour of the first digit (position 0) to Fixed (0).  Note all of the digit offsets are zero based so the first digit is -Digit=0.  
+Both the following examples will set the behaviour of the first digit (position 0) to Fixed (0).  Note all of the digit offsets are zero based so the first digit is -Digits=0.  
 
 ```dos
-versonify.exe -Command=Behaviour -VersionSource=C:\temp\aversion.vstore -Digit=0 -Q=Fixed
-versonify.exe -Command=Behaviour -VersionSource=C:\temp\aversion.vstore -Digit=0 -Q=0
+versonify.exe -Command=Behaviour -VersionSource=C:\temp\aversion.vstore -Digits=0 -Q=Fixed
+versonify.exe -Command=Behaviour -VersionSource=C:\temp\aversion.vstore -Digits=0 -Q=0
 ```
+
+#### Prefix
+Sets the prefix for a digit in the version source.
+```plaintext
+-Command=Prefix
+
+Requires:
+-VersionSource  (-VS), -Digits (-DG) and -QuickValue (-Q)
+
+Optional:
+-DryRun
+```
+
+```dos
+versonify.exe -Command=Prefix -VersionSource=C:\temp\aversion.vstore -Digits=2 -Q="-"
+```
+This example will set the value of the prefix of digit in position [2] to a dash, "-".
+
+Prefix command supports using the wildcard * to set the prefix for all digits (excluding the digit in position [0]).  For example, the following command will set the prefix of all digits except the first to a dash, "-".
+```dos
+versonify.exe -Command=Prefix -VersionSource=C:\temp\aversion.vstore -Digits=* -Q="-"
+```
+
+#### Using No Override
+
+When setting up multiple branches it is sometimes useful to be able to ignore an override when a specific branch is versioned.  To do this specify -NO.      
+The most common scenario here is when the Pull Request build is used to reset the version ready for release.  When using the pull request builds to version then it is possible that a build on the source branch happens after the PR build but before the release branch has run.  This will cause the source branch to incorrectly version.  To avoid this add the -NO to the source branch versioning element.
 
 #### Using -Debug
 
