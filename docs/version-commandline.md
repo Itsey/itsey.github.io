@@ -236,6 +236,30 @@ versonify.exe -Command=Behaviour -VersionSource=C:\temp\aversion.vstore -Digit=0
 versonify.exe -Command=Behaviour -VersionSource=C:\temp\aversion.vstore -Digit=0 -Q=0
 ```
 
+
+#### Using Prefix.
+
+Updates the prefix of a selected digit position.
+
+```plaintext
+-Command=Behaviour 
+
+Requires:
+-VersionSource  (-VS) and -Digits (-DG) and -QuickValue (-Q)
+
+Optional:
+-Output  (-O)
+-DryRun
+
+```
+
+This will update the prefix of the selected digit.  Specifying * will update all of the digits - except the first one.  To set the value of the first digit prefix specify -DG=0.   The prefix is then passed in with -Q and can be anything.  For Symantic versioning use prefixes of .-and+ only.
+
+```dos
+// Set the third digit prefix to - such that it displays 0.0-3.0
+versonify.exe -Command=Prefix -VersionSource=C:\temp\aversion.vstore -Digit=3 -Q=-
+```
+
 #### Using -Debug
 
 The -debug enables tracing for detailed error investigation.  See [Setting Configuration Resolvers](diags-bilge-configurationResolvers.md) for full details. Typically this is set to v-** for verbose when trying to resolve issues.
