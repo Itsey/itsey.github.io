@@ -1,16 +1,17 @@
-Quick Links>>  [Home](index.md) >> [MollyCoddle](molly-index.md)   [Molly-Nuke](molly-nuke) [Molly-QuickStart](molly-quickstart)
+[Home](index.md) | [Mollycoddle](molly-index.md) | [Command Line](molly-commandline.md) | [QuickStart](molly-quickstart.md) | [CreateRules](molly-createRules.md) |  [Nuke](molly-nuke.md)
 
-### Creating MollyCoddle Rules
+# Creating MollyCoddle Rules
 
 MollyCoddle rules are a json format which describes a set of parameters to one of the installed checkers in mollycoddle.  Mollycoddle has three active checkers at the moment.
 
 | Checker                    | Role                                       | Commands                                                             |
 | -------------------------- | ------------------------------------------ | -------------------------------------------------------------------- |
-| FileValidationChecker      | Checks for files, locations and contents   | MustExist,<br>MustNotExist,<br>MatchWithMaster,<br>IfExistMustBeHere |
-| DirectoryValidationChecker | Checks for directories and their locations | MustNotExist,<br/>MustExist,<br/>ProhibitedExcept                    |
+| FileValidationChecker      | Checks for files, locations and contents   | MustExist,<br>MustNotExist,<br>MatchWithPrimary,<br>IfExistMustBeHere,<br>FullBypass|
+| DirectoryValidationChecker | Checks for directories and their locations | MustNotExist,<br/>MustExist,<br/>ProhibitedExcept,<br>FullBypass     |
 | NugetPackageChecker        | Checks for referenced Nuget Packages       | ProhibitedPackagesList                                               |
 
-#### Rules file structure
+
+## Rules file structure
 
 Within the rules file structure the Validators object contains the implementation of the rules details.  The control value is specified from the commands list above and below.  The other parameters depend on the control.
 
@@ -38,11 +39,11 @@ Where pattern matches are made the variable %ROOT% can be used to indicate the r
     "RulesetName": "A Name to group all the rules together"
 ```
 
-#### The File Validation Checker
+## The File Validation Checker
 
 The file validation checker looks for specific filename matches and can then perform a variety of options.  This can include checking for a banned location, ensuring a file must exist at a location or comparing the contents with another file.
 
-##### MustExist & MustNotExist
+### MustExist & MustNotExist
 
 Control: "MustExist" or "MustNotExist"
 PatternMatch:  A minmatch pattern which either must be matched at least once ( for must exist ) or may never be matched for MustNotExist.    
@@ -61,10 +62,10 @@ Example: Force a readme.md to be found in the root of the repository
             ]
 ```
 
-##### MatchWithMaster
+### MatchWithPrimary
 
-Control: "MatchWithMaster"    
-PatternMatch:  A minmatch pattern which identifies one or more files.  Once the files are found they are compared with the master file.  This master file and the found file must match exactly.  %MASTERROOT% can be used to take a master root path passed into the tool.    
+Control: "MatchWithPrimary"    
+PatternMatch:  A minmatch pattern which identifies one or more files.  Once the files are found they are compared with the primary file.  This primary file and the found file must match exactly.  %COMMONROOT% can be used to take a primary root path passed into the tool.    
 ValidatorName: FileValidationChecks
 
 Example: Everyone has to use the same editorconfig file
@@ -73,16 +74,16 @@ Example: Everyone has to use the same editorconfig file
  "Validators": [
                 {
                     "AdditionalData": [
-                        "%MASTERROOT%\\master.editorconfig"
+                        "%COMMONROOT%\\common.editorconfig"
                     ],
-                    "Control": "MatchWithMaster",
+                    "Control": "MatchWithPrimary",
                     "PatternMatch": "**/.editorconfig",
                     "ValidatorName": "FileValidationChecks"
                 }
             ]
 ```
 
-##### IfExistMustBeHere
+### IfExistMustBeHere
 
 *Control*: "IfExistMustBeHere"    
 *PatternMatch*:  A minmatch pattern which matches a specific file type.  Each time that minmatch is matched then the file matching is compared against those in the additional data options.  Additional data supplies a series of other minimatches, one of which must match or it is a violation.    
@@ -105,15 +106,15 @@ Example: csproj files must either be in one folder below src or in a specific fo
             ]
 ```
 
-#### The Directory Validation Checker
+## The Directory Validation Checker
 
 The directory validation checker looks for specific directory paths and structures.  
 
-##### ProhibitedExcept
+### ProhibitedExcept
 
-Control:ProhibitedExcept    
+Control:  ProhibitedExcept    
 PatternMatch:  The pattern that is prohibited, if this is matched then this folder will be a violation unless it matches one of the minmatches passed as additional data.   
-ValidatorName:DirectoryValidationChecks
+ValidatorName:  DirectoryValidationChecks
 
 Example:  All folders under root are prohibited, except src.
 
@@ -130,11 +131,11 @@ Example:  All folders under root are prohibited, except src.
             ]
 ```
 
-##### MustExist & MustNotExist
+### MustExist & MustNotExist
 
-Control:MustExist or  MustNotExist
+Control:  MustExist or MustNotExist
 PatternMatch:  The pattern that either must be matched at least once for the solution in the case of must exist or can never be matched in the case of must not exist.
-ValidatorName:DirectoryValidationChecks
+ValidatorName:  DirectoryValidationChecks
 
 Example:  Src folder must exist in root, but cant be duplicated.
 
@@ -155,16 +156,16 @@ Example:  Src folder must exist in root, but cant be duplicated.
             ]
 ```
 
-#### The Nuget Validation Checker
+## The Nuget Validation Checker
 
 The nuget validation checker operates on nuget package references.
 
-##### ProhibitedPackagesList
+### ProhibitedPackagesList
 
-Control:ProhibitedPackagesList    
-PatternMatch:  The pattern to match to identify the nuget file, normally this is a csproj file where the packages are referenced.    
-AdditionalData: A list of packages that if found will indicate a violation.    
-ValidatorName:NugetValidationChecks    
+Control:  ProhibitedPackagesList
+PatternMatch:  The pattern to match to identify the nuget file, normally this is a csproj file where the packages are referenced. 
+AdditionalData:  A list of packages that if found will indicate a violation.
+ValidatorName:  NugetValidationChecks 
 
 Example:  Banned.package1 and Banned.Package2 can not be used
 
@@ -181,12 +182,12 @@ Example:  Banned.package1 and Banned.Package2 can not be used
                 }
 ```
 
-##### Prohibited Package Versions
+### Prohibited Package Versions
 
-Control:ProhibitedPackageList    
-PatternMatch:  The pattern to match to identify the nuget file, normally this is a csproj file where the packages are referenced.    
-AdditionalData: A list of packages that if found will indicate a violation.    
-ValidatorName:NugetValidationChecks    
+Control:  ProhibitedPackageList
+PatternMatch:  The pattern to match to identify the nuget file, normally this is a csproj file where the packages are referenced.
+AdditionalData:  A list of packages that if found will indicate a violation.
+ValidatorName:  NugetValidationChecks
 
 As an extension to the package names above you can also include versions to prohibit specific version patterns.  In the example below banned 
 package 1 may not be greater than version 8.0.0, while banned package 2 can not be between 1.0.0 and 2.0.0  and finally banned package 3 

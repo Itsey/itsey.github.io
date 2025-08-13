@@ -1,3 +1,5 @@
+[Home](index.md) | [Mollycoddle](molly-index.md) | [Command Line](molly-commandline.md) | [QuickStart](molly-quickstart.md) | [CreateRules](molly-createRules.md) |  [Nuke](molly-nuke.md)
+
 # Mollycoddle Rules
 
 Mollycoddle rules are highly configurable but there are a default set that ship.  It is expected that not all of these will match your coding style but then you can change the configuration to suit your own structure.
@@ -86,34 +88,34 @@ Additional option allows for "frameworkversions" folder to group up multitargett
 
 Using things like common editorconfig files, gitignore files and so on allows for greater consistency among teams and shift left approach to consistency around code formatting and source code best practices.  Its likely that allowing overrides of these files at lower levels in the code base is wise.
 
-#### <a name="MC0100"></a> MC0100 - Editor Config Must Match Master
+#### <a name="MC0100"></a> MC0100 - Editor Config Must Match Primary
 
-Master files ensure that the files in the repos are kept up to date with the most recent changes in style and settings.  Editor config ensures that coding style is enforced by the IDE.
+Primary files ensure that the files in the repos are kept up to date with the most recent changes in style and settings.  Editor config ensures that coding style is enforced by the IDE.
 
 * The folder root\src must have a file called .editorconfig present.    
-* That file must be identical to the file stored %primaryroot%\master.editorconfig    
+* That file must be identical to the file stored %COMMONROOT%\common.editorconfig    
 
-#### <a name="MC0101"></a> MC0101 - Git Ignore Must Match Master
+#### <a name="MC0101"></a> MC0101 - Git Ignore Must Match Primary
 
-Master files ensure that the files in the repos are kept up to date with the most recent changes in style and settings.  Gitignore ensures that sensitive files and files that should not be source managed are skipped.
+Primary files ensure that the files in the repos are kept up to date with the most recent changes in style and settings.  Gitignore ensures that sensitive files and files that should not be source managed are skipped.
 
 * The root folder must have a file called .gitignore present.    
-* That file must be identical to the file stored %primaryroot%\master.gitignore    
+* That file must be identical to the file stored %COMMONROOT%\common.gitignore    
 
-#### <a name="MC0102"></a> MC0102 - Nuget.config must match master.
+#### <a name="MC0102"></a> MC0102 - Nuget.config Must Match Primary.
 
-Master files ensure that the files in the repos are kept up to date with the most recent changes in style and settings.  Nuget config controls the way that packages are downloaded and should be consistant for an organisation.
+Primary files ensure that the files in the repos are kept up to date with the most recent changes in style and settings.  Nuget config controls the way that packages are downloaded and should be consistant for an organisation.
 
-* The root folder must have a file called nuget.config present.    
-* That file must be identical to the file stored %masterroot%\master.nuget.config    
+* The root\src folder must have a file called nuget.config present.    
+* That file must be identical to the file stored %COMMONROOT%\common.nuget.config    
 
-#### <a name="MC0103"></a> MC0103 - Directory.Props must match master.
+#### <a name="MC0103"></a> MC0103 - Directory.Props Must Match Primary.
 
-Master files ensure that the files in the repos are kept up to date with the most recent changes in style and settings.  To define specific MSBuild properties that must
-be included in a solution ensure that the directory.props file exists and is the same as the master copy.
+Primary files ensure that the files in the repos are kept up to date with the most recent changes in style and settings.  To define specific MSBuild properties that must
+be included in a solution ensure that the directory.props file exists and is the same as the primary copy.
 
 * The root folder must have a file called directory.Props present.    
-* That file must be identical to the file stored %primaryroot%\master.directory.props 
+* That file must be identical to the file stored %COMMONROOT%\common.directory.props 
 
 ### MC02XX - Supply Chain Woes
 
@@ -124,8 +126,8 @@ Rules that deal with managing nuget packages specifically but with slots for oth
 We use preferred packages for consistency and to reduce retraining between solutions.  Once we have a nuget package that does a job other nugets that do similar jobs are not preferred.
 
 Only preferred packages may be used.    
-Alternatives are added to the band list.    
-Packages which fail security scanning are added to the band list.  
+Alternatives are added to the banned list.    
+Packages which fail security scanning are added to the banned list.  
 
 #### <a name="MC0201"></a> MC0201 - Sponsorlink Packages are Prohibited
 
@@ -135,7 +137,7 @@ Moq versions that had sponsorlink included are prohibited.
 
 #### <a name="MC0202"></a> MC0202 -Unapproved Licenses Are Banned
 
-When a license changes to one that is not approved then they are added to the band list, typically this affect versions of libraries.
+When a license changes to one that is not approved then they are added to the banned list, typically this affect versions of libraries.
 Fluent.Assertions v8 and above may not be used.
 
 ### MC04XXX - Source Repository AntiPatterns
@@ -150,6 +152,6 @@ There are some files that should not be checked into git, the presence of any of
 
 There is a place where you can dump any old legacy crud that you wish.  root\archive is immune to all other molly checks and is totally bypassed therefore any legacy or nasty breachy code you like can live in the archive folder.    
 
-#### <a name="MC0500"></a> MC0501 - Commmon Folder Bypass
+#### <a name="MC0500"></a> MC0501 - Common Folder Bypass
 
 \obj, \ndependout, \.vs, \.git, \bin are all skipped from validation rules.

@@ -1,8 +1,8 @@
-Quick Links>>  [Home](index.md) >> [MollyCoddle](molly-index.md)   [Molly-Nuke](molly-nuke) [Molly-QuickStart](molly-quickstart)
+[Home](index.md) | [Mollycoddle](molly-index.md) | [Command Line](molly-commandline.md) | [QuickStart](molly-quickstart.md) | [CreateRules](molly-createRules.md) |  [Nuke](molly-nuke.md)
 
-### Mollycoddle Nuke Build
+# Mollycoddle Nuke Build
 
-### Plisky.Nuke.Fusion package
+## Plisky.Nuke.Fusion package
 
 To use Mollycoddle in a nuke build include the Plisky.Nuke.Fusion package, this will provde access to the tasks below for Mollycoddle.
 
@@ -20,7 +20,7 @@ A typical molly scan task looks like this
        .Executes(() => {
            MollycoddleTasks.PerformScan(s => s
                .AddRuleHelp(true)
-               .SetRulesFile(@"<pathtorilesfile>\XXVERSIONNAMEXX\defaultrules.mollyset")
+               .SetRulesFile(@"<pathtorulesfile>\XXVERSIONNAMEXX\defaultrules.mollyset")
                .SetPrimaryRoot(@"<pathtoprimaryfiles>")
                .SetDirectory(GitRepository.LocalDirectory)
        });

@@ -1,18 +1,20 @@
-### Mollycoddle Command Line Options
+[Home](index.md) | [Mollycoddle](molly-index.md) | [Command Line](molly-commandline.md) | [QuickStart](molly-quickstart.md) | [CreateRules](molly-createRules.md) |  [Nuke](molly-nuke.md)
+
+# Mollycoddle Command Line Options
 
 The command line options for Molly are as follows:
 
 ```text
-❯ .\mollycoddle.exe <PATH> -rulesfile=<PATH> -masterRoot=<PATH> -formatter=<plain|azdo> -warnonly -addrulehelp  -disabled -debug=<DEBUG> 
+❯ mollycoddle <PATH> -rulesfile=<PATH> -primaryRoot=<PATH> -formatter=<plain|azdo> -warnonly -addrulehelp  -disabled -debug=<DEBUG> 
 ```
-
-### -rulesfile (required)
-
-The location of a rules file - either a mollyset collection of rules to execute or a single .molly rule to execute.  Typcially rules are grouped into single mollyset rules files.   Where XXVERSIONNAMEXX is placed in the path of this location then the -version parameter must also be used.  The -version parameter will replace XXVERSIONNAMEXX with the value supplied.  This enables you to use different versions of rules ( e.g. -version=latest).  
 
 ### -dir  (or default single parameter) (required)
 
 The directory to scan, mollycoddle should be run from the parent directory e.g. mollycoddle .\codetoscan  that will give the most reliable results.
+
+### -rulesfile (required)
+
+The location of a rules file - either a mollyset collection of rules to execute or a single .molly rule to execute.  Typically rules are grouped into single mollyset rules files.   Where XXVERSIONNAMEXX is placed in the path of this location then the -version parameter must also be used.  The -version parameter will replace XXVERSIONNAMEXX with the value supplied.  This enables you to use different versions of rules ( e.g. -version=latest).  
 
 ### -primaryRoot
 
@@ -22,7 +24,7 @@ The root of the location for the primary copies of files. When using single prim
 
 This determines the format output for messages written to the console.  Options are:
 
-plain - Writes standard format text.    
+plain - Writes standard format text.
 azdo - Writes text formatted for azure devops pipelines
 
 ```text
@@ -39,7 +41,7 @@ Performs the full mollycoddle checks but returns zero upon completion.
 
 ### -addrulehelp
 
-Includs additional help links in the output to support simpler resolution of issues found in the structure.
+Includes additional help links in the output to support simpler resolution of issues found in the structure.
 
 ### -disabled
 
@@ -62,4 +64,3 @@ mollycoddle dir -rulesfile="C:\Files\XXVERSIONNAMEXX\defaultrules.mollyset" -pri
 
 Specifies the working directory for cached files to be placed.  Defaults to system temporary path.
 
-### 

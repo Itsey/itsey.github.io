@@ -1,6 +1,8 @@
+[Home](index.md) | [Mollycoddle](molly-index.md) | [Command Line](molly-commandline.md) | [QuickStart](molly-quickstart.md) | [CreateRules](molly-createRules.md) |  [Nuke](molly-nuke.md)
+
 # Mollycoddle Rules - Themed
 
-When Mollycoddle first was made it was an internal tool with themed rule names, this ruleset still exists and is documented here.  Many people prefer the much more plain speaking rules which are now the default set.
+When Mollycoddle first was made it was an internal tool with themed rule names, this ruleset still exists and is documented here.  Many people prefer the much more plain speaking rules which are now the [default set](molly-rules.md).
 
 #### <a name="MC0001"></a> MC0001 - One Language To Rule Them All.
 
@@ -45,7 +47,7 @@ root\.gitattributes  :: Pass
 
 #### MC0070 - Everything, precisely, where it should be.
 
-Solutions and projects must live at the same level of the folder hierachy.  Solutions must be in the roolt of a folder that starts with src and csproj files must be under a rooted src folder and one folder level below.  E.g. \\src\Project\project.csproj
+Solutions and projects must live at the same level of the folder hierarchy.  Solutions must be in the root of a folder that starts with src and csproj files must be under a rooted src folder and one folder level below.  E.g. \\src\Project\project.csproj
 
 ```text
  src\*.sln    :: Pass
@@ -63,32 +65,32 @@ Additional option allows for "frameworkversions" folder to group up multitargett
 
 #### <a name="MC0100"></a> MC0100 - All your editor config are belong to us.
 
-Master files ensure that the files in the repos are kept up to date with the most recent changes in style and settings.
+Primary files ensure that the files in the repos are kept up to date with the most recent changes in style and settings.
 
 * The folder root\src must have a file called .editorconfig present.    
-* That file must be identical to the file stored %masterroot%\master.editorconfig    
+* That file must be identical to the file stored %COMMONROOT%\common.editorconfig    
 
 #### <a name="MC0101"></a> MC0101 - All your gitignore are belong to us.
 
-Master files ensure that the files in the repos are kept up to date with the most recent changes in style and settings.
+Primary files ensure that the files in the repos are kept up to date with the most recent changes in style and settings.
 
 * The root folder must have a file called .gitignore present.    
-* That file must be identical to the file stored %masterroot%\master.gitignore    
+* That file must be identical to the file stored %COMMONROOT%\common.gitignore    
 
 #### <a name="MC0102"></a> MC0102 - All your nuget.config are belong to us.
 
-Master files ensure that the files in the repos are kept up to date with the most recent changes in style and settings.
+Primary files ensure that the files in the repos are kept up to date with the most recent changes in style and settings.
 
-* The root folder must have a file called .gitignore present.    
-* That file must be identical to the file stored %masterroot%\master.gitignore    
+* The root folder must have a file called nuget.config present.    
+* That file must be identical to the file stored %COMMONROOT%\common.nuget.config    
 
 #### <a name="MC0200"></a> MC0200 - No Naughty Nugets Needed.
 
 We use preferred packages for consistency and to reduce retraining between solutions.  Once we have a nuget package that does a job other nugets that do similar jobs are not preferred.
 
 Only preferred packages may be used.    
-Alternatives are added to the band list.    
-Packages which fail security scanning are added to the band list.  
+Alternatives are added to the banned list.    
+Packages which fail security scanning are added to the banned list.  
 
 #### <a name="MC0201"></a> MC0201 - Making A Moquery Out Of OSS.
 

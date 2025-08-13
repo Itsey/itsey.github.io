@@ -1,22 +1,24 @@
-### Mollycoddle Quick Start Guide.
+[Home](index.md) | [Mollycoddle](molly-index.md) | [Command Line](molly-commandline.md) | [QuickStart](molly-quickstart.md) | [CreateRules](molly-createRules.md) |  [Nuke](molly-nuke.md)
 
-#### Get Mollycoddle
+# Mollycoddle Quick Start Guide.
+
+## Get Mollycoddle
 
 Go to the Git Hub Releases Page:  https://github.com/Itsey/mollycoddle/releases
 Download the latest release.
 
-Mollycoddle requires .net verison 8.
+Mollycoddle requires .net version 8.
 
-There will be three zip files, the mollycoddle binary compiled for Windows x86 and the two rules files zip files.  To start wtih use the default rules.
+There will be three zip files, the mollycoddle binary compiled for Windows x86 and the two rules files zip files.  To start with use the [default rules](molly-rules.md).
 
-Extract MollyCoddle_V*.zip to a folder of your choice.    
-Extract QuickStartMollyRules.zip to a folder of your choice.    
+Extract MollyCoddle_V*.zip to a folder of your choice.
+Extract QuickStartMollyRules.zip to a folder of your choice. The top folder must be called \molly\.
 
 In the examples below c:\molly will be used with the rules being in c:\molly\quickstartrules\.
 
-#### Using Mollycoddle
+## Using Mollycoddle
 
-Using your command prompt / preferred terminal navigate to the location of your code, and then call the full pathname where you extracted mollycoddle above.  
+Using your command prompt / preferred terminal navigate to the location of your code, and then call the full pathname where you extracted mollycoddle above.
 
 ```text
 cd\
@@ -36,7 +38,7 @@ This should put out an error suggesting you are unable to run mollycoddle withou
 Execute MollyCoddle from the command line, passing a parameter of the path to scan and a rules file. For this example we will use the default rules file and assume that the source code is in a folder called sourcecode beneath the current directory:
 
 ```text
-// Synatx - mollycoddle.exe <RootOfRepository> [-rulesfile="<PathToMollyRulesFile"] 
+// Syntax - mollycoddle.exe <RootOfRepository> [-rulesfile="<PathToMollyRulesFile"] 
 c:\molly\mollycoddle.exe "sourcecode" -rulesfile=c:\molly\quickstartrules\quickstart.mollyset -formatter=none
 ```
 

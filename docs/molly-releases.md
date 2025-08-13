@@ -1,10 +1,18 @@
+[Home](index.md) | [Mollycoddle](molly-index.md) | [Command Line](molly-commandline.md) | [QuickStart](molly-quickstart.md) | [CreateRules](molly-createRules.md) |  [Nuke](molly-nuke.md)
+
 ### Mollycoddle Release Notes
 
-#### V1.1.0
+#### V1.0
+ * Moved to a tool package.
+ * Added multi targetted support for .net 8 and 9.
+ * Restructured repository to make it simpler to find rules files.
 
-* 🆕 Able to use named version tags in the rulesfile name now to allow different code bases to use different versions of the rules.  
-* 🐛 Bug - Error message on missing rules file was hardly clear.
+#### V0.1.4
+ * Added support for Nexus to replace File Stores.
 
-#### V1.0.0.0
+#### V0.1.2
+ * Altered default terminology.
+ * Basic support for MollyCoddle
 
-Initially released as code only, became aware of github releases Oct/2023.  This initial release takes the previous release of the code and adds it to GH releases.   Default and quickstart rules are added.
+#### V0.0.1
+* Initially released as code only, became aware of github releases Oct/2023.  This initial release takes the previous release of the code and adds it to GH releases.   Default and quickstart rules are added.
