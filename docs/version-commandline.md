@@ -267,32 +267,7 @@ versonify.exe -Command=Behaviour -VersionSource=C:\temp\aversion.vstore -Digits=
 versonify.exe -Command=Behaviour -VersionSource=C:\temp\aversion.vstore -Digits=0 -Q=0
 ```
 
-<<<<<<< HEAD
 
-#### Using Prefix.
-
-Updates the prefix of a selected digit position.
-
-```plaintext
--Command=Behaviour 
-
-Requires:
--VersionSource  (-VS) and -Digits (-DG) and -QuickValue (-Q)
-
-Optional:
--Output  (-O)
--DryRun
-
-```
-
-This will update the prefix of the selected digit.  Specifying * will update all of the digits - except the first one.  To set the value of the first digit prefix specify -DG=0.   The prefix is then passed in with -Q and can be anything.  For Symantic versioning use prefixes of .-and+ only.
-
-```dos
-// Set the third digit prefix to - such that it displays 0.0-3.0
-versonify.exe -Command=Prefix -VersionSource=C:\temp\aversion.vstore -Digit=3 -Q=-
-```
-
-=======
 #### Prefix
 Sets the prefix for a digit in the version source.
 ```plaintext
@@ -310,17 +285,19 @@ versonify.exe -Command=Prefix -VersionSource=C:\temp\aversion.vstore -Digits=2 -
 ```
 This example will set the value of the prefix of digit in position [2] to a dash, "-".
 
-Prefix command supports using the wildcard * to set the prefix for all digits (excluding the digit in position [0]).  For example, the following command will set the prefix of all digits except the first to a dash, "-".
+Prefix command supports using the wildcard * to set the prefix for all digits (excluding the digit in position [0]).  For example, the following command will set the prefix of all digits except the first to a dash, "-". To set the value of the first digit prefix specify -DG=0.  
 ```dos
 versonify.exe -Command=Prefix -VersionSource=C:\temp\aversion.vstore -Digits=* -Q="-"
 ```
+The prefix provided in the -QuickValue can be anything, but for Semantic Versioning (semver) use prefixes of dot(.), dash(-), or plus(+) only.
+
 
 #### Using No Override
 
 When setting up multiple branches it is sometimes useful to be able to ignore an override when a specific branch is versioned.  To do this specify -NO.      
 The most common scenario here is when the Pull Request build is used to reset the version ready for release.  When using the pull request builds to version then it is possible that a build on the source branch happens after the PR build but before the release branch has run.  This will cause the source branch to incorrectly version.  To avoid this add the -NO to the source branch versioning element.
 
->>>>>>> 5f0cc663b1c091f097c3b1bbc438153e4bb2fb7e
+
 #### Using -Debug
 
 The -debug enables tracing for detailed error investigation.  See [Setting Configuration Resolvers](diags-bilge-configurationResolvers.md) for full details. Typically this is set to v-** for verbose when trying to resolve issues.
