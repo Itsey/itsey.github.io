@@ -10,17 +10,17 @@ Command line options are prefixed with -.  They are postfixed with =.
 e.g. -Command=CreateVersion 
 
 ```plaintext
--Command  (-C)              Specify the Command that is to be run
+-Command                    Specify the Command that is to be run
 -VersionSource  (-VS)       Specify an initialisation string to a supported version source
--Increment                  Increment the version number during the command operation.
+-Increment  (-I)            Increment the version number during the command operation.
 -Digits  (-DG)              Provide a value for the index of the digits to be displayed or ammended
 -QuickValue  (-Q)           Provide a value for the versioning command.
--MinMatch                   Provide a file or list of minmatches to identify files to update.
+-MinMatch  (-MM)            Provide a file or list of minmatches to identify files to update.
 -Root                       The root folder to recursively search for files to update.
 -DryRun                     If specified then no updates are made, but output is written to the logs.
--Output                     Specifies output options to write the version number somewhere. Supports Env,File,Con,AzDo
+-Output  (-O)               Specifies output options to write the version number somewhere. Supports Env,File,Con,AzDo
 -NO                         Specifies that overrides should be ignored
--Release                    Specifies a release name to be used in the version number.  This is primarily used for release versions and is not normally used for build versions.
+-Release  (-R)              Specifies a release name to be used in the version number.  This is primarily used for release versions and is not normally used for build versions.
 
 -Debug                      Enables trace handling for debugging and additional logging.
 -Trace                      Enables level of trace  (set to Info,Verbose,Off)

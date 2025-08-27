@@ -83,7 +83,7 @@ public Target VersionQuickStep => _ => _
 
 This will run through a detailed set of steps to add Semver 2.0 compatible pre-release and release versioning to a nuke build used as part of a Nuget package.  This is just an example walk through with one way of doing it.
 
-#### 0 Prepare your repository / local machine.
+#### 0. Prepare your repository / local machine.
 
 You will need to have created a nuke build definition.
 You will also need to reference the local versioning tools.
@@ -111,7 +111,7 @@ Installing Plisky.Versonify/1.0.1 to X:\Code\ghub\mollycoddle\src\mollycoddle.bu
 Done installing Plisky.Versonify/1.0.1 to X:\Code\ghub\mollycoddle\src\mollycoddle.build\mollycoddle.build.csproj
 ```
 
-#### 1 Create The Version Files.
+#### 1. Create The Version Files.
 
 First we need to create the version files, this can be done with the command line.  This walkthrough will use a nexus url that has partially been configured using an environment variable.
 
@@ -136,65 +136,29 @@ Creating New Version Store: 1.0.0.0.1.5
 Saving 1.0.0.0.1.5
 ```
 
-#### 2 update the version numbers.
+#### 2. Update the version numbers.
 
-Next we will update the version numbers to your chosen naming and increment approach.  This currently involves editing the files directly.  We can set the increment behaviour through the command line but the pre-release value must be edited directly.  
+Next we will update the version numbers to your chosen naming and increment approach. 
+```cmd
+ > versonify  '-Command=Set' '-VS=%NEXUSCONFIG%[R::plisky[L::https://mynexus.com/repository/plisky/vstore/new-pre.vstore' '-Q=prerelease' '-Digits=3'
+💖 Versioning By Versonify 💖 (1.0.0.0).
+Performing Versioning Actions
+Setting digit(s) [3] to value: prerelease
+Saving Updated Digit Values
+[1.0.0.prerelease.1.5]
 
-Opening the pre-release file we see this contents:
-
-```txt
-"Digits": [
-        {
-            "Behaviour": 0,
-            "IncrementOverride": null,
-            "Value": "1",
-            "PreFix": ""
-        },
-        {
-            "Behaviour": 0,
-            "IncrementOverride": null,
-            "Value": "0",
-            "PreFix": "."
-        },
-        {
-            "Behaviour": 0,
-            "IncrementOverride": null,
-            "Value": "0",
-            "PreFix": "."
-        },
-        {
-            "Behaviour": 0,
-            "IncrementOverride": null,
-            "Value": "0",
-            "PreFix": "."
-        },
-        {
-            "Behaviour": 0,
-            "IncrementOverride": null,
-            "Value": "1",
-            "PreFix": "."
-        },
-        {
-            "Behaviour": 0,
-            "IncrementOverride": null,
-            "Value": "5",
-            "PreFix": "."
-        }
-    ],
-    
-Changing the fourth digit to this - altering the value and the prefix
-        {
-            "Behaviour": 0,
-            "IncrementOverride": null,
-            "Value": "prerelease",
-            "PreFix": "0"
-        },
+ > versonify  '-Command=Prefix' '-VS=%NEXUSCONFIG%[R::plisky[L::https://mynexus.com/repository/plisky/vstore/new.vstore' '-Q="-"' '-Digits=3'
+💖 Versioning By Versonify 💖 (1.0.0.0).
+Performing Versioning Actions
+Setting prefix for digit(s) [3] to : -
+Saving updated digit prefixes
+[1.0.0-prerelease.1.5]
 ```
 
-Once we have specified the -prerelease identifier as the fourth digit we have a method of identifying pre-release version numbers that is SemVer 2 compatible.
+These commands update the fourth digit (Note 0 offset so this is the digit in position [3]) to have value "prerelease" with a prefix "-". Once we have specified the -prerelease identifier as the fourth digit we have a method of identifying pre-release version numbers that is SemVer 2 compatible.
 
 
-#### 3 Add automatic increment to the version numbers.
+#### 3. Add automatic increment to the version numbers.
 
 Two of the digits should automatically increment to ensure that we do not get a duplicate version number.  The final digit in the pre-release version number and the third digit in the release version number.  We can update this using the command line.
 
@@ -215,7 +179,7 @@ Saving Updated Behaviour
 
 The two updates set the digits to AutoIncrementWithResetAny.  Note that the behaviour command is 0 offset for the digit position so this updates the third digit for the release version and the final digit for the pre-release version.
 
-#### Add the nuke script to version correctly.
+#### 4. Add the nuke script to version correctly.
 
 Add the references to your two version stores.  One for the pre-release version and one for the release version.
 ```cs
@@ -236,7 +200,7 @@ readonly bool PreRelease = true;
 ```
 
 
-#### Add the versioning.
+#### 5. Add the versioning.
 
 The versioning needs to be added prior to the compile step.  
 
@@ -276,7 +240,7 @@ Note that this code sets DryRunMode to true for local builds so the version numb
        string versioningType = "Pre-Release";
        string vtFile = settings.VersioningPersistanceTokenPre;
        if (!PreRelease) {
-           vtFile = settings.VersioningPersistanceTokenPreRelease;
+           vtFile = settings.VersioningPersistanceTokenRelease;
            versioningType = "Release";
        }
 
@@ -309,7 +273,7 @@ Note that this code sets DryRunMode to true for local builds so the version numb
           .SetRoot(Solution.Directory)
       );
 
-       Log.Information($"[Versioning]{versioningType} Increment and Update Exsiting Files.({vc.VersionLiteral})");
+       Log.Information($"[Versioning]{versioningType} Increment and Update Existing Files.({vc.VersionLiteral})");
 
        if (!PreRelease) {
            // Hack.  Curently the return from versonify is not set to be different display types, we need 3 digit for semver so hacking the last digit off.
@@ -350,7 +314,7 @@ Note that this code sets DryRunMode to true for local builds so the version numb
 ```
 
 
-#### Test your versioning.
+#### 6. Test your versioning.
 
 You can specify whether a pre-release version should be used or not using the parameter you created.  Remember that by default your local builds will be in dry run mode so the versioning will not increment in the store.
 ```cmd
