@@ -96,6 +96,8 @@ One or two strings can be provided, typically the second string holds considerab
 
 More is a way of sending additional information to the log stream.  Depending on how the handler deals with the difference it may choose to combine the logs.  More does not send location information therefore can be slightly quicker and can also be used to send structured data. The structured data can add some overhead to the logging so ensure that its not used in tight loops or performance sensitive areas.
 
+Note that more when used without dynamic data is faster than log, but when used with dynamic data is considerably slower.   The different listener implementations also handle dynamic data differently so care must be taken when using this approach and some experimentation performed.
+
 ```csharp
 Bilge b = new Bilge();
 b.Info.Log("Simple Statement");
@@ -156,3 +158,11 @@ b.Info.TimeStart(UPDATE, timerCategoryName:CATEGORY);
 b.Info.TimeStop(UPDATE, timerCategoryName:CATEGORY);
 ```
 
+### Flush.
+
+Bilge uses a background thread to try and minimize the main thread time spent on logging.  This has some disadvantages when it comes to program exit.  The background thread will not hold the process
+open therefore if the main process closes messages that are not written can get lost.  To prevent this call Flush.  Typically best practice is to call flush then a small sleep statement as this will ensure that everything has had a chance to execute.  As this is only done on program exit its not likely to cause significant issue or performance concerns.
+
+### Simplify Router
+
+For some scenarios ( e.g. Blazor ) multithreaded approaches are not supported, in this instance or when it is suspected that the background thread is causing issue then Bilge.SimplifyRouter() can be used to replace the core multithreaded components with an alternative, single threaded one.
