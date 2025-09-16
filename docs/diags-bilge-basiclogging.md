@@ -89,7 +89,7 @@ b.Info.Log("Simple Statement");
 b.Info.Log("First Message", "Supporting Information");
 ```
 
-One or two strings can be provided, typically the second string holds considerably more information or details related to the first logging string.  For file system based listeners this rarely makes any difference but when loaded into FlimFlam the secondary informaiton is displayed as secondary information to the main trace entries.
+One or two strings can be provided, typically the second string holds considerably more information or details related to the first logging string.  For file system based listeners this rarely makes any difference but when loaded into FlimFlam the secondary information is displayed as secondary information to the main trace entries.
 
 
 ### Basic Logging - Using More.

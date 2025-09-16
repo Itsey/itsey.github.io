@@ -28,20 +28,36 @@ The main value from Blige occurs when combined with FlimFlam - the viewer. Legac
 
 The most common usage on Development Machines is using the TCPHandler to write locally to the machine running FlimFlam (or across the network if that's appropriate for your environment).  The default port for FlimFlam to listen on is 9060.
 
+Create a new console app and add Plisky.Diagnostics and Plisky.Listeners to the code through Nuget.
+
+Add the following code.
+
 ```csharp
+
+using Plisky.Diagnostics;
+using Plisky.Diagnostics.Listeners;
+using System.Diagnostics;
+
+Console.WriteLine("Hello, World!");
+
+
 Bilge b = new Bilge();
 
 // You must enable tracing
-b.ActiveTraceLevel = SourceLevel.Verbose;
+b.ActiveTraceLevel = SourceLevels.Verbose;
 
 // To get any output you must use a handler - this is one talking to FlimFlam
-b.AddHandler(new TCPHandler("127.0.0.1",9060));
+b.AddHandler(new TCPHandler("127.0.0.1", 9060));
 
 // Your Logging Goes Here.
-b.Info.Log("Hello Cruel World");
+b.Info.Log("Hello Wonderful World");
 
-// Not normally required but for small test apps that close quickly it can help
-b.FLush();
+// Not normally required but for small test apps that close quickly it can help, Bilge uses a background
+// thread therefore for applications that terminate very quickly a sleep and flush ensures all messages
+// are written.
+Thread.Sleep(100);
+await b.Flush();
+Thread.Sleep(100);
 ```
 
 You would not normally require to call Flush at the end but the small sample console applications here sometimes end before the trace can be written so for this sample application its included.  Production applications tend to run long enough not to require the flush.

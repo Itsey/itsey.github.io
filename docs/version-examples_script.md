@@ -29,7 +29,7 @@ docker tag papi-api itseyreg.azurecr.io/papi-api:XXX-VERSION-XXX
 This works but requires that you update your script file each time, and that is not the most convenient if running by hand, therefore we will look at an alternative approach that can be run inline to the file to take the correct version.
 
 ```dos
-pliskytool.exe -Command=Passive -VersionSource=C:\temp\aversion.vstore -O=File
+versonify.exe -Command=Passive -VersionSource=C:\temp\aversion.vstore -O=File
 $verval = Get-Content plisky-version.txt
 docker tag papi-api itseyreg.azurecr.io/papi-api:$verval
 ```

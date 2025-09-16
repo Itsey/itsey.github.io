@@ -181,7 +181,8 @@ The two updates set the digits to AutoIncrementWithResetAny.  Note that the beha
 
 #### 4. Add the nuke script to version correctly.
 
-Add the references to your two version stores.  One for the pre-release version and one for the release version.
+Add the references to your two version stores.  One for the pre-release version and one for the release version.  In this example there is a localbuildconfig class used to maintain build settings but you can reference the paths in any way which makes sense for your nuke build.
+
 ```cs
   settings = new LocalBuildConfig {
     VersioningPersistanceTokenPre = @"%NEXUSCONFIG%[R::plisky[L::mynexus.com/repository/plisky/vstore/molly-pre.vstore",
@@ -189,7 +190,7 @@ Add the references to your two version stores.  One for the pre-release version 
                };
 ```
 
-It is also useful to have two parameters so that you can configure the versioning behaviour without editing the build script directly.
+It is also useful to have two parameters so that you can configure the versioning behaviour without editing the build script directly.  If you create a QuickVersion parameter then it will let you change the value of versioning files using Nuke targets and if you use a specific Prerelease parameter you can easily switch between release and pre-release versioning during the build.
 
 ```cs
 [Parameter("Specifies a quick version command for the versioning quick step", Name = "QuickVersion")]
