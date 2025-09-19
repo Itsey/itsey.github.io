@@ -56,11 +56,15 @@ The FilenameIsMask is used to indicate you are using masking characters.  Withou
 MaxRollingFileSize supports kb, mb, gb as filesize types.  100mb for example rolls the filesize every hundred megabytes.
 All rolls are done after a batched write therefore files can be slightly larger than the size noted here.
 
+Note file system based handlers are not designed for multithreaded environments due to writing to a single file.  To use full multithreaded writes you will need to create a custom file handler.
+
 ## FileSystemHandler
 
 Uses LegacyFlimFlamFormatter
 
 The filesystem handler is the handler used to write trace to a file system, such that it can be read by FlimFlam later or offline.
+
+Note file system based handlers are not designed for multithreaded environments due to writing to a single file.  To use full multithreaded writes you will need to create a custom file handler.
 
 ## InMemoryHandler
 
@@ -74,6 +78,9 @@ Default Formatter: PrettyFormatter
 
 SimpleTraceFileHandler is a very lightweight handler that writes to a well known file name in your temporary directory.  You can configure whether the file is overwritten each time using a parameter to the constructor. It is not designed as a production handler.
 SimpleTraceFileHandler is the only handler that is shipped inside the Plisky.Diagnostics assembly, all other handlers are shipped in Plisky.Diagnostics.Listeners.
+
+Note file system based handlers are not designed for multithreaded environments due to writing to a single file.  To use full multithreaded writes you will need to create a custom file handler.
+
 
 ### GCP Google Logging Handler.  (GoogleLoggingHandler)
 
