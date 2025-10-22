@@ -23,7 +23,7 @@ Sem Ver compatible automated versioning for your builds using a command line exe
 
 Git analysis and inspection tool to gain insights from your git history.  [see more information.](glitter-index.md)
 
-### Nuget Pakges
+### Nuget Packages
 
 [Plisky.Diagnostics](diags-index.md)    
 [Plisky.Plumbing](plumb-index.md)    
