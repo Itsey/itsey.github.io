@@ -140,7 +140,7 @@ abc  = Any number of letters replaces the digit with this version (for named dig
 
 #### Update Files
 
-Overrides the values of version numbers at the point of next increment
+Updates the values of version numbers. If the increment option is specified then the version number is incremented first before updating the files.
 
 ```plaintext
 -Command=UpdateFiles
@@ -157,7 +157,7 @@ Optional:
 ```
 
 ```dos
-versonify.exe -Command=Override -VersionSource=C:\temp\aversion.vstore -Root=C:\Build\Code\MyApp
+versonify.exe -Command=UpdateFiles -VersionSource=C:\temp\aversion.vstore -Root=C:\Build\Code\MyApp -Increment  -MM="**/MyApp/commonAssemblyInfo.cs|NetAssembly,**/MyApp/_Dependencies/CDSupport/readme.txt|TextFile"
 ```
 
 Will optionally increment the version number specified by the source and then run through the directory specified by root and update any files that are matched by the minmatchers for the specified file types.  There are a default set of minmatches in effect but they can be overriden.
