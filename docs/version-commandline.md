@@ -152,7 +152,6 @@ Requires:
 Optional:
 -Increment
 -DryRun
--MinMatch 
 -NO
 ```
 
@@ -160,9 +159,9 @@ Optional:
 versonify.exe -Command=UpdateFiles -VersionSource=C:\temp\aversion.vstore -Root=C:\Build\Code\MyApp -Increment  -MM="**/MyApp/commonAssemblyInfo.cs|NetAssembly,**/MyApp/_Dependencies/CDSupport/readme.txt|TextFile"
 ```
 
-Will optionally increment the version number specified by the source and then run through the directory specified by root and update any files that are matched by the minmatchers for the specified file types.  There are a default set of minmatches in effect but they can be overriden.
+Will optionally increment the version number specified by the source and then run through the directory specified by root and update any files that are matched by the minmatchers for the specified file types. 
 
-To override a minmatch specify it using the -MM or -MinMatch command.  This is a series of one or more strings separated by ;.  If a single string is passed with no ; and if this refers to a file that exists on disk then this file will be parsed for MinMatches instead.  The file format is as follows.
+To set a minmatch specify it using the -MM or -MinMatch command.  This is a series of one or more strings separated by ;.  If a single string is passed with no ; and if this refers to a file that exists on disk then this file will be parsed for MinMatches instead.  The file format is as follows.
 
 It is generally more convenient to specify the file and store it in your source repository than to configure all of the minmatches on the command line using the ; syntax.
 
