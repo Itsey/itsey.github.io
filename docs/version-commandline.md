@@ -11,15 +11,15 @@ e.g. -Command=CreateVersion
 
 ```plaintext
 -Command                    Specify the Command that is to be run
--VersionSource  (-VS)       Specify an initialisation string to a supported version source
+-VersionSource  (-V)        Specify an initialisation string to a supported version source
 -Increment  (-I)            Increment the version number during the command operation.
--Digits  (-DG)              Provide a value for the index of the digits to be displayed or ammended
+-Digits  (-D)               Provide a value for the index of the digits to be displayed or ammended
 -QuickValue  (-Q)           Provide a value for the versioning command.
--MinMatch  (-MM)            Provide a file or list of minmatches to identify files to update.
+-MinMatch  (-M)             Provide a file or list of minmatches to identify files to update.
 -Root                       The root folder to recursively search for files to update.
 -DryRun                     If specified then no updates are made, but output is written to the logs.
 -Output  (-O)               Specifies output options to write the version number somewhere. Supports Env,File,Con,AzDo
--NO                         Specifies that overrides should be ignored
+-NoOverride                  Specifies that overrides should be ignored
 -Release  (-R)              Specifies a release name to be used in the version number.  This is primarily used for release versions and is not normally used for build versions.
 
 -Debug                      Enables trace handling for debugging and additional logging.
@@ -28,7 +28,7 @@ e.g. -Command=CreateVersion
 
 Full Example Commandline:
 
-versonify.exe UpdateFiles -Root=c:\src\ -VS=c:\store\pversioner.vstore -Increment -MM="**/*.csproj|StdFile,**/*.csproj|StdAssembly,**/*.csproj|StdInformational"
+versonify.exe UpdateFiles -Root=c:\src\ -VS=c:\store\pversioner.vstore -Increment -M="**/*.csproj|StdFile,**/*.csproj|StdAssembly,**/*.csproj|StdInformational"
 ```
 
 ### Commands
@@ -63,7 +63,7 @@ Passively reads the version number for use in scripts.
 -Command=Passive
 
 Requires:
--VersionSource  (-VS)  or -Output (-O)
+-VersionSource  (-V)  or -Output (-O)
 ```
 
 ```dos
@@ -116,7 +116,7 @@ Overrides the values of version numbers at the point of next increment
 -Command=Override
 
 Requires:
--VersionSource  (-VS)  or -QuickValue (-Q)
+-VersionSource  (-V)  or -QuickValue (-Q)
 ```
 
 ```dos
@@ -146,8 +146,9 @@ Updates the values of version numbers. If the increment option is specified then
 -Command=UpdateFiles
 
 Requires:
--VersionSource  (-VS)  or -QuickValue (-Q)
+-VersionSource  (-V)  or -QuickValue (-Q)
 -Root
+-MinMatch 
 
 Optional:
 -Increment
@@ -207,8 +208,8 @@ The -Digits option specifies which digit values to set.  This can be a single di
 -Command=Set
 
 Requires:
--VersionSource (-VS)
--Digits (-DG) and -QuickValue (-Q)    or    -Release
+-VersionSource (-V)
+-Digits (-D) and -QuickValue (-Q)    or    -Release
 
 Optional:
 -DryRun
@@ -242,7 +243,7 @@ Passively displays the [behaviour](version-reference.md#behaviours) of a version
 -Command=Behaviour 
 
 Requires:
--VersionSource  (-VS) and -Digits (-DG)
+-VersionSource  (-V) and -Digits (-D)
 
 Optional:
 -Output  (-O)
@@ -273,7 +274,7 @@ Sets the prefix for a digit in the version source.
 -Command=Prefix
 
 Requires:
--VersionSource  (-VS), -Digits (-DG) and -QuickValue (-Q)
+-VersionSource  (-V), -Digits (-D) and -QuickValue (-Q)
 
 Optional:
 -DryRun
@@ -293,8 +294,10 @@ The prefix provided in the -QuickValue can be anything, but for Semantic Version
 
 #### Using No Override
 
-When setting up multiple branches it is sometimes useful to be able to ignore an override when a specific branch is versioned.  To do this specify -NO.      
-The most common scenario here is when the Pull Request build is used to reset the version ready for release.  When using the pull request builds to version then it is possible that a build on the source branch happens after the PR build but before the release branch has run.  This will cause the source branch to incorrectly version.  To avoid this add the -NO to the source branch versioning element.
+When setting up multiple branches it is sometimes useful to be able to ignore an override when a specific branch is versioned.  To do this specify -NoOverride.  
+The most common scenario here is when the Pull Request build is used to reset the version ready for release.  
+When using the pull request builds to version then it is possible that a build on the source branch happens after the PR build but before the release branch has run.  This will cause the source branch to incorrectly version.
+To avoid this add the -NoOverride to the source branch versioning element.
 
 
 #### Using -Debug
