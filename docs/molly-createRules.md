@@ -61,6 +61,7 @@ Example: Force a readme.md to be found in the root of the repository
                 }
             ]
 ```
+If the path to a .gitignore file is placed in the "AdditionalData" section of the above example, then any files referenced in the .gitignore file will also be excluded from the check. This is useful when running MollyCoddle locally.
 
 ### MatchWithPrimary
 

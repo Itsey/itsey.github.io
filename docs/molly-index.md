@@ -17,7 +17,7 @@ Mollycoddle needs three things to run:
 * A source code structure to execute against.
 * A set of rules to execute.
 
-
+Mollycoddle is available as a dotnet tool, to install run `dotnet tool install Plisky.Mollycoddle`.
 
 You should first take a look at the rules [MollyCoddle Rules](molly-rules.md) to see what sorts of things Molly can do.  Once you have seen the rules you'll need to determine where you will store your rulesfiles.  This can be on a local path for local use, or on a network share for a local team or a nexus repository for centralisation.   When Molly loads it will attempt to retrieve the rules files and any other data from the location you specify. A [QuickStart](molly-quickstart.md) guide is available.
 
