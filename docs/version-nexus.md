@@ -5,7 +5,7 @@
 [Home](version-index.md) |[Command Line](version-commandline.md) | [Overview](version-overview.md) | [Reference](version-reference.md) |  [Nuke](version-nuke-quickstart.md)
 
 
-Mollycoddle and Versonify both require datafiles to work there are currently three supported storage mechanisms.  You can use a local path on your machine, a network share using \\\server notation or Nexus artefact repository.  Using nexus is a simple way to have centralised storage of version numbers, molly rules and primary files. To use nexus you must use a path that starts with [NEXUS].
+Mollycoddle and Versonify both require data files to work there are currently three supported storage mechanisms.  You can use a local path on your machine, a network share using \\\server notation or Nexus artefact repository.  Using nexus is a simple way to have centralised storage of version numbers, molly rules and primary files. To use nexus you must use a path that starts with [NEXUS].
 
 ```text
 Example Nexus URL:

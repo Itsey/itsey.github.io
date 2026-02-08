@@ -43,14 +43,10 @@ Filename masks allow for replacements to be used.
 
 * %pid is the process identifier
 
-
-
 ```text
 Log_%dd%mm%yy_%nn.Txt  = Log_10112014_1.txt
 Log_%ab.txt     = Log_a.txt or Log_b.txt on each roll.
 ```
-
-
 
 The FilenameIsMask is used to indicate you are using masking characters.  Without this the filename is treated as a literal.  
 MaxRollingFileSize supports kb, mb, gb as filesize types.  100mb for example rolls the filesize every hundred megabytes.
@@ -80,7 +76,6 @@ SimpleTraceFileHandler is a very lightweight handler that writes to a well known
 SimpleTraceFileHandler is the only handler that is shipped inside the Plisky.Diagnostics assembly, all other handlers are shipped in Plisky.Diagnostics.Listeners.
 
 Note file system based handlers are not designed for multithreaded environments due to writing to a single file.  To use full multithreaded writes you will need to create a custom file handler.
-
 
 ### GCP Google Logging Handler.  (GoogleLoggingHandler)
 
@@ -226,3 +221,7 @@ This formatter creates output like this:
 { "v":"2","uq":"--uqr--","dt":"07:12:40 17-11-2022","c":"","l":"39","mn":"Main","md":"C:\\PATH\\DevConsoleTest\\Program.cs","al":"::Main","nt":"1","p":"4908","t":"1","man":"CALYPSO","m":"Hello World 0","s":"","mt":"#LOG#" }
 { "v":"2","uq":"--uqr--","dt":"07:12:40 17-11-2022","c":"","l":"39","mn":"Main","md":"C:\\PATH\\DevConsoleTest\\Program.cs","al":"::Main","nt":"1","p":"4908","t":"1","man":"CALYPSO","m":"Hello World 1","s":"","mt":"#LOG#" }
 ```
+
+#### FlimFlamV4Formatter
+
+This is the recommended formatter for working with newer versions of FlimFlam.  

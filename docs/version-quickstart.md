@@ -34,7 +34,7 @@ Create a file like one below and save it as autoversion.txt in your repository.T
 **Increment** the version number and apply the changes to your source files with the UpdateFiles command.  
 
 ```dos
-versonify.exe UpdateFiles -Root=.\LibSrc\ -VS=\\server\versionFname.vstore -Increment -MM=AutoVersion.txt
+versonify.exe UpdateFiles -Root=.\LibSrc\ -v=\\server\versionFname.vstore -Increment -m=AutoVersion.txt
 ```
 
 ### Step 4

@@ -6,16 +6,14 @@ The FlimFlam timings view looks like this:
 
 ![](https://github.com/Itsey/Plisky.Documentation/blob/master/WikiDocs/FFImages/FF_Timings.png)
 
-
-
 The entries in the list are all of the TimeStart and TimeExit pairs with their elapsed time.  In this example we can see that there are repeated calls to two repositories - fast repository and slow repository.  The entries are colour coded based on their relative timings - and this highlights that the slow repository is indeed slower.
-
 
 The timing approach relies on matching start and stop entries - where this does not occur either due to a typo in the timing entry name or due to an exception occurring then the mismatched entries are added to the "entries with no corresponding pair" area of the view.
 
 Different areas of the application can use the same name, so that subsystem response can be monitored.
 
 Therefore for this code:
+
 ```
  internal static void Run2(Bilge b) {
             string timerName = "sampleRun";
@@ -41,4 +39,3 @@ The timer display looks like this - rapidly calling out that the DataBase elemen
 And clicking on the expand will show the individual entires that add up to that top view, again with the colouring highlighting the difference in timings within the individual repeat calls for the same timer.
 
 [[https://github.com/Itsey/Plisky.Documentation/blob/master/WikiDocs/FFImages/FF_Timings_CategoriesExp.png|alt=FF Image]]
-

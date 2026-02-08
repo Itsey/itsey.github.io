@@ -12,7 +12,6 @@
 versonify.exe -Command=CreateVersion -VersionSource=C:\temp\myappname.vstore -output=con-nf
 ```
 
-
 Set the [behaviour](version-reference.md#behaviours) digit in the version store to define the incremental pattern you want.
 
 ### Step 2

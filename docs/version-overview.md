@@ -6,13 +6,13 @@
 
 To get up and running really quickly but without much information there is the [Quick Start](quickstart.md) guide.  The overview provides more detailed information and the reference provides reference information for when you are using the versioning tool.
 
-Versonify consists of  two parts.  The command line tool and a version store.  The version store is a persisted store of the versioning information that is manipulated via versonify.  The  version store  is referenced by a single "token" which is either a path to a file on disk or a string with tokens in it to refer to another store ( for example a Nexus repository).
+Versonify consists of  two parts.  The command line tool and a version store.  The version store is a persisted store of the versioning information that is manipulated via Versonify.  The  version store  is referenced by a single "token" which is either a path to a file on disk or a string with tokens in it to refer to another store ( for example a Nexus repository).
 
 The version store is a json text file and can be edited directly or set with commands available in the command line tool.
 
 ### Command Line Tool
 
-Versioning can be referenced from the assembly in your own code or through the command line tool.  The command line tool is designed to allow you to automate versioning tasks and be included in pipelines and DevOps automations.  
+Versioning can be referenced from the assembly in your own code or through the command line tool.  The command line tool is designed to allow you to automate versioning tasks and be included in pipelines and DevOps automation.  
 
 The command line tool is pliskytool.exe and is used for most operations.  See the [Command Line Reference](version-commandline.md) for full syntax and information.
 
@@ -32,7 +32,7 @@ Assumes that Versonify is in [YOURPATH] and that you are using a file for the ma
       targetType: 'inline'
       script: |
             # Versioning Powershell.
-            [YOURPATH]Versonify.exe UpdateFiles -Root=$(build.sourcesDirectory)\src\ -NO -VS=[YOURPATH]\[YOURFILENAME].vstore -Increment -MM=$(build.sourcesDirectory)\[YOURPATH]\AutoVersion.txt
+            [YOURPATH]Versonify.exe UpdateFiles -Root=$(build.sourcesDirectory)\src\ -NO -v=[YOURPATH]\[YOURFILENAME].vstore -Increment -m=$(build.sourcesDirectory)\[YOURPATH]\AutoVersion.txt
             [YOURPATH]Versonify.exe Passive -VS=[YOURPATH]\[YOURFILENAME].vstore -O=file
             $storedVersion = Get-Content pver-latest.txt
 
@@ -56,5 +56,3 @@ The PR build can be used to queue the next version number that will be used on t
 ```
 
 Note - you may need to be careful here of version numbers.  If your CI build increments the build digit and your PR increments the minor digit you would be ok, but if they both operate on the same digit then once an override is queued you need to take care that your CI build doesn't overtake your release build.
-
-

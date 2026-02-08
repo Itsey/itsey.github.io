@@ -6,7 +6,7 @@ Plisky.Code Craft is a series of libraries, tools and practices all around writi
 
 [Home](version-index.md) | [Command Line](version-commandline.md) | [Overview](version-overview.md) | [Reference](version-reference.md) |  [Nuke](version-nuke-quickstart.md)
 
-## Versioning By Versonify.
+## 💖 Versioning By Versonify 💖.
 
 Versonify is a command line tool to enable versioning of your code using behaviours that you determine.  Its designed to be run as part of a pipeline or local developer setup to version different elements of code.
 
@@ -18,7 +18,6 @@ Versonify is a command line tool to enable versioning of your code using behavio
 [Versioning Formatting](version-vermatchref.md)    
 [Using Nuke Build](version-usingnuke.md)    
 
-
 ## Quick Reference
 
 Quick Examples to demonstrate typical scenarios. This section is just a reminder for details check other links.
@@ -27,3 +26,9 @@ Quick Examples to demonstrate typical scenarios. This section is just a reminder
 versonify.exe -Command=CreateVersion -VersionSource=C:\temp\aversion.vstore
 versonify.exe -Command=Passive -VersionSource=C:\temp\aversion.vstore -O=File
 ```
+
+
+
+## Release History
+
+[See release history page](version-releases.md)

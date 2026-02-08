@@ -9,11 +9,28 @@
 Sometimes you will want to use the version number that is generated in a script, rather than replace in a predefined file.  There are several output methods
 that are used to do this.
 
+
+### Walk-Through - Using Semantic versioning for a pre=release.
+
+Semantic versioning would use three digits as the primary version number then potentially a series of other digits to describe pre-release versions.  In this example we will use a three digit format followed by a release name and then a two digit format.  The versioning sequence would then be:
+
+|Starting Version|Type Of Release|Release Version|
+|----------------|---------------|-----------------|
+|1.0.0-Alpha.1.0 | Production    | 1.0.0           |
+|1.0.1-Alpha.1.0 | Production    | 1.0.1           |
+|1.0.1-Alpha.1.0 | Pre           | 1.0.2-Alpha-1.0 |
+|1.0.1-Alpha.1.1 | Pre           | 1.0.2-Alpha-1.1 |
+|1.0.2-Alpha.1.55 | Production   | 1.0.2 |
+
+This sequence increments the third digit of the release number each time a production release is made.  This way the next pre-release is always building up to the next release digit.  
+
+// TODO : Complete This Walkthrough.
+
 ### Walk-through - Using Versioning in a Docker Tag
 
 This assumes that you have already created a version store and are using it to version elements such as the code.  For simplicity none of that will be included in this guide and it will also be assumed that the version store will be incremented elsewhere ( for example during the code build process). Therefore this walk-through shows how to tag a docker image with the same version number that was just applied to the code.
 
-Take this powershell script:
+Take this PowerShell script:
 
 ```dockerfile
 docker build -t papi-api .
