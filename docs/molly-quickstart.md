@@ -4,6 +4,8 @@
 
 ## Get Mollycoddle
 
+Mollycoddle is now available as a dotnet tool, to install run `dotnet tool install Plisky.Mollycoddle`.
+
 Go to the Git Hub Releases Page:  https://github.com/Itsey/mollycoddle/releases
 Download the latest release.
 

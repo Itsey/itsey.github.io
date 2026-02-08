@@ -14,7 +14,9 @@ The version store is a json text file and can be edited directly or set with com
 
 Versioning can be referenced from the assembly in your own code or through the command line tool.  The command line tool is designed to allow you to automate versioning tasks and be included in pipelines and DevOps automation.  
 
-The command line tool is pliskytool.exe and is used for most operations.  See the [Command Line Reference](version-commandline.md) for full syntax and information.
+The command line tool is versonify.exe and is used for most operations.  Versonify is available as a dotnet tool, to install run `dotnet tool install --local Plisky.Versonify`.`
+
+See the [Command Line Reference](version-commandline.md) for full syntax and information.
 
 ### Snippets
 

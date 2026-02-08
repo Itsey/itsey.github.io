@@ -5,7 +5,7 @@
 The command line options for Molly are as follows:
 
 ```text
-❯ mollycoddle <PATH> -rulesfile=<PATH> -primaryRoot=<PATH> -formatter=<plain|azdo> -warnonly -addrulehelp  -disabled -debug=<DEBUG> 
+❯ mollycoddle <PATH> -rulesfile=<PATH> -primaryRoot=<PATH> -formatter=<plain|azdo> -warnonly -addrulehelp  -disabled -debug=<DEBUG>  -version=<VERSION> -temppath=<PATH> -fix
 ```
 
 ### -dir  (or default single parameter) (required)
@@ -64,3 +64,6 @@ mollycoddle dir -rulesfile="C:\Files\XXVERSIONNAMEXX\defaultrules.mollyset" -pri
 
 Specifies the working directory for cached files to be placed.  Defaults to system temporary path.
 
+### -fix
+
+New feature: Applies a fix for rule violations. Currently only fixes for FileStructure/MustMatchWithPrimary rules are implemented.

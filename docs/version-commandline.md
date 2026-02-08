@@ -13,7 +13,7 @@ e.g. -Command=CreateVersion
 -Command                    Specify the Command that is to be run
 -VersionSource  (-v)       Specify an initialisation string to a supported version source
 -Increment  (-I)            Increment the version number during the command operation.
--Digits  (-DG)              Provide a value for the index of the digits to be displayed or ammended
+-Digits  (-D)               Provide a value for the index of the digits to be displayed or ammended
 -QuickValue  (-Q)           Provide a value for the versioning command.
 -MinMatch  (-m)            Provide a file or list of minmatches to identify files to update.
 -Root                       The root folder to recursively search for files to update.
@@ -28,7 +28,7 @@ e.g. -Command=CreateVersion
 
 Full Example Commandline:
 
-versonify.exe UpdateFiles -Root=c:\src\ -VS=c:\store\pversioner.vstore -Increment -MM="**/*.csproj|StdFile,**/*.csproj|StdAssembly,**/*.csproj|StdInformational"
+versonify.exe UpdateFiles -Root=c:\src\ -VS=c:\store\pversioner.vstore -Increment -M="**/*.csproj|StdFile,**/*.csproj|StdAssembly,**/*.csproj|StdInformational"
 ```
 
 ### Commands
@@ -139,7 +139,7 @@ abc  = Any number of letters replaces the digit with this version (for named dig
 
 #### Update Files
 
-Overrides the values of version numbers at the point of next increment
+Updates the values of version numbers. If the increment option is specified then the version number is incremented first before updating the files.
 
 ```plaintext
 -Command=UpdateFiles
@@ -147,6 +147,7 @@ Overrides the values of version numbers at the point of next increment
 Requires:
 -VersionSource  (-v)  or -QuickValue (-Q) 
 -Root
+-MinMatch 
 
 Optional:
 -Increment

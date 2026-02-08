@@ -41,9 +41,10 @@ Depending on your version store you will need to specify an initialization strin
              .AddMultimatchFile($"{Solution.Directory}\\_Dependencies\\Automation\\AutoVersion.txt")
              .PerformIncrement(true)
              .SetVersionPersistanceValue(versionStorePath)
-             //.SetDebug(true)     Want more debugging info?
-             //.AsDryRun(true)     Want to see what would happen without doing it?
-             //.SetRelease("")     Using release names?         
+             //.SetDebug(true)          Want more debugging info?
+             //.AsDryRun(true)          Want to see what would happen without doing it?
+             //.SetRelease("")          Using release names?
+             //.SetFramework("net8.0")  Target specific framework?
              );
         });
 ```

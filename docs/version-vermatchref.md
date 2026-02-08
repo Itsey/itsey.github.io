@@ -8,12 +8,13 @@
 
 Any file where literal replacement takes place within the file, using well known tokens:
 
-| Token               | Versioning Style           | Example |
-| ------------------- | -------------------------- | ------- |
-| XXX-RELEASENAME-XXX | The release name           | Unicorn |
-| XXX-VERSION-XXX     | The Short Version          | 1.2     |
-| XXX-VERSION3-XXX    | The 3 digit version        | 1.2.3   |
-| XXX-VERSION4-XXX    | The 4 digit version number | 1.2.3.4 |
+| Token               | Versioning Style           | Example       |
+| ------------------- | -------------------------- | ------------- |
+| XXX-RELEASENAME-XXX | The release name           | Unicorn       |
+| XXX-VERSION-XXX     | The Full Version           | 1.2.3-pre.0.0 |
+| XXX-VERSION2-XXX    | The Short Version          | 1.2           |
+| XXX-VERSION3-XXX    | The 3 digit numeric version| 1.2.3         |
+| XXX-VERSION4-XXX    | The 4 digit numeric version| 1.2.3.4       |
 
 ### Versioning Display Types
 
@@ -34,7 +35,7 @@ Two digit display.  E.g. 0.0 - The following file types default to this display 
 
 #### Display Type Full
 
-Four digit display. E.g. 0.0.0.0 - The following file types default to this display method:
+Full digit display. E.g. 0.0.0.0 - The following file types default to this display method:
 
 - NetInformational
 - Wix
@@ -50,6 +51,10 @@ Three digit display. E.g. 0.0.0 - The following file types default to this displ
 - Nuspec
 - Nuget Package File format.
 
+#### Display Type Four Digit
+
+Four digit display. E.g. 0.0.0.0
+
 #### Display Type Four Digit Numeric
 
 Four digit numeric display will display the value of the first four digits in the version store, using a dot separator. E.g. 0.0.0.0 - Only integer values will be displayed. 
@@ -60,3 +65,13 @@ The following file types default to this display method:
 - NetFile
 - StdAssembly
 - StdFile
+
+#### Display Type Three Digit Numeric
+
+Three digit numeric display will display the value of the first three digits in the version store, using a dot separator. E.g. 0.0.0 - Only integer values will be displayed.
+If a non-integer digit value is found, this will be automatically replaced with a '0' along with every subsequent digit, ensuring the version remains in a valid numeric format.
+
+#### Display Type Queued Full
+
+Displays the full version number with any queued values applied.
+E.g. if the version store is "1.0.0.0" and the queued value for the first digit is "2", the displayed version will be "2.0.0.0"
