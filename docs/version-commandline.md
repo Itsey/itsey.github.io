@@ -9,6 +9,8 @@
 Command line options are prefixed with -.  They are postfixed with =.  
 e.g. -Command=CreateVersion 
 
+Commands can also be passed positionally as the first argument.  For example `versonify.exe UpdateFiles ...` is equivalent to `versonify.exe -Command=UpdateFiles ...`.
+
 ```plaintext
 -Command                    Specify the Command that is to be run
 -VersionSource  (-v)       Specify an initialisation string to a supported version source
@@ -18,8 +20,8 @@ e.g. -Command=CreateVersion
 -MinMatch  (-m)            Provide a file or list of minmatches to identify files to update.
 -Root                       The root folder to recursively search for files to update.
 -DryRun                     If specified then no updates are made, but output is written to the logs.
--Output  (-O)               Specifies output options to write the version number somewhere. Supports Env,File,Con,AzDo
--NO                         Specifies that overrides should be ignored
+-Output  (-O)               Specifies output options to write the version number somewhere. Supports Env,File,Con,AzDo,Vsts and optional -nf suffix for Nuke Fusion output
+-NoOverride                 Specifies that overrides should be ignored.  The older `-NO` alias is deprecated.
 -Release  (-R)              Specifies a release name to be used in the version number.  This is primarily used for release versions and is not normally used for build versions.
 
 -Debug                      Enables trace handling for debugging and additional logging.
@@ -28,7 +30,7 @@ e.g. -Command=CreateVersion
 
 Full Example Commandline:
 
-versonify.exe UpdateFiles -Root=c:\src\ -VS=c:\store\pversioner.vstore -Increment -M="**/*.csproj|StdFile,**/*.csproj|StdAssembly,**/*.csproj|StdInformational"
+versonify.exe UpdateFiles -Root=c:\src\ -VersionSource=c:\store\pversioner.vstore -Increment -MinMatch="**/*.csproj|StdFile;**/*.csproj|StdAssembly;**/*.csproj|StdInformational"
 ```
 
 ### Commands
@@ -63,7 +65,7 @@ Passively reads the version number for use in scripts.
 -Command=Passive
 
 Requires:
--VersionSource  (-v)  or -Output (-O)
+-VersionSource  (-v)
 ```
 
 ```dos
@@ -73,6 +75,8 @@ versonify.exe -Command=Passive -VersionSource=C:\temp\aversion.vstore -O=File
 
 Will load the version number into the tool then perform no action.  This is only really used in conjuction with the -O output option to ensure that the version number is made available to a calling or alternative process.
 
+If `-Release` is also specified with the Passive command then Versonify will output the stored release name rather than the full version number.
+
 ##### Output options
 
 Output options are specified to determine where the output should be written.
@@ -80,32 +84,37 @@ Output options are specified to determine where the output should be written.
 ```plaintext
 -O=<outputdestination>
 -O=<outputdestination>:<option>
+-O=<outputdestination>-nf
+-O=<outputdestination>:<option>-nf
 ```
 
 Output Destinations can be one of the following.
 
-* env - Writes to an environment variable PVER-LATEST
-* con - Writes to the console
-* file - Writes to a file. This defaults to pver-latest.txt in the current directory. Option can specify an alternative file name.
+* env - Writes to an environment variable PVER-LATEST.  If `-Release` is specified then PVER-RELEASE is used instead.
+* con - Writes to the console.
+* file - Writes to a file. This defaults to pver-latest.txt in the current directory. If `-Release` is specified then the default file name is pver-release.txt. Option can specify an alternative file name.
 * azdo - Writes an Azure Pipelines formatted string to the console.  Option can specify a variable name.
+* vsts - Alias of `azdo`.
+
+Add the `-nf` suffix to also emit the Plisky.Nuke.Fusion compatibility markers to the console output.  Typical values are `con-nf` and `azdo-nf`.
 
 When the Azure Pipelines output is selected the string written is in the form
 
 ```plaintext
-"##vso[task.setvariable variable=<variablename>;]$<versionnumber>"
+"##vso[task.setvariable variable=<variablename>;isOutput=true]<versionnumber>"
 ```
 
 This will set the variable in variablename to have the value of the version number.  The default variable name is  CodeVersionNumber.  To replace this with your own variable specify the variable name after a colon in the output command.
 
 ```dos
 Command > versonify.exe Passive -VersionSource=C:\temp\aversion.vstore -O=azdo
-Output  > "##vso[task.setvariable variable=CodeVersionNumber;]1.2.3.4"
+Output  > "##vso[task.setvariable variable=CodeVersionNumber;isOutput=true]1.2.3.4"
 
 Command > versonify.exe Passive -VersionSource=C:\temp\aversion.vstore -O=azdo:version
-Output  > "##vso[task.setvariable variable=version;]1.2.3.4"
+Output  > "##vso[task.setvariable variable=version;isOutput=true]1.2.3.4"
 ```
 
-Note that the named pipe outputs are designed for interacting with Plisky.Nuke.Fusion when using the Nuke build engine but can be used for other use cases too.
+When the `-nf` suffix is used Versonify also emits Plisky.Nuke.Fusion compatibility markers such as `PNFV]`, `PNF2]`, `PNF3]`, `PNF4]`, `PNQF]` and `PNFN]`.
 
 #### Override
 
@@ -115,7 +124,8 @@ Overrides the values of version numbers at the point of next increment
 -Command=Override
 
 Requires:
--VersionSource  (-v)  or -QuickValue (-Q)
+-VersionSource  (-v)
+-QuickValue (-Q)
 ```
 
 ```dos
@@ -145,7 +155,7 @@ Updates the values of version numbers. If the increment option is specified then
 -Command=UpdateFiles
 
 Requires:
--VersionSource  (-v)  or -QuickValue (-Q) 
+-VersionSource  (-v)
 -Root
 -MinMatch 
 
@@ -153,16 +163,16 @@ Optional:
 -Increment
 -DryRun
 -MinMatch 
--NO
+-NoOverride
 ```
 
 ```dos
-versonify.exe -Command=Override -VersionSource=C:\temp\aversion.vstore -Root=C:\Build\Code\MyApp
+versonify.exe -Command=UpdateFiles -VersionSource=C:\temp\aversion.vstore -Root=C:\Build\Code\MyApp -MinMatch=AutoVersion.txt
 ```
 
 Will optionally increment the version number specified by the source and then run through the directory specified by root and update any files that are matched by the minmatchers for the specified file types.  There are a default set of minmatches in effect but they can be overriden.
 
-To override a minmatch specify it using the -MM or -MinMatch command.  This is a series of one or more strings separated by ;.  If a single string is passed with no ; and if this refers to a file that exists on disk then this file will be parsed for MinMatches instead.  The file format is as follows.
+To override a minmatch specify it using the -MinMatch command.  The older `-MM` alias is deprecated.  This is a series of one or more strings separated by ;.  If a single string is passed with no ; and if this refers to a file that exists on disk then this file will be parsed for MinMatches instead.  The file format is as follows.
 
 It is generally more convenient to specify the file and store it in your source repository than to configure all of the minmatches on the command line using the ; syntax.
 
@@ -191,7 +201,7 @@ Each file type has a rule to determine how to match versions, see [version match
 Full Example Command Line:
 
 ```dos
-versonify.exe UpdateFiles -Root=c:\src\ -v=c:\store\pversioner.vstore -Increment -m="**/*.csproj|StdFile,**/*.csproj|StdAssembly,**/*.csproj|StdInformational"
+versonify.exe UpdateFiles -Root=c:\src\ -v=c:\store\pversioner.vstore -Increment -m="**/*.csproj|StdFile;**/*.csproj|StdAssembly;**/*.csproj|StdInformational"
 ```
 
 This will search the folder c:\src for all .csproj files and attempt to add the .net standard versioning for the three different file types to any csproj files that are
@@ -202,7 +212,7 @@ will not be updated.
 
 Sets the value of a version digit.  This will update the version number in the source specified by the -VersionSource option.
 
-The -Digits option specifies which digit values to set.  This can be a single digit or multiple of digits e.g. -DG="0;2;3" will set the value of digits 0, 2, and 3.  The * will set the value of all digits. The new digit value is specified using the -QuickValue option. This can only be a single digit.
+The -Digits option specifies which digit values to set.  This can be a single digit or multiple of digits e.g. -Digits="0;2;3" will set the value of digits 0, 2, and 3.  The * will set the value of all digits. The new digit value is specified using the -QuickValue option. This can only be a single digit.
 
 ```plaintext
 -Command=Set
@@ -258,7 +268,7 @@ versonify.exe -Command=Behaviour -VersionSource=C:\temp\aversion.vstore -Digits=
 versonify.exe -Command=Behaviour -VersionSource=C:\temp\aversion.vstore -Digits=1 -O=file
 ```
 
-This will display the behaviour of the versioning digits in the version source.  The -Digits option specifies which digits to display.  This can be a single digit or multiple of digits e.g. -DG="0;1;2" will display the behaviours of digits 0, 1, and 2.  The * will display the behaviour of all digits.
+This will display the behaviour of the versioning digits in the version source.  The -Digits option specifies which digits to display.  This can be a single digit or multiple of digits e.g. -Digits="0;1;2" will display the behaviours of digits 0, 1, and 2.  The * will display the behaviour of all digits.
 
 If the -QuickValue option is specified then the behaviour of the digit will be set to the value specified.  This can be either the behaviour number or the string that represents the behaviour. The * will set the behaviour of all digits.
 Both the following examples will set the behaviour of the first digit (position 0) to Fixed (0).  Note all of the digit offsets are zero based so the first digit is -Digits=0.  
@@ -288,7 +298,7 @@ versonify.exe -Command=Prefix -VersionSource=C:\temp\aversion.vstore -Digits=2 -
 
 This example will set the value of the prefix of digit in position [2] to a dash, "-".
 
-Prefix command supports using the wildcard * to set the prefix for all digits (excluding the digit in position [0]).  For example, the following command will set the prefix of all digits except the first to a dash, "-". To set the value of the first digit prefix specify -DG=0.  
+Prefix command supports using the wildcard * to set the prefix for all digits (excluding the digit in position [0]).  For example, the following command will set the prefix of all digits except the first to a dash, "-". To set the value of the first digit prefix specify -Digits=0.  
 
 ```dos
 versonify.exe -Command=Prefix -VersionSource=C:\temp\aversion.vstore -Digits=* -Q="-"
@@ -298,8 +308,8 @@ The prefix provided in the -QuickValue can be anything, but for Semantic Version
 
 #### Using No Override
 
-When setting up multiple branches it is sometimes useful to be able to ignore an override when a specific branch is versioned.  To do this specify -NO.      
-The most common scenario here is when the Pull Request build is used to reset the version ready for release.  When using the pull request builds to version then it is possible that a build on the source branch happens after the PR build but before the release branch has run.  This will cause the source branch to incorrectly version.  To avoid this add the -NO to the source branch versioning element.
+When setting up multiple branches it is sometimes useful to be able to ignore an override when a specific branch is versioned.  To do this specify -NoOverride.  The older `-NO` alias is deprecated.      
+The most common scenario here is when the Pull Request build is used to reset the version ready for release.  When using the pull request builds to version then it is possible that a build on the source branch happens after the PR build but before the release branch has run.  This will cause the source branch to incorrectly version.  To avoid this add the -NoOverride switch to the source branch versioning element.
 
 #### Using -Debug
 

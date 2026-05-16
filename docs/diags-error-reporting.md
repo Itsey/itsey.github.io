@@ -1,3 +1,12 @@
+| Bilge Reference | Quick Links    |
+|-----------------|----------------|
+| [Basic Logging](diags-bilge-basiclogging.md)  | [Tips: AutoTracing Unit Tests](diags-bilge-tips-autoxunit.md) |
+| [Additional Options](diags-bilge-options.md)  | [Actions and Utils](diags-bilge-actionsutils.md)|
+| [Configuration Resolvers](diags-bilge-configurationResolvers.md) | |
+| [Handlers](diags-handlers-index.md)| |
+
+
+
 ### Using Error Reporting
 
 You can optionally use Bilge to capture error numbers and report on them.  This is utilising the fact that the trace library is pervasive in code for other cross cutting concerns and therefore might not gel with the way that you prefer to structure your code.

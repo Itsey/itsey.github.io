@@ -1,4 +1,13 @@
-Using FlimFlam for Timings.
+| Bilge Reference | Quick Links    |
+|-----------------|----------------|
+| [Basic Logging](diags-bilge-basiclogging.md)  | [Tips: AutoTracing Unit Tests](diags-bilge-tips-autoxunit.md) |
+| [Additional Options](diags-bilge-options.md)  | [Actions and Utils](diags-bilge-actionsutils.md)|
+| [Configuration Resolvers](diags-bilge-configurationResolvers.md) | |
+| [Handlers](diags-handlers-index.md)| |
+
+
+
+### Using FlimFlam for Timings.
 
 When the Timing features of [https://github.com/Itsey/Plisky.Diagnostics/wiki/Recording-Timings.](Bilge) timings can be placed into FlimFlam to help you analyse the performance of your application.  This is a rough guide to performance and is not a substitute for proper performance profiling tools but can be used to get a good grip on where bottlenecks are and where to narrow down your focus for further investigation.
 

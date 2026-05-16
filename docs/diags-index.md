@@ -15,6 +15,7 @@ Bilge uses methods to write trace information and handlers to disperse this info
 * [Troubleshooting](diags-guide-troubleshooting.md)
 * [Performance Analysis](diags-guide-performance.md)
 
+
 #### Developer Focused Trace
 
 Bilge and [FlimFlam](diags-flimflam-index.md) are designed to be developer focused trace - providing real time trace information from your application to aid in debugging production problems.  

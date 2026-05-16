@@ -4,7 +4,7 @@
 
 ## Versioning Overview
 
-To get up and running really quickly but without much information there is the [Quick Start](quickstart.md) guide.  The overview provides more detailed information and the reference provides reference information for when you are using the versioning tool.
+To get up and running really quickly but without much information there is the [Quick Start](version-quickstart.md) guide.  The overview provides more detailed information and the reference provides reference information for when you are using the versioning tool.
 
 Versonify consists of  two parts.  The command line tool and a version store.  The version store is a persisted store of the versioning information that is manipulated via Versonify.  The  version store  is referenced by a single "token" which is either a path to a file on disk or a string with tokens in it to refer to another store ( for example a Nexus repository).
 
@@ -34,8 +34,8 @@ Assumes that Versonify is in [YOURPATH] and that you are using a file for the ma
       targetType: 'inline'
       script: |
             # Versioning Powershell.
-            [YOURPATH]Versonify.exe UpdateFiles -Root=$(build.sourcesDirectory)\src\ -NO -v=[YOURPATH]\[YOURFILENAME].vstore -Increment -m=$(build.sourcesDirectory)\[YOURPATH]\AutoVersion.txt
-            [YOURPATH]Versonify.exe Passive -VS=[YOURPATH]\[YOURFILENAME].vstore -O=file
+            [YOURPATH]Versonify.exe UpdateFiles -Root=$(build.sourcesDirectory)\src\ -NoOverride -v=[YOURPATH]\[YOURFILENAME].vstore -Increment -m=$(build.sourcesDirectory)\[YOURPATH]\AutoVersion.txt
+            [YOURPATH]Versonify.exe Passive -v=[YOURPATH]\[YOURFILENAME].vstore -O=file
             $storedVersion = Get-Content pver-latest.txt
 
             Write-Host "Build Version Is: $storedVersion"
@@ -44,7 +44,7 @@ Assumes that Versonify is in [YOURPATH] and that you are using a file for the ma
 
 #### PR Build Queued Increment.
 
-The PR build can be used to queue the next version number that will be used on the release build.  This is done with the override command.  If using PR builds to queue up versions then ensure that the -NO switch is passed to the CI versioning element.  
+The PR build can be used to queue the next version number that will be used on the release build.  This is done with the override command.  If using PR builds to queue up versions then ensure that the -NoOverride switch is passed to the CI versioning element.  
 
 ```yaml
 - task: PowerShell@2
@@ -54,7 +54,7 @@ The PR build can be used to queue the next version number that will be used on t
       targetType: 'inline'
       script: |
             # Versioning Powershell - Queue Next Increment.
-            [YOURPATH]Versonify.exe Override -VS=[YOURPATH]\[YOURFILENAME].vstore -Q=..+.0
+            [YOURPATH]Versonify.exe Override -v=[YOURPATH]\[YOURFILENAME].vstore -Q=..+.0
 ```
 
 Note - you may need to be careful here of version numbers.  If your CI build increments the build digit and your PR increments the minor digit you would be ok, but if they both operate on the same digit then once an override is queued you need to take care that your CI build doesn't overtake your release build.

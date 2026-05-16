@@ -1,3 +1,11 @@
+| Bilge Reference | Quick Links    |
+|-----------------|----------------|
+| [Basic Logging](diags-bilge-basiclogging.md)  | [Tips: AutoTracing Unit Tests](diags-bilge-tips-autoxunit.md) |
+| [Additional Options](diags-bilge-options.md)  | [Actions and Utils](diags-bilge-actionsutils.md)|
+| [Configuration Resolvers](diags-bilge-configurationResolvers.md) | |
+| [Handlers](diags-handlers-index.md)| |
+
+
 ### Tracing Program Flow
 
 Tracing program flow is one of the most common activities when trying to diagnose faults in your code, mostly this is what tracing is used for to try and follow the flow of execution that a user takes through your source code to work out where the issue lies.

@@ -1,3 +1,11 @@
+| Bilge Reference | Quick Links    |
+|-----------------|----------------|
+| [Basic Logging](diags-bilge-basiclogging.md)  | [Tips: AutoTracing Unit Tests](diags-bilge-tips-autoxunit.md) |
+| [Additional Options](diags-bilge-options.md)  | [Actions and Utils](diags-bilge-actionsutils.md)|
+| [Configuration Resolvers](diags-bilge-configurationResolvers.md) | |
+| [Handlers](diags-handlers-index.md)| |
+
+
 ### Dynamic Trace Configuration
 
 Dynamic trace configuration is used when you want to configure trace while the application is running.  Quite often trace is enabled prior to the code running and lives at a set level for the life of the code.  However this is sometimes restrictve and its sometimes desirable to configure trace on the fly.

@@ -1,3 +1,11 @@
+| Bilge Reference | Quick Links    |
+|-----------------|----------------|
+| [Basic Logging](diags-bilge-basiclogging.md)  | [Tips: AutoTracing Unit Tests](diags-bilge-tips-autoxunit.md) |
+| [Additional Options](diags-bilge-options.md)  | [Actions and Utils](diags-bilge-actionsutils.md)|
+| [Configuration Resolvers](diags-bilge-configurationResolvers.md) | |
+| [Handlers](diags-handlers-index.md)| |
+
+
 Plisky.Diagnostics.Listeners ships with several default handlers which deal with the output of the trace messages, but you can also add your own custom listeners if you so wish.
 
 Each listener uses a Formatter to determine the format of the output, the most common formatters are

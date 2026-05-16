@@ -156,7 +156,7 @@ Setting digit(s) [3] to value: prerelease
 Saving Updated Digit Values
 [1.0.0.prerelease.1.5]
 
- > versonify  '-Command=Prefix' '-VS=%NEXUSCONFIG%[R::plisky[L::https://mynexus.com/repository/plisky/vstore/new.vstore' '-Q="-"' '-Digits=3'
+ > versonify  '-Command=Prefix' '-v=%NEXUSCONFIG%[R::plisky[L::https://mynexus.com/repository/plisky/vstore/new.vstore' '-Q="-"' '-Digits=3'
 ?�� Versioning By Versonify ?�� (1.0.0.0).
 Performing Versioning Actions
 Setting prefix for digit(s) [3] to : -
@@ -171,13 +171,13 @@ These commands update the fourth digit (Note 0 offset so this is the digit in po
 Two of the digits should automatically increment to ensure that we do not get a duplicate version number.  The final digit in the pre-release version number and the third digit in the release version number.  We can update this using the command line.
 
 ```cmd
-> versonify '-Command=Behaviour' '-VS=%NEXUSCONFIG%[R::plisky[L::https://mynexus.com/repository/plisky/vstore/molly.vstore' '-dg=2' '-Q=AutoIncrementWithResetAny'
+> versonify '-Command=Behaviour' '-v=%NEXUSCONFIG%[R::plisky[L::https://mynexus.com/repository/plisky/vstore/molly.vstore' '-Digits=2' '-Q=AutoIncrementWithResetAny'
 ?�� Versioning By Versonify ?�� (1.0.0.0).
 Performing Versioning Actions
 Setting Behaviour for Digit[2] to AutoIncrementWithResetAny(5)
 Saving Updated Behaviour
 
- > versonify '-Command=Behaviour' '-VS=%NEXUSCONFIG%[R::plisky[L::https://mynexus.com/repository/plisky/vstore/molly-pre.vstore' '-dg=5' '-Q=AutoIncrementWithResetAny'
+ > versonify '-Command=Behaviour' '-v=%NEXUSCONFIG%[R::plisky[L::https://mynexus.com/repository/plisky/vstore/molly-pre.vstore' '-Digits=5' '-Q=AutoIncrementWithResetAny'
 ?�� Versioning By Versonify ?�� (1.0.0.0).
 Performing Versioning Actions
 Setting Behaviour for Digit[5] to AutoIncrementWithResetAny(5)

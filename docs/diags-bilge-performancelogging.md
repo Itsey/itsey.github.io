@@ -1,12 +1,13 @@
-## Performance Logging
-
-
 | Bilge Reference | Quick Links    |
 |-----------------|----------------|
 | [Basic Logging](diags-bilge-basiclogging.md)  | [Tips: AutoTracing Unit Tests](diags-bilge-tips-autoxunit.md) |
-| [Additional Options](diags-bilge-options.md)  | |
+| [Additional Options](diags-bilge-options.md)  | [Actions and Utils](diags-bilge-actionsutils.md)|
 | [Configuration Resolvers](diags-bilge-configurationResolvers.md) | |
-| [Handlers](bilge-handlers-index.md)| |
+| [Handlers](diags-handlers-index.md)| |
+
+
+## Performance Logging
+
 
 ### 1 - Run it without the debugger.
 
