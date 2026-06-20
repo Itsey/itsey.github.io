@@ -39,14 +39,15 @@ Plisky Plumbing is a cross cutting library designed to simplify some aspects of 
 
 ### Plisky.Nuke.Fusion
 
-Nuke build system support for Mollycoddle, Versonify and Glitter.  See each of the tools for their relevant documentation.
+Nuke build system support for Mollycoddle, Versonify and Glitter.  See each of the tools for their relevant documentation and the [overall documentation pages here](pnf-index.md).
 
 ##### Help Info
 
+v0.0.1.7 18/05/2026 - Added PNF index page in. Bilge Action help started.
 v0.0.1.6 09/02/2025 - Updating Mollycoddle help for version bump.    
-v0.0.1.5 23/03/2024 - Rename versioning to versonify, added Nuke support.     
+v0.0.1.5 23/03/2024 - Rename versioning to Versonify, added Nuke support.     
 v0.0.1.4 22/10/2023 - Additions to diagnostics to support new release.    
-v0.0.1.3 15/10/2023 - Quickstart for Mollycoddle added, Rules description tidyup.    
+v0.0.1.3 15/10/2023 - Quickstart for Mollycoddle added, Rules description tidy up.    
 v0.0.1.2 25/09/2023 - Plisky.Diagnostics updates.   
 v0.0.1.1 26/10/2022 - Molly Updates Release    
 v0.0.1.0 28/07/2022 - I Hate Jekyll Release.
