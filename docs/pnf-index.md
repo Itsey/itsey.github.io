@@ -6,6 +6,8 @@ Plisky Nuke Fusion library to add wrappers around Plisky tools for use within nu
 
 [Versonify Nuke Wrapper](version-usingnuke.md)
 
+[Mollycoddle Nuke Wrapper](molly-nuke.md)
+
 
 
 ## PnF Release Notes.

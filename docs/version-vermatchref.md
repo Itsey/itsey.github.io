@@ -27,13 +27,16 @@ e.g. in autoversion.txt
 **/product.wxs|TextFile
 ```
 
-#### Display Type Short
+Default display types (0) are set for each file type, but you can override the display type by specifying it in the vstore file.  
+
+
+#### Display Type Short (1)
 
 Two digit display.  E.g. 0.0 - The following file types default to this display method:
 
 - TextFile
 
-#### Display Type Full
+#### Display Type Full (2)
 
 Full digit display. E.g. 0.0.0.0 - The following file types default to this display method:
 
@@ -42,7 +45,11 @@ Full digit display. E.g. 0.0.0.0 - The following file types default to this disp
 - Nuspec
 - StdInformational
 
-#### Display Type Three Digit
+#### No Display (3)
+
+Skips display of the version number; version number will not be written to the file.
+
+#### Display Type Three Digit (4)
 
 Three digit display. E.g. 0.0.0 - The following file types default to this display method:
 
@@ -51,11 +58,11 @@ Three digit display. E.g. 0.0.0 - The following file types default to this displ
 - Nuspec
 - Nuget Package File format.
 
-#### Display Type Four Digit
+#### Display Type Release Name (5)
 
-Four digit display. E.g. 0.0.0.0
+Release Name display.  E.g. Unicorn 
 
-#### Display Type Four Digit Numeric
+#### Display Type Four Digit Numeric (6)
 
 Four digit numeric display will display the value of the first four digits in the version store, using a dot separator. E.g. 0.0.0.0 - Only integer values will be displayed. 
 If a non-integer digit value is found, this will be automatically replaced with a '0' along with every subsequent digit, ensuring the version remains in a valid numeric format. 
@@ -66,12 +73,16 @@ The following file types default to this display method:
 - StdAssembly
 - StdFile
 
-#### Display Type Three Digit Numeric
+#### Display Type Three Digit Numeric (7)
 
 Three digit numeric display will display the value of the first three digits in the version store, using a dot separator. E.g. 0.0.0 - Only integer values will be displayed.
 If a non-integer digit value is found, this will be automatically replaced with a '0' along with every subsequent digit, ensuring the version remains in a valid numeric format.
 
-#### Display Type Queued Full
+#### Display Type Queued Full (8)
 
 Displays the full version number with any queued values applied.
 E.g. if the version store is "1.0.0.0" and the queued value for the first digit is "2", the displayed version will be "2.0.0.0"
+
+#### Display Type Four Digit (9)
+
+Four digit display. E.g. 0.0.0.0
