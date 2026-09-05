@@ -9,7 +9,7 @@
 **Create** the storage file which contains the versioning number that you are going to use.  The new file will default to 0.0.0.0 and a fixed behaviour scheme.  This is best done using the command line and placed on a file share.
 
 ```dos
-versonify.exe -Command=CreateVersion -VersionSource=C:\temp\myappname.vstore -output=con-nf
+versonify --command=createversion --version-source=C:\temp\myappname.vstore --output=con-nf
 ```
 
 Set the [behaviour](version-reference.md#behaviours) digit in the version store to define the incremental pattern you want.
@@ -36,7 +36,7 @@ Create a file like one below and save it as autoversion.txt in your repository.T
 **Increment** the version number and apply the changes to your source files.  
 
 In Nuke, this process typically involves defining a target or adding stages to an existing one.   The PassiveCommand retrieves the version number and the FileUpdateCommand sets the version number in the source files.
-The SetVersionPersistanceValue takes in the path to the version store file (corresponds with -vs in the Versonify tool).
+The SetVersionPersistanceValue takes in the path to the version store file (corresponds with `--version-source` or `-v` in the Versonify tool).
 
 This code depends on a Solution property that is attributed as a solution for Nuke.
 

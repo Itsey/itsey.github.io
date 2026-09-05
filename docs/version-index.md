@@ -23,8 +23,8 @@ Versonify is a command line tool to enable versioning of your code using behavio
 Quick Examples to demonstrate typical scenarios. This section is just a reminder for details check other links.
 
 ```dos
-versonify.exe -Command=CreateVersion -VersionSource=C:\temp\aversion.vstore
-versonify.exe -Command=Passive -VersionSource=C:\temp\aversion.vstore -O=File
+versonify --command=createversion --version-source=C:\temp\aversion.vstore
+versonify --command=passive --version-source=C:\temp\aversion.vstore --output=file
 ```
 
 

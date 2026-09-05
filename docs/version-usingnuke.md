@@ -123,8 +123,8 @@ Done installing Plisky.Versonify/1.0.1 to X:\Code\ghub\mollycoddle\src\mollycodd
 First we need to create the version files, this can be done with the command line.  This walkthrough will use a nexus url that has partially been configured using an environment variable.
 
 ```cmd
-versonify  '-Command=CreateVersion' '-v=%NEXUSCONFIG%[R::plisky[L::https://mynexus.com/repository/plisky/vstore/new-pre.vstore' '-Q=1.0.0.0.0.0' '-Release=Demon'
-versonify  '-Command=CreateVersion' '-v=%NEXUSCONFIG%[R::plisky[L::https://mynexus.com/repository/plisky/vstore/new.vstore' '-Q=1.0.0.0'
+versonify --command=createversion --version-source="%NEXUSCONFIG%[R::plisky[L::https://mynexus.com/repository/plisky/vstore/new-pre.vstore" --quick-value=1.0.0.0.0.0 --release=Demon
+versonify --command=createversion --version-source="%NEXUSCONFIG%[R::plisky[L::https://mynexus.com/repository/plisky/vstore/new.vstore" --quick-value=1.0.0.0
 ```
 
 The command creates a new versioning file using 6 digits for the pre-release version.  This will allow three for our SemVer 2 compatible Major.Minor.Build and then a digit for our pre-release marker, followed by two digits for pre-release increments.
@@ -136,7 +136,7 @@ Then we also create a release version file.  This way the two types of release c
 The output from creating the file looks like this:
 
 ```txt
- > versonify  '-Command=CreateVersion' '-v=%NEXUSCONFIG%[R::plisky[L::mynexus.com/repository/plisky/vstore/molly-pre.vstore' '-Q=1.0.0.0.1.5'
+ > versonify --command=createversion --version-source="%NEXUSCONFIG%[R::plisky[L::mynexus.com/repository/plisky/vstore/molly-pre.vstore" --quick-value=1.0.0.0.1.5
 ?�� Versioning By Versonify ?�� (1.0.0.0).
 Performing Versioning Actions
 Using Value From Command Line: 1.0.0.0.1.5
@@ -149,14 +149,14 @@ Saving 1.0.0.0.1.5
 Next we will update the version numbers to your chosen naming and increment approach. 
 
 ```cmd
- > versonify  '-Command=Set' '-v=%NEXUSCONFIG%[R::plisky[L::https://mynexus.com/repository/plisky/vstore/new-pre.vstore' '-Q=prerelease' '-Digits=3'
+ > versonify --command=set --version-source="%NEXUSCONFIG%[R::plisky[L::https://mynexus.com/repository/plisky/vstore/new-pre.vstore" --quick-value=prerelease --digits=3
 ?�� Versioning By Versonify ?�� (1.0.0.0).
 Performing Versioning Actions
 Setting digit(s) [3] to value: prerelease
 Saving Updated Digit Values
 [1.0.0.prerelease.1.5]
 
- > versonify  '-Command=Prefix' '-v=%NEXUSCONFIG%[R::plisky[L::https://mynexus.com/repository/plisky/vstore/new.vstore' '-Q="-"' '-Digits=3'
+ > versonify --command=prefix --version-source="%NEXUSCONFIG%[R::plisky[L::https://mynexus.com/repository/plisky/vstore/new.vstore" --quick-value="-" --digits=3
 ?�� Versioning By Versonify ?�� (1.0.0.0).
 Performing Versioning Actions
 Setting prefix for digit(s) [3] to : -
@@ -171,13 +171,13 @@ These commands update the fourth digit (Note 0 offset so this is the digit in po
 Two of the digits should automatically increment to ensure that we do not get a duplicate version number.  The final digit in the pre-release version number and the third digit in the release version number.  We can update this using the command line.
 
 ```cmd
-> versonify '-Command=Behaviour' '-v=%NEXUSCONFIG%[R::plisky[L::https://mynexus.com/repository/plisky/vstore/molly.vstore' '-Digits=2' '-Q=AutoIncrementWithResetAny'
+> versonify --command=behaviour --version-source="%NEXUSCONFIG%[R::plisky[L::https://mynexus.com/repository/plisky/vstore/molly.vstore" --digits=2 --quick-value=AutoIncrementWithResetAny
 ?�� Versioning By Versonify ?�� (1.0.0.0).
 Performing Versioning Actions
 Setting Behaviour for Digit[2] to AutoIncrementWithResetAny(5)
 Saving Updated Behaviour
 
- > versonify '-Command=Behaviour' '-v=%NEXUSCONFIG%[R::plisky[L::https://mynexus.com/repository/plisky/vstore/molly-pre.vstore' '-Digits=5' '-Q=AutoIncrementWithResetAny'
+ > versonify --command=behaviour --version-source="%NEXUSCONFIG%[R::plisky[L::https://mynexus.com/repository/plisky/vstore/molly-pre.vstore" --digits=5 --quick-value=AutoIncrementWithResetAny
 ?�� Versioning By Versonify ?�� (1.0.0.0).
 Performing Versioning Actions
 Setting Behaviour for Digit[5] to AutoIncrementWithResetAny(5)

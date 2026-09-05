@@ -9,7 +9,7 @@
 **Create** the storage file which contains the versioning number that you are going to use.  The new file will default to 0.0.0.0 and a fixed behaviour scheme.
 
 ```dos
-versonify.exe -Command=CreateVersion -VersionSource=C:\temp\myappname.vstore
+versonify --command=createversion --version-source=C:\temp\myappname.vstore
 ```
 
 ### Step 2
@@ -34,7 +34,7 @@ Create a file like one below and save it as autoversion.txt in your repository.T
 **Increment** the version number and apply the changes to your source files with the UpdateFiles command.  
 
 ```dos
-versonify.exe UpdateFiles -Root=.\LibSrc\ -v=\\server\versionFname.vstore -Increment -m=AutoVersion.txt
+versonify --command=updatefiles --root=.\LibSrc\ --version-source=\\server\versionFname.vstore --increment --min-match=AutoVersion.txt
 ```
 
 ### Step 4
