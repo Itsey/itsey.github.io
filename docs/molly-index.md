@@ -1,4 +1,4 @@
-[Home](index.md) | [Mollycoddle](molly-index.md) | [Command Line](molly-commandline.md) | [QuickStart](molly-quickstart.md) | [CreateRules](molly-createRules.md) |  [Nuke](molly-nuke.md)
+[Home](index.md) | [Mollycoddle](molly-index.md) | [Command Line](molly-commandline.md) | [QuickStart](molly-quickstart.md) | [CreateRules](molly-createRules.md) |  [Fallout](molly-nuke.md)
 
 # Mollycoddle
 
@@ -50,9 +50,9 @@ Violation M-0004 (c:\files\code\git\mollycoddle\.gitignore does not match primar
 Total Violations 1
 ```
 
-### Using Mollycoddle in Nuke.
+### Using Mollycoddle with Fallout.
 
-Nuke is a build tool for .net - to use Mollycoddle in nuke see [this guide.](molly-nuke.md)
+Fallout is a build tool for .NET. PFF provides the compatibility layer for Mollycoddle in Fallout-based builds. See [this guide](molly-nuke.md) for the Fallout integration pattern.
 
 ### MollyCoddle Rules
 

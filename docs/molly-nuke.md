@@ -1,14 +1,22 @@
-[Home](index.md) | [Mollycoddle](molly-index.md) | [Command Line](molly-commandline.md) | [QuickStart](molly-quickstart.md) | [CreateRules](molly-createRules.md) |  [Nuke](molly-nuke.md)
+[Home](index.md) | [Mollycoddle](molly-index.md) | [Command Line](molly-commandline.md) | [QuickStart](molly-quickstart.md) | [CreateRules](molly-createRules.md) |  [Fallout](molly-nuke.md)
 
-# Mollycoddle Nuke Build
+# Mollycoddle Fallout Build
 
-## Plisky.Nuke.Fusion package
+## Plisky.Fallout.Fusion package
 
-To use Mollycoddle in a nuke build include the Plisky.Nuke.Fusion package, this will provde access to the tasks below for Mollycoddle.
+To use Mollycoddle in a Fallout build include the `Plisky.Fallout.Fusion` package. This is the maintained successor to the legacy `Plisky.Nuke.Fusion` package and provides access to the tasks below for Mollycoddle.
+> You should also add a package reference to Mollycoddle itself, this will ensure that the tool is available to the build engine.  If you do not do this Fallout will throw an exception indicating that the package can not be found.
+```xml
+  <ItemGroup>
+    <PackageReference Include="Fallout.Common" Version="10.4.0" />
+    <PackageReference Include="Plisky.Fallout.Fusion" Version="1.0.0" />
+  </ItemGroup>
 
-> You should also add a package reference to Mollycoddle itself, this will ensure that the tool is available to the build engine.  If you do not do this Nuke will throw an exception indicating that the package can not be found.
+  <ItemGroup>
+    <PackageDownload Include="Plisky.Mollycoddle" Version="[1.0.3]" />
+  </ItemGroup>
+```
 
-![Molly References](assets/images/nuke-molly-references.png)
 
 A typical molly scan task looks like this
 
@@ -28,8 +36,8 @@ A typical molly scan task looks like this
 
 You will usually target the GitRepository directory for the root of the scan.  The tasks include a version name of "default" by default therefore xxversionnamexx will be replaced by default.
 
-If there are no violations the log will show in the nuke log as follows:
+If there are no violations the log will show in the fallout log as follows:
 
-![Molly Passing](assets/images/nuke-molly-pass.png)
+![Molly Passing](assets/images/fallout-molly-pass.png)
 
 All of the molly command line options are supported.

@@ -1,6 +1,6 @@
 ## Versioning Pages Navigation.
 
-[Home](version-index.md) |[Command Line](version-commandline.md) | [Overview](version-overview.md) | [Reference](version-reference.md) |  [Nuke](version-nuke-quickstart.md)
+[Home](version-index.md) |[Command Line](version-commandline.md) | [Overview](version-overview.md) | [Reference](version-reference.md) |  [Fallout](version-nuke-quickstart.md)
 
 ## Versonify Command Line reference
 
@@ -96,7 +96,9 @@ Output Destinations can be one of the following.
 * azdo - Writes an Azure Pipelines formatted string to the console.  Option can specify a variable name.
 * vsts - Alias of `azdo`.
 
-Add the `-nf` suffix to also emit the Plisky.Nuke.Fusion compatibility markers to the console output.  Typical values are `con-nf` and `azdo-nf`.
+Add the `-nf` suffix to also emit the legacy Plisky.Nuke.Fusion compatibility markers to the console output for older scripts. Typical values are `con-nf` and `azdo-nf`.
+
+The current package name is `Plisky.Fallout.Fusion`; the `-nf` output remains for compatibility with existing Nuke-based integrations.
 
 When the Azure Pipelines output is selected the string written is in the form
 
@@ -114,7 +116,7 @@ Command > versonify.exe Passive -VersionSource=C:\temp\aversion.vstore -O=azdo:v
 Output  > "##vso[task.setvariable variable=version;isOutput=true]1.2.3.4"
 ```
 
-When the `-nf` suffix is used Versonify also emits Plisky.Nuke.Fusion compatibility markers such as `PNFV]`, `PNF2]`, `PNF3]`, `PNF4]`, `PNQF]` and `PNFN]`.
+When the `-nf` suffix is used Versonify also emits legacy Plisky.Nuke.Fusion compatibility markers such as `PNFV]`, `PNF2]`, `PNF3]`, `PNF4]`, `PNQF]` and `PNFN]` for older Nuke integrations.
 
 #### Override
 

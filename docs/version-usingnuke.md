@@ -1,16 +1,16 @@
 ## Versioning Pages Navigation.
 
-[Home](version-index.md) |[Command Line](version-commandline.md) | [Overview](version-overview.md) | [Reference](version-reference.md) |  [Nuke](version-nuke-quickstart.md)
+[Home](version-index.md) |[Command Line](version-commandline.md) | [Overview](version-overview.md) | [Reference](version-reference.md) |  [Fallout](version-nuke-quickstart.md)
 
-## Versonify Nuke Reference
+## Versonify Fallout Reference
 
-Nuke is a build system, if you are using nuke this page should help you integrate.  If you are not then this will not be of any relevance to you.
+Fallout is the supported build system for this integration. If you are using Fallout, this page will help you wire Versonify into your build. The compatibility layer is provided by `Plisky.Fallout.Fusion` (PFF), which replaces the legacy `Plisky.Nuke.Fusion` package.
 
-#### Plisky.Nuke.Fusion
+#### Plisky.Fallout.Fusion
 
-The support for Plisky tools in Nuke is through the Plisky.Nuke.Fusion package as well as the individual packages that are required for each tool.  First install the fusion package.
+The support for Plisky tools in Fallout is through the `Plisky.Fallout.Fusion` package. Install the fallout-based fusion package first, then add any tool-specific packages you need.
 
-It is possible to use the command line directly but the Nuke.Fusion package is designed to simplify the integration.
+It is possible to use the command line directly, but the PFF package is designed to simplify the integration.
 
 ### Specifying a separate version target.
 
@@ -49,12 +49,12 @@ Depending on your version store you will need to specify an initialization strin
         });
 ```
 
-### Using Nuke To Control Quick Versions
+### Using Fallout To Control Quick Versions
 
 By creating a target that is not part of the pipeline but can be called manually you can update the version number quite quickly.   This allows you to change major verison numbers for releases on the next time the release runs.
 
 ```csharp
-// Add Parameter to Nuke
+// Add Parameter to Fallout
 [Parameter("Specifies a quick version command for the versioning quick step")]
 
 readonly string QuickVersion = "";
@@ -79,18 +79,18 @@ public Target VersionQuickStep => _ => _
     });
 
     // Now run command
-    // nuke VersionQuickStep --QuickVersion "1.2.3"
+    // fallout VersionQuickStep --QuickVersion "1.2.3"
 ```
 
-### Detailed Walkthrough of adding Pre-Release and Release Versioning Using Nuke.
+### Detailed Walkthrough of adding Pre-Release and Release Versioning Using Fallout.
 
-This will run through a detailed set of steps to add Semver 2.0 compatible pre-release and release versioning to a nuke build used as part of a Nuget package.  This is just an example walk through with one way of doing it.
+This will run through a detailed set of steps to add Semver 2.0 compatible pre-release and release versioning to a fallout build used as part of a Nuget package.  This is just an example walk through with one way of doing it.
 
 The approach here is that pre release versions are 1.0.1-Beta.1, 1.0.1-Beta.2 etc.  Then a release version comes along and releases with 1.0.1 at which point the pre-release moves to 1.0.2-Beta.1.  Currently two version store files need to be maintained such that the pre-release version and release version can be tracked independantly.
 
 #### 0. Prepare your repository / local machine.
 
-You will need to have created a nuke build definition.
+You will need to have created a fallout build definition.
 You will also need to reference the local versioning tools.
 
 If you do not already have a tool manifest then create one:
@@ -108,14 +108,14 @@ You can invoke the tool from this directory using the following commands: 'dotne
 Tool 'plisky.versonify' (version '1.0.1') was successfully installed. Entry is added to the manifest file X:\Code\ghub\mollycoddle\src\.config\dotnet-tools.json.
 ```
 
-Add the Versonify tool to nuke so that it can find it as a package download.
+Add the Versonify tool to fallout so that it can find it as a package download.
 
 ```cmd
- > nuke :add-package Plisky.Versonify --version 1.0.1
-NUKE Global Tool ?�� version 9.0.3 (Windows,.NETCoreApp,Version=v8.0)
-Installing Plisky.Versonify/1.0.1 to X:\Code\ghub\mollycoddle\src\mollycoddle.build\mollycoddle.build.csproj ...
+ > fallout :add-package Plisky.Versonify --version 1.0.3
+Fallout Global Tool 🌐 version 10.4.0.15 (Windows,.NETCoreApp,Version=v10.0)
+Installing Plisky.Versonify/1.0.3 to X:\Code\ghub\mollycoddle\src\mollycoddle.build\mollycoddle.build.csproj ...
 [INF] > "C:\Program Files\dotnet\dotnet.exe" restore X:\Code\ghub\mollycoddle\src\mollycoddle.build\mollycoddle.build.csproj
-Done installing Plisky.Versonify/1.0.1 to X:\Code\ghub\mollycoddle\src\mollycoddle.build\mollycoddle.build.csproj
+Done installing Plisky.Versonify/1.0.3 to X:\Code\ghub\mollycoddle\src\mollycoddle.build\mollycoddle.build.csproj
 ```
 
 #### 1. Create The Version Files.
@@ -186,16 +186,16 @@ Saving Updated Behaviour
 
 The two updates set the digits to AutoIncrementWithResetAny.  Note that the behaviour command is 0 offset for the digit position so this updates the third digit for the release version and the final digit for the pre-release version.
 
-#### 4. Add the nuke script to version correctly.
+#### 4. Add the fallout script to version correctly.
 
-Add the references to your two version stores.  One for the pre-release version and one for the release version. These two strings can be stored in any way that makes sense for your nuke build along with your other settings.
+Add the references to your two version stores.  One for the pre-release version and one for the release version. These two strings can be stored in any way that makes sense for your fallout build along with your other settings.
 
 ```cs
     VersioningPersistanceTokenPre = @"%NEXUSCONFIG%[R::plisky[L::mynexus.com/repository/plisky/vstore/molly-pre.vstore",
     VersioningPersistanceTokenRelease = @"%NEXUSCONFIG%[R::plisky[L::https://mynexus.com/repository/plisky/vstore/molly.vstore",
 ```
 
-It is also useful to have two parameters so that you can configure the versioning behaviour without editing the build script directly.  If you create a QuickVersion parameter then it will let you change the value of versioning files using Nuke targets and if you use a specific Prerelease parameter you can easily switch between release and pre-release versioning during the build.
+It is also useful to have two parameters so that you can configure the versioning behaviour without editing the build script directly.  If you create a QuickVersion parameter then it will let you change the value of versioning files using Fallout targets and if you use a specific Prerelease parameter you can easily switch between release and pre-release versioning during the build.
 
 ```cs
 [Parameter("Specifies a quick version command for the versioning quick step", Name = "QuickVersion")]
@@ -322,6 +322,6 @@ Note that this code sets DryRunMode to true for local builds so the version numb
 You can specify whether a pre-release version should be used or not using the parameter you created.  Remember that by default your local builds will be in dry run mode so the versioning will not increment in the store.
 
 ```cmd
-nuke applyVersion --preRelease true 
-nuke applyVersion --preRelease false
+fallout applyVersion --preRelease true 
+fallout applyVersion --preRelease false
 ```

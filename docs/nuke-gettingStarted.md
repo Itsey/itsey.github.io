@@ -1,7 +1,7 @@
-## Nuke notes.
+## Fallout notes.
 
 
-Run nuke :Setup from the directory where the sln is using --root
+Run `fallout :Setup` from the directory where the sln is using --root
 
 
 ```

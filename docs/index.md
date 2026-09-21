@@ -28,6 +28,7 @@ Git analysis and inspection tool to gain insights from your git history.  [see m
 [Plisky.Diagnostics](diags-index.md)    
 [Plisky.Plumbing](plumb-index.md)    
 [Plisky.Testing](test-index.md)    
+[Plisky.Fallout.Fusion](pff-index.md)
 
 ### Plisky Diagnostics Nuget Package
 
@@ -37,9 +38,9 @@ Plisky Diagnostics is a trace package and accompanying log file viewer.  Designe
 
 Plisky Plumbing is a cross cutting library designed to simplify some aspects of development, from parsing command lines to applying application configuration and using feature switches.  [See More](plumb-index.md)      
 
-### Plisky.Nuke.Fusion
+### Plisky.Fallout.Fusion
 
-Nuke build system support for Mollycoddle, Versonify and Glitter.  See each of the tools for their relevant documentation and the [overall documentation pages here](pnf-index.md).
+Fallout build system support for Mollycoddle and Versonify. The package was migrated from the legacy Plisky.Nuke.Fusion package when the upstream Nuke project stopped being maintained; new projects should reference Plisky.Fallout.Fusion. See each of the tools for their relevant documentation and the [overall documentation pages here](pff-index.md).
 
 ##### Help Info
 

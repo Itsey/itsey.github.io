@@ -1,8 +1,8 @@
-## Versioning Quick Start for Nuke
+## Versioning Quick Start for Fallout
 
 ## Versioning Pages Navigation.
 
-[Home](version-index.md) |[Command Line](version-commandline.md) | [Overview](version-overview.md) | [Reference](version-reference.md) |  [Nuke](version-nuke-quickstart.md)
+[Home](version-index.md) |[Command Line](version-commandline.md) | [Overview](version-overview.md) | [Reference](version-reference.md) |  [Fallout](version-nuke-quickstart.md)
 
 ### Step 1
 
@@ -35,10 +35,10 @@ Create a file like one below and save it as autoversion.txt in your repository.T
 
 **Increment** the version number and apply the changes to your source files.  
 
-In Nuke, this process typically involves defining a target or adding stages to an existing one.   The PassiveCommand retrieves the version number and the FileUpdateCommand sets the version number in the source files.
+In Fallout, this process typically involves defining a target or adding stages to an existing one.   The PassiveCommand retrieves the version number and the FileUpdateCommand sets the version number in the source files.
 The SetVersionPersistanceValue takes in the path to the version store file (corresponds with -vs in the Versonify tool).
 
-This code depends on a Solution property that is attributed as a solution for Nuke.
+This code depends on a Solution property that is attributed as a solution for Fallout.
 
 ```csharp
     [Solution]
@@ -72,6 +72,6 @@ Target VersionSource => _ => _
 
 ### Thats it
 
-With Nuke you can now run the build locally which will allow you to test the configuration.  Obviously doing this for testing you should remove the IsLocalBuild check and potentially add the DryRun check.  DryRun allows you to see what would happen without actually making the changes.
+With Fallout you can now run the build locally which will allow you to test the configuration.  Obviously doing this for testing you should remove the IsLocalBuild check and potentially add the DryRun check.  DryRun allows you to see what would happen without actually making the changes.
 
-[See more info about using Nuke and Versonify.](version-usingnuke.md)
+[See more info about using Fallout and Versonify.](version-usingnuke.md)
