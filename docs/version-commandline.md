@@ -16,13 +16,13 @@ Commands can be passed explicitly with the `--command=<command>` option. For exa
 --version-source (-v)       Specify an initialisation string to a supported version source.
 --increment (-i)            Increment the version number during the command operation.
 --digits (-d)               Provide the index or semicolon-separated indexes of digits to be displayed or amended.
---quick-value (-Q)          Provide a value for the versioning command.
+--quick-value (-q)          Provide a value for the versioning command.
 --min-match (-m)            Provide a file or list of minmatches to identify files to update.
 --root                      The root folder to recursively search for files to update.
 --dry-run                   If specified then no updates are made, but output is written to the logs.
 --output (-o)               Specifies output options to write the version number somewhere. Supports env, file, con, azdo, vsts, jcon and the con-nf suffix for Nuke Fusion output.
 --no-override               Specifies that overrides should be ignored.
---release (-R)              Specifies a release name to be used in the version number. This is primarily used for release versions and is not normally used for build versions.
+--release (-r)              Specifies a release name to be used in the version number. This is primarily used for release versions and is not normally used for build versions.
 --digit-group (-g)          Selects a named digit group. With the set command, assigns the selected digit or digits to that group.
 --pre-release (-p)          Shortcut for the pre-release digit group. Cannot be combined with --digit-group.
 --debug                     Enables trace handling for debugging and additional logging.
@@ -74,7 +74,7 @@ versonify --command=passive --version-source=C:\temp\aversion.vstore
 versonify --command=passive --version-source=C:\temp\aversion.vstore --output=file
 ```
 
-Will load the version number into the tool then perform no action.  This is only really used in conjuction with the -O output option to ensure that the version number is made available to a calling or alternative process.
+Will load the version number into the tool then perform no action.  This is only really used in conjuction with the `-o` output option to ensure that the version number is made available to a calling or alternative process.
 
 If `--release` is also specified with the passive command then Versonify will output the stored release name rather than the full version number.
 
@@ -129,7 +129,7 @@ Overrides the values of version numbers at the point of next increment
 
 Requires:
 --version-source (-v)
---quick-value (-Q)	
+--quick-value (-q)	
 ```
 
 ```dos
@@ -222,14 +222,13 @@ The `--digits` option specifies which digit values to set. This can be a single 
 
 Requires:
 --version-source (-v)
---digits (-d) and --quick-value (-Q) , or --release (-R)
+--digits (-d) and --quick-value (-q) , or --release (-r)
 
 Optional:
 --dry-run
 ```
 
 If the [behaviour](version-reference.md#behaviours) of the digit is Fixed, then the value of the digit can be set to a string. For all other behaviours, the digit value must be set to an integer.
-Note: when a digit's behaviour is set to ReleaseName[8], the value of the digit is set to the release name specified in the version source. It is not possible to set the value of a digit with this behaviour using the `--quick-value` option.
 
 This example will set the value of the digit in position [0] to 2.
 
@@ -293,7 +292,7 @@ Requires:
 
 Optional:
 --output (-o)
---quick-value (-Q)
+--quick-value (-q)
 --dry-run
 ```
 
@@ -320,7 +319,7 @@ Sets the prefix for a digit in the version source.
 --command=prefix
 
 Requires:
---version-source (-v), --digits (-d) and --quick-value (-Q)
+--version-source (-v), --digits (-d) and --quick-value (-q)
 
 Optional:
 --dry-run
@@ -356,4 +355,4 @@ The `--no-error` option ensures that non-zero exit codes are suppressed. This is
 #### Using --qqpnf
 
 This is not designed to be used by consumers of Versonify. It returns an exit code indicating the compatibility level of the Versonify command line so that scripts that call Versonify can identify which features it supports.
-The current return code is 201. Versions prior to Austen 1.0.2 will not support this argument.
+The current return code is 201. Versions prior to Bronte 2.0.0 will not support this argument.
