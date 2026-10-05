@@ -9,7 +9,7 @@
 Command line options use the POSIX-style `--long-option` form and are supplied with `=`.
 For example, `--version-source=C:\temp\aversion.vstore`.
 
-Commands can be passed explicitly with the `--command=<command>` option. For example, `versonify --command=updatefiles ...`.
+Commands can be passed positionally as the first argument, or explicitly with the `--command=<command>` option. For example, `versonify --command=updatefiles ...`.
 
 ```plaintext
 --command                   Specify the command explicitly.
@@ -20,7 +20,7 @@ Commands can be passed explicitly with the `--command=<command>` option. For exa
 --min-match (-m)            Provide a file or list of minmatches to identify files to update.
 --root                      The root folder to recursively search for files to update.
 --dry-run                   If specified then no updates are made, but output is written to the logs.
---output (-o)               Specifies output options to write the version number somewhere. Supports env, file, con, azdo, vsts, jcon and the con-nf suffix for Nuke Fusion output.
+--output (-o)               Specifies output options to write the version number somewhere. Supports env, file, con, jcon, azdo, vsts, jcon and the con-nf suffix for Nuke Fusion output.
 --no-override               Specifies that overrides should be ignored.
 --release (-r)              Specifies a release name to be used in the version number. This is primarily used for release versions and is not normally used for build versions.
 --digit-group (-g)          Selects a named digit group. With the set command, assigns the selected digit or digits to that group.
@@ -94,6 +94,7 @@ Output Destinations can be one of the following.
 
 * env - Writes to an environment variable PVER-LATEST. If `--release` is specified then PVER-RELEASE is used instead.
 * con - Writes to the console.
+* jcon - Writes all output to the console in json (aimed at AI or automation)
 * file - Writes to a file. This defaults to pver-latest.txt in the current directory. If `--release` is specified then the default file name is pver-release.txt. Option can specify an alternative file name.
 * azdo - Writes an Azure Pipelines formatted string to the console.  Option can specify a variable name.
 * vsts - Alias of `azdo`.
